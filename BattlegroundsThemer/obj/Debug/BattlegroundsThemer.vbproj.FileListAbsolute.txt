@@ -10,3 +10,6 @@ c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsTheme
 c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.exe
 c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.xml
 c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.pdb
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\bin\Debug\FiddlerCore4.dll
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\bin\Debug\FiddlerCore4.pdb
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\bin\Debug\FiddlerCore4.xml

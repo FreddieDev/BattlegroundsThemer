@@ -22,5 +22,35 @@ BattlegroundsThemer
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="M:BattlegroundsThemer.C_Proxy.FiddlerBeforeRequestHandler(Fiddler.Session)">
+ <summary>
+ Process the request before it is passed along to the next server in the request chain.
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_Proxy.FiddlerBeforeResponseHandler(Fiddler.Session)">
+ <summary>
+ ' Process the response before passing along to the next client in the response chain (typically the browser)
+ </summary>
+</member>
+<member name="T:BattlegroundsThemer.C_WebMethods">
+ <summary>
+ Functions to modify and inject code into web documents
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_WebMethods.addScriptToHTML(System.String,System.String)">
+ <summary>
+ Appends a given script to the end of a standard HTML document
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_WebMethods.addStylesheetToHTML(System.String,System.String)">
+ <summary>
+ Appends a collection of CSS rules to the HTML document head section
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_WebMethods.addHTMLToHTML(System.String,System.String)">
+ <summary>
+ Appends given HTML code to the end of a standard HTML document
+ </summary>
+</member>
 </members>
 </doc>

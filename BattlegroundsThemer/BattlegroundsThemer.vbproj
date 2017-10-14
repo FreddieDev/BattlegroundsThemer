@@ -46,7 +46,13 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>BattlegroundsThemer.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FiddlerCore4">
+      <HintPath>..\..\..\Program Files\FiddlerCoreAPI\FiddlerCore4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -72,6 +78,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="C_BattlegroundsProxy.vb" />
+    <Compile Include="C_Proxy.vb" />
+    <Compile Include="C_WebMethods.vb" />
     <Compile Include="F_Main.Designer.vb">
       <DependentUpon>F_Main.vb</DependentUpon>
     </Compile>
@@ -116,6 +125,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BattlegroundsThemer.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
