@@ -1,0 +1,3777 @@
+
+
+// All game code, goto line 3439 for HTML
+
+
+
+
+
+
+
+<html>
+
+<head>
+    <title>PLAYERUNKNOWN'S BATTLE ROYALE ORIGINAL</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+        var _dev_ = false;
+        var broConfiguration = {
+            "gate": "https://prod-live-front.playbattlegrounds.com/index.html",
+            "uri": "https://prod-live-entry.playbattlegrounds.com/publicproxy",
+            "entry": "ws://prod-live-entry.playbattlegrounds.com:81/userproxy",
+            "secureEntry": "wss://prod-live-entry.playbattlegrounds.com/userproxy",
+            "useSecure": true,
+            "credential": {
+                "steam": "provider={provider}&ticket={ticket}&playerNetId={playerNetId}&cc={cc}&clientGameVersion={clientGameVersion}"
+            },
+            "verreq": "2.6.23",
+            "LayoutMode": "",
+            "LanpartyHome": "http://52.59.158.42/Dreamhack/Game/{accountId}/day1_qualifying/1"
+        }
+        var production = true;
+    </script>
+    <link href="https://prod-live-front.playbattlegrounds.com/2017.09.14-2017.09.13-351/coherent/coherent.mock.style.css" rel="stylesheet" type="text/css">
+    <script src="https://prod-live-front.playbattlegrounds.com/2017.09.14-2017.09.13-351/coherent/coherent.js"></script>
+    <link href="https://prod-live-front.playbattlegrounds.com/2017.09.14-2017.09.13-351/styles.0511aa4c832169d2ac52.bundle.css" rel="stylesheet">
+    <style>
+        .wrapper.con-not-connected[_ngcontent-c0] .bro-header[_ngcontent-c0] {
+            background: none;
+        }
+        
+        .wrapper.con-not-connected[_ngcontent-c0]:before,
+        .wrapper.con-not-connected[_ngcontent-c0]:after {
+            display: none;
+        }
+        
+        .wrapper.con-not-connected[_ngcontent-c0] .btn-viewGrade[_ngcontent-c0],
+        .wrapper.con-not-connected[_ngcontent-c0] .dmm-logo[_ngcontent-c0] {
+            display: none;
+        }
+    </style>
+    <style>
+        .overlay[_ngcontent-c0] {
+            background-color: rgba(0, 0, 0, .5)
+        }
+        
+        .wrapper[_ngcontent-c0] {
+            height: 100vh;
+            background-size: cover;
+            transition: background-color .8s
+        }
+        
+        .wrapper[_ngcontent-c0]:after {
+            width: 18.42592593vh;
+            height: 4.62962963vh;
+            bottom: 1.2962963vh;
+            right: 3.7037037vh;
+            position: absolute;
+            content: "";
+            display: block;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/lobby-logo.png) 50% no-repeat;
+            background-size: contain
+        }
+        
+        .wrapper[_ngcontent-c0]:before {
+            width: 16.66666667vh;
+            line-height: 2.5vh;
+            padding: .27777778vh 0 0 0;
+            bottom: 2.31481481vh;
+            right: 4.62962963vh;
+            box-sizing: border-box;
+            position: absolute;
+            content: "EARLY ACCESS";
+            text-align: center;
+            background: rgba(0, 0, 0, .6);
+            color: #cc9000;
+            font-family: overpass;
+            font-weight: 800;
+            display: none
+        }
+        
+        .wrapper.con-not-connected[_ngcontent-c0]:after,
+        .wrapper.con-not-connected[_ngcontent-c0]:before {
+            display: none
+        }
+        
+        .wrapper.con-not-connected[_ngcontent-c0] .bro-header[_ngcontent-c0] {
+            background: none
+        }
+        
+        .wrapper[_ngcontent-c0] .dmm-logo[_ngcontent-c0] {
+            width: 17.22222222vh;
+            height: 2.87037037vh;
+            bottom: 1.2962963vh;
+            right: 23.14814815vh;
+            position: absolute;
+            display: block;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/dmm-logo.png) 50% no-repeat;
+            background-size: contain
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] {
+            top: 1.48148148vh;
+            width: 105vh;
+            height: 6.85185185vh;
+            padding: 0 3.33333333vh 0 0;
+            box-sizing: border-box;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            position: absolute;
+            right: 0;
+            z-index: 1200;
+            text-align: right;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/gnb-bg.png) 0 0 no-repeat
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] *[_ngcontent-c0] {
+            vertical-align: middle
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] {
+            text-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+            float: left
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] button[_ngcontent-c0] {
+            font-family: overpass
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] {
+            -webkit-transform: translate3d(0, -9.25925926vh, 0);
+            transform: translate3d(0, -9.25925926vh, 0);
+            opacity: 0;
+            -webkit-animation-name: delaymotion;
+            animation-name: delaymotion;
+            -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+            -webkit-animation-timing-function: cubic-bezier(.245, .37, .46, 1.65);
+            animation-timing-function: cubic-bezier(.245, .37, .46, 1.65)
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0]:first-child {
+            -webkit-animation-delay: .15s;
+            animation-delay: .15s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0]:nth-child(2) {
+            -webkit-animation-delay: .3s;
+            animation-delay: .3s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0]:nth-child(3) {
+            -webkit-animation-delay: .45s;
+            animation-delay: .45s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0]:nth-child(4) {
+            -webkit-animation-delay: .6s;
+            animation-delay: .6s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0]:nth-child(5) {
+            -webkit-animation-delay: .75s;
+            animation-delay: .75s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] li[_ngcontent-c0]:hover > ul[_ngcontent-c0] {
+            display: block
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] li[_ngcontent-c0]:hover > ul[_ngcontent-c0] > li[_ngcontent-c0] {
+            opacity: 0;
+            -webkit-animation-name: delaymotion;
+            animation-name: delaymotion;
+            -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+            -webkit-animation-timing-function: cubic-bezier(.245, .37, .46, 1.65);
+            animation-timing-function: cubic-bezier(.245, .37, .46, 1.65);
+            -webkit-animation-direction: alternate;
+            animation-direction: alternate
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] li[_ngcontent-c0]:hover > ul[_ngcontent-c0] > li[_ngcontent-c0]:first-child {
+            -webkit-animation-delay: .15s;
+            animation-delay: .15s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] li[_ngcontent-c0]:hover > ul[_ngcontent-c0] > li[_ngcontent-c0]:nth-child(2) {
+            -webkit-animation-delay: .3s;
+            animation-delay: .3s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] li[_ngcontent-c0]:hover > ul[_ngcontent-c0] > li[_ngcontent-c0]:nth-child(3) {
+            -webkit-animation-delay: .45s;
+            animation-delay: .45s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] li[_ngcontent-c0]:hover > ul[_ngcontent-c0] > li[_ngcontent-c0]:nth-child(4) {
+            -webkit-animation-delay: .6s;
+            animation-delay: .6s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] li[_ngcontent-c0]:hover > ul[_ngcontent-c0] > li[_ngcontent-c0]:nth-child(5) {
+            -webkit-animation-delay: .75s;
+            animation-delay: .75s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] ul[_ngcontent-c0] {
+            display: none
+        }
+        
+        @-webkit-keyframes delaymotion {
+            0% {
+                -webkit-transform: translate3d(0, -1.85185185vh, 0);
+                transform: translate3d(0, -1.85185185vh, 0);
+                opacity: 0
+            }
+            to {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                opacity: 1
+            }
+        }
+        
+        @keyframes delaymotion {
+            0% {
+                -webkit-transform: translate3d(0, -1.85185185vh, 0);
+                transform: translate3d(0, -1.85185185vh, 0);
+                opacity: 0
+            }
+            to {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                opacity: 1
+            }
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0]:after {
+            content: "";
+            display: block;
+            clear: both;
+            height: 0
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] {
+            position: relative;
+            display: inline-block;
+            margin: 0 4.35185185vh 0 0
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > button[_ngcontent-c0] {
+            height: 4.44444444vh;
+            line-height: 4.44444444vh;
+            font-size: 2.1vh;
+            color: #fff;
+            text-transform: uppercase;
+            opacity: .6;
+            background-color: rgba(0, 0, 0, .01);
+            transition: opacity .4s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > button.active[_ngcontent-c0],
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > button[_ngcontent-c0]:hover {
+            opacity: 1
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > ul[_ngcontent-c0] {
+            top: 4.44444444vh;
+            left: 50%;
+            position: absolute;
+            -webkit-transform: translate(-50%);
+            transform: translate(-50%)
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] {
+            margin: .27777778vh 0 0 0
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > button[_ngcontent-c0] {
+            width: 15.64814815vh;
+            height: 3.14814815vh;
+            position: relative;
+            color: #000;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/sub-menu.png) 0 0 no-repeat;
+            background-size: cover;
+            transition: color .4s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > button[_ngcontent-c0] > span[_ngcontent-c0] {
+            width: 15.64814815vh;
+            height: 3.14814815vh;
+            line-height: 3.14814815vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all .4s;
+            z-index: 10;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.8vh
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > button[_ngcontent-c0]:after {
+            width: 15.64814815vh;
+            height: 3.14814815vh;
+            content: "";
+            display: block;
+            opacity: 0;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/sub-menu.png) 0 bottom no-repeat;
+            background-size: cover;
+            transition: opacity .4s
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > button[_ngcontent-c0]:hover:after {
+            opacity: 1
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .bro-gnb[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > ul[_ngcontent-c0] > li[_ngcontent-c0] > button[_ngcontent-c0]:hover span[_ngcontent-c0] {
+            text-shadow: 1px 1px 1px #000;
+            color: #fff
+        }
+        
+        .bro-dev.bro-header[_ngcontent-c0] .gameOption[_ngcontent-c0] {
+            width: 18.51851852vh;
+            height: 4.16666667vh;
+            display: inline-block
+        }
+        
+        .dreamHack-leaderboard[_ngcontent-c0] {
+            width: 27.68518519vh;
+            top: 2.03703704vh;
+            left: 43.24074074vh;
+            position: fixed
+        }
+        
+        .dreamHack-leaderboard[_ngcontent-c0] img[_ngcontent-c0] {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10
+        }
+        
+        .dreamHack-leaderboard[_ngcontent-c0]:after {
+            width: 27.68518519vh;
+            height: 6.85185185vh;
+            content: "";
+            display: block;
+            opacity: .6;
+            transition: opacity .4s;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/dreamHack-leaderboard-bg.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .dreamHack-leaderboard[_ngcontent-c0]:hover:after {
+            opacity: 1
+        }
+        
+        .bro-refresh[_ngcontent-c0] {
+            top: 15.27777778vh;
+            position: fixed;
+            left: 0;
+            z-index: 4
+        }
+        
+        .bro-refresh[_ngcontent-c0] .inner[_ngcontent-c0] {
+            width: 40vh;
+            height: 5.64814815vh;
+            padding: 0 1.66666667vh 0 3.7037037vh;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/refresh-bg.png) 0 0 no-repeat;
+            background-size: contain
+        }
+        
+        .bro-refresh[_ngcontent-c0] .inner[_ngcontent-c0] button[_ngcontent-c0] {
+            width: 4.90740741vh;
+            height: 4.16666667vh;
+            display: block;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/btn-refresh.png) 0 0 no-repeat;
+            background-size: contain;
+            transition: opacity .8s;
+            opacity: .5;
+            font-size: 0
+        }
+        
+        .bro-refresh[_ngcontent-c0] .inner[_ngcontent-c0] button[_ngcontent-c0]:hover {
+            opacity: 1
+        }
+        
+        .bro-refresh[_ngcontent-c0] .inner[_ngcontent-c0] p[_ngcontent-c0] {
+            padding: 0 0 0 1.38888889vh;
+            letter-spacing: -.09259259vh;
+            line-height: 1.5vh;
+            font-weight: 500;
+            font-size: 1.3vh;
+            color: #979797
+        }
+        
+        .bro-refresh[_ngcontent-c0] .inner[_ngcontent-c0] p[_ngcontent-c0] span[_ngcontent-c0] {
+            color: #fff
+        }
+        
+        .bro-refresh[_ngcontent-c0] .inner[_ngcontent-c0] p[_ngcontent-c0] strong[_ngcontent-c0] {
+            color: #ffc700;
+            font-weight: 400
+        }
+        
+        .notice-msg[_ngcontent-c0] {
+            top: 25.92592593vh;
+            padding: 1.2962963vh 2.77777778vh .92592593vh 2.77777778vh;
+            font-size: 3.51851852vh;
+            text-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+            position: absolute;
+            left: 50%;
+            z-index: 1000;
+            -webkit-transform: translate(-50%);
+            transform: translate(-50%);
+            display: inline-block;
+            line-height: 1;
+            text-align: center;
+            font-weight: 600;
+            pointer-events: none;
+            color: #ffc700;
+            background-color: rgba(0, 0, 0, .6)
+        }
+        
+        @-webkit-keyframes notice-msg {
+            0% {
+                opacity: 0
+            }
+            80% {
+                opacity: 1
+            }
+            to {
+                opacity: 0
+            }
+        }
+        
+        @keyframes notice-msg {
+            0% {
+                opacity: 0
+            }
+            80% {
+                opacity: 1
+            }
+            to {
+                opacity: 0
+            }
+        }
+        
+        .alert-message[_ngcontent-c0] {
+            padding: .46296296vh 1.38888889vh .46296296vh 1.38888889vh;
+            bottom: 25.92592593vh;
+            text-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+            position: absolute;
+            left: 50%;
+            -webkit-transform: translate(-50%);
+            transform: translate(-50%);
+            display: inline-block;
+            text-align: center;
+            font-size: 2.8vh;
+            font-weight: 400;
+            pointer-events: none;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, .6)
+        }
+        
+        .alert-message[_ngcontent-c0] ul[_ngcontent-c0] li[_ngcontent-c0] {
+            transition: all .6s
+        }
+        
+        .alert-message[_ngcontent-c0] ul[_ngcontent-c0] li[_ngcontent-c0]:last-child {
+            opacity: 1
+        }
+        
+        .alert-message[_ngcontent-c0] ul[_ngcontent-c0] li[_ngcontent-c0]:nth-last-child(2) {
+            opacity: .5
+        }
+        
+        .alert-message[_ngcontent-c0] ul[_ngcontent-c0] li[_ngcontent-c0]:nth-last-child(3) {
+            opacity: .2
+        }
+        
+        .alert-message[_ngcontent-c0] ul[_ngcontent-c0] li[_ngcontent-c0]:nth-last-child(4) {
+            opacity: 0
+        }
+        
+        .bro-testmark[_ngcontent-c0] {
+            width: 14.53703704vh;
+            height: 17.03703704vh;
+            top: 12.96296296vh;
+            background: none;
+            position: absolute;
+            pointer-events: none;
+            opacity: 0
+        }
+        
+        .bro-testmark[_ngcontent-c0] img[_ngcontent-c0] {
+            width: 100%
+        }
+        
+        .bro-testmark.type1[_ngcontent-c0] {
+            right: 3.7037037vh
+        }
+        
+        .bro-testmark.type2[_ngcontent-c0] {
+            right: 18.51851852vh
+        }
+        
+        .bro-testmark.run-motion[_ngcontent-c0] {
+            -webkit-animation: blink 4s forwards 1s;
+            animation: blink 4s forwards 1s
+        }
+        
+        .guide-gradeText[_ngcontent-c0] {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            pointer-events: none;
+            opacity: 0;
+            background-color: rgba(0, 0, 0, .6)
+        }
+        
+        .guide-gradeText[_ngcontent-c0] span[_ngcontent-c0] {
+            font-size: 6.48148148vh;
+            margin: 0 0 0 -46.2962963vh;
+            display: block;
+            text-align: center
+        }
+        
+        .guide-gradeText.run-motion[_ngcontent-c0] {
+            -webkit-animation: hideMotion 4s forwards .4s;
+            animation: hideMotion 4s forwards .4s
+        }
+        
+        @-webkit-keyframes blink {
+            80% {
+                -webkit-transform: perspective(700px) rotateY(0deg);
+                transform: perspective(700px) rotateY(0deg);
+                opacity: 1
+            }
+            to {
+                -webkit-transform: perspective(700px) rotateY(180deg);
+                transform: perspective(700px) rotateY(180deg);
+                opacity: 0
+            }
+        }
+        
+        @keyframes blink {
+            80% {
+                -webkit-transform: perspective(700px) rotateY(0deg);
+                transform: perspective(700px) rotateY(0deg);
+                opacity: 1
+            }
+            to {
+                -webkit-transform: perspective(700px) rotateY(180deg);
+                transform: perspective(700px) rotateY(180deg);
+                opacity: 0
+            }
+        }
+        
+        @-webkit-keyframes hideMotion {
+            50% {
+                opacity: 1
+            }
+            80% {
+                opacity: 1
+            }
+            to {
+                opacity: 0
+            }
+        }
+        
+        @keyframes hideMotion {
+            50% {
+                opacity: 1
+            }
+            80% {
+                opacity: 1
+            }
+            to {
+                opacity: 0
+            }
+        }
+        
+        .btn-viewGrade[_ngcontent-c0] {
+            width: 9.25925926vh;
+            right: 23.14814815vh;
+            bottom: 1.11111111vh;
+            font-size: 1.2962963vh;
+            position: absolute;
+            display: inline-block;
+            color: #fff;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, .1)
+        }
+        
+        .dim[_ngcontent-c0] {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, .6)
+        }
+        
+        [class^=layer-][_ngcontent-c0] {
+            width: 58.33333333vh;
+            padding: 3.24074074vh 3.24074074vh 3.24074074vh 3.24074074vh;
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: #000;
+            border: 2px solid #9c9c9c
+        }
+        
+        [class^=layer-][_ngcontent-c0] .bro-desc[_ngcontent-c0],
+        [class^=layer-][_ngcontent-c0] .bro-descPoint[_ngcontent-c0] {
+            font-size: 2.40740741vh
+        }
+        
+        [class^=layer-][_ngcontent-c0] .bro-desc[_ngcontent-c0] {
+            line-height: 1.4
+        }
+        
+        [class^=layer-][_ngcontent-c0] .group-btn[_ngcontent-c0] {
+            margin: 3.24074074vh 0 0 0
+        }
+        
+        [class^=layer-][_ngcontent-c0] .group-btn[_ngcontent-c0] button[_ngcontent-c0] {
+            width: 15.74074074vh;
+            margin: 0 .18518519vh 0 .18518519vh
+        }
+        
+        .input-message[_ngcontent-c0] {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1500;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh
+        }
+        
+        .input-message[_ngcontent-c0] .popup[_ngcontent-c0] {
+            width: 64.25925926vh;
+            padding: 3.7037037vh 0 3.7037037vh 0;
+            border: .27777778vh solid #9c9c9c;
+            position: relative;
+            background-color: #000;
+            text-align: center
+        }
+        
+        .input-message[_ngcontent-c0] .popup[_ngcontent-c0] .desc[_ngcontent-c0] {
+            margin: 0 0 1.38888889vh 0;
+            line-height: 1.4;
+            font-size: 2.7vh
+        }
+        
+        .input-message[_ngcontent-c0] .popup[_ngcontent-c0] button.close[_ngcontent-c0] {
+            width: 4.07407407vh;
+            height: 3.7037037vh;
+            opacity: .7;
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: block;
+            font-size: 0;
+            transition: opacity .6s;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/btn-close.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .input-message[_ngcontent-c0] .popup[_ngcontent-c0] button.close[_ngcontent-c0]:hover {
+            opacity: 1
+        }
+        
+        .input-message[_ngcontent-c0] .inputArea[_ngcontent-c0] *[_ngcontent-c0] {
+            vertical-align: middle
+        }
+        
+        .input-message[_ngcontent-c0] .inputArea[_ngcontent-c0] {
+            margin: 0 auto;
+            overflow: hidden;
+            text-align: center
+        }
+        
+        .input-message[_ngcontent-c0] .inputArea[_ngcontent-c0] .text[_ngcontent-c0] {
+            width: 36.11111111vh;
+            height: 4.62962963vh;
+            padding: .46296296vh 0 0 0;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 10;
+            font-family: overpass;
+            font-size: 1.9vh;
+            font-weight: 500;
+            text-align: center;
+            box-shadow: 1px 0 4px 0 rgba(0, 0, 0, .7);
+            background: url(/2017.09.14-2017.09.13-351/assets/images/inputText-bg.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .input-message[_ngcontent-c0] .inputArea[_ngcontent-c0] .text[_ngcontent-c0]::-webkit-input-placeholder {
+            color: #4a4a4a
+        }
+        
+        .input-message[_ngcontent-c0] .inputArea[_ngcontent-c0] button[_ngcontent-c0] {
+            width: 12.68518519vh;
+            height: 4.62962963vh;
+            padding: .55555556vh 0 0 0;
+            box-sizing: border-box;
+            font-size: 2.2vh;
+            font-weight: 700;
+            transition: opacity .6s;
+            opacity: .7;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/btn-access.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .input-message[_ngcontent-c0] .inputArea[_ngcontent-c0] button[_ngcontent-c0]:hover {
+            opacity: 1
+        }
+        
+        .e3-screen[_ngcontent-c0] {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            text-align: center;
+            line-height: 1;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/e3/e3-bg.jpg) center 0 no-repeat;
+            background-size: cover
+        }
+        
+        .e3-screen[_ngcontent-c0] h1[_ngcontent-c0] {
+            padding: 4.16666667vh 0 0 0
+        }
+        
+        .e3-screen[_ngcontent-c0] h1[_ngcontent-c0] img[_ngcontent-c0] {
+            height: 14.16666667vh
+        }
+        
+        .e3-screen[_ngcontent-c0] .pressButton[_ngcontent-c0] {
+            bottom: 9.25925926vh;
+            font-size: 3.14814815vh;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            opacity: 1;
+            line-height: 1;
+            color: #fff;
+            font-family: oswald;
+            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, .88), -2px -2px 8px rgba(0, 0, 0, .88);
+            -webkit-animation: pressButton 1.2s alternate infinite linear;
+            animation: pressButton 1.2s alternate infinite linear
+        }
+        
+        .e3-screen[_ngcontent-c0] .pressButton[_ngcontent-c0] *[_ngcontent-c0] {
+            vertical-align: middle
+        }
+        
+        .e3-screen[_ngcontent-c0] .pressButton[_ngcontent-c0] img[_ngcontent-c0] {
+            width: 4.62962963vh
+        }
+        
+        .e3-screen[_ngcontent-c0] .copyright[_ngcontent-c0] {
+            bottom: 2.77777778vh;
+            font-size: 1.2962963vh;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            color: hsla(0, 0%, 100%, .4);
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, .8);
+            font-family: overpass;
+            font-weight: 400
+        }
+        
+        @-webkit-keyframes pressButton {
+            0% {
+                opacity: 1
+            }
+            to {
+                opacity: .3
+            }
+        }
+        
+        @keyframes pressButton {
+            0% {
+                opacity: 1
+            }
+            to {
+                opacity: .3
+            }
+        }
+    </style>
+    <style></style>
+    <style>
+        .connect-wrap[_ngcontent-c2] {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            padding: 1.85185185vh 3.7037037vh 1.85185185vh 3.7037037vh;
+            width: 20%;
+            text-align: center;
+            background-color: green
+        }
+        
+        .connect-wrap[_ngcontent-c2] h3[_ngcontent-c2] {
+            font-family: texB;
+            font-size: 2.4vh
+        }
+        
+        .connect-wrap[_ngcontent-c2] .form-group[_ngcontent-c2] {
+            display: block
+        }
+        
+        .connect-wrap[_ngcontent-c2] .form-group[_ngcontent-c2] label[_ngcontent-c2] {
+            width: 7%
+        }
+        
+        .connect-wrap[_ngcontent-c2] .form-group[_ngcontent-c2] .form-text[_ngcontent-c2] {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1
+        }
+        
+        .connect-wrap[_ngcontent-c2] .button[_ngcontent-c2] {
+            width: 100%
+        }
+        
+        .connect-wrap[_ngcontent-c2] .row-box[_ngcontent-c2] {
+            margin: .74074074vh 0 0 0
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] {
+            float: none;
+            width: 100%;
+            height: 100vh;
+            padding: 0;
+            text-align: center;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/nickname-bg.jpg) 50% no-repeat;
+            background-size: contain
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] article[_ngcontent-c2] {
+            padding: 22.22222222vh 0 0 0
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] h1[_ngcontent-c2] {
+            width: 51.2037037vh;
+            height: 15.18518519vh;
+            margin: 0 auto;
+            font-size: 0;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/logo.png) 50% no-repeat;
+            background-size: cover
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] h3[_ngcontent-c2] {
+            margin: 4.16666667vh 0 0 0;
+            line-height: 1;
+            font-size: 3.6vh;
+            text-shadow: 3px 3px 7px #000, -3px -3px 7px #000;
+            font-weight: 600
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] h3.init[_ngcontent-c2] {
+            color: #a5a5a5
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] .bro-insert-nickname[_ngcontent-c2] {
+            margin: 1.85185185vh 0 0 0
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] .bro-insert-nickname[_ngcontent-c2] *[_ngcontent-c2] {
+            vertical-align: middle
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] .bro-insert-nickname[_ngcontent-c2] .text[_ngcontent-c2] {
+            width: 41.11111111vh;
+            height: 6.38888889vh;
+            margin: 0 -1.2962963vh 0 0;
+            text-shadow: 2px 2px 1px rgba(0, 0, 0, .2);
+            position: relative;
+            text-align: center;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/input-nickname-bg.png) 0 0 no-repeat;
+            background-size: cover;
+            font-family: overpass;
+            font-size: 3vh;
+            font-weight: 500;
+            color: #fff
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] .bro-insert-nickname[_ngcontent-c2] .text[_ngcontent-c2]::-webkit-input-placeholder {
+            color: hsla(0, 0%, 100%, .3)
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] .bro-insert-nickname[_ngcontent-c2] button[_ngcontent-c2] {
+            min-width: 16.66666667vh;
+            height: 6.2962963vh;
+            padding: 0 1.85185185vh 0 1.85185185vh;
+            text-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+            font-size: 2.40740741vh;
+            line-height: 1;
+            font-weight: 700;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/btn-create.png) right 0 no-repeat;
+            background-size: cover;
+            color: #fff
+        }
+        
+        .bro-dev.bro-page-nickname[_ngcontent-c2] .bro-copyright[_ngcontent-c2] {
+            bottom: 2.77777778vh;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, .6);
+            font-size: 1.3vh;
+            color: #fff
+        }
+        
+        .bro-messageBox[_ngcontent-c2] {
+            width: 70.37037037vh;
+            margin: 3.7037037vh auto 3.7037037vh auto;
+            padding: 2.59259259vh 3.24074074vh 2.59259259vh 3.24074074vh;
+            font-size: 1.38888889vh;
+            box-sizing: border-box;
+            border: 1px solid #717171;
+            box-shadow: 0 0 10px 3px rgba(0, 0, 0, .3);
+            text-align: left;
+            background-color: rgba(0, 0, 0, .4)
+        }
+        
+        .bro-messageBox[_ngcontent-c2] button[_ngcontent-c2] {
+            font-size: 1.38888889vh;
+            color: #ffc700
+        }
+        
+        section.layerbox[_ngcontent-c2] {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+            background-color: #000
+        }
+        
+        section.intro[_ngcontent-c2] p[_ngcontent-c2] {
+            font-weight: 400;
+            opacity: 0;
+            -webkit-animation: fadeEffect 1.4s forwards;
+            animation: fadeEffect 1.4s forwards
+        }
+        
+        section.intro[_ngcontent-c2] .partner[_ngcontent-c2] {
+            margin: 5.55555556vh 2.31481481vh 0 2.31481481vh
+        }
+        
+        section.intro[_ngcontent-c2] .partner[_ngcontent-c2] img[_ngcontent-c2] {
+            height: 8.7037037vh;
+            margin: 0 2.31481481vh 0 2.31481481vh;
+            -webkit-transform: translateY(2.77777778vh);
+            transform: translateY(2.77777778vh);
+            display: inline-block;
+            opacity: 0;
+            -webkit-animation: delaymotion .3s forwards;
+            animation: delaymotion .3s forwards
+        }
+        
+        section.intro[_ngcontent-c2] .partner[_ngcontent-c2] img[_ngcontent-c2]:first-of-type {
+            -webkit-animation-delay: .15s;
+            animation-delay: .15s
+        }
+        
+        section.intro[_ngcontent-c2] .partner[_ngcontent-c2] img[_ngcontent-c2]:nth-of-type(2) {
+            -webkit-animation-delay: .3s;
+            animation-delay: .3s
+        }
+        
+        section.intro[_ngcontent-c2] .partner[_ngcontent-c2] img[_ngcontent-c2]:nth-of-type(3) {
+            -webkit-animation-delay: .45s;
+            animation-delay: .45s
+        }
+        
+        section.intro[_ngcontent-c2] .partner[_ngcontent-c2] img[_ngcontent-c2]:nth-of-type(4) {
+            -webkit-animation-delay: .6s;
+            animation-delay: .6s
+        }
+        
+        section.intro[_ngcontent-c2] .partner[_ngcontent-c2] img[_ngcontent-c2]:nth-of-type(5) {
+            -webkit-animation-delay: .75s;
+            animation-delay: .75s
+        }
+        
+        section.intro[_ngcontent-c2] .partner[_ngcontent-c2] img[_ngcontent-c2]:nth-of-type(6) {
+            -webkit-animation-delay: .9s;
+            animation-delay: .9s
+        }
+        
+        @-webkit-keyframes fadeEffect {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(2.77777778vh);
+                transform: translateY(2.77777778vh)
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate(0);
+                transform: translate(0)
+            }
+        }
+        
+        @keyframes fadeEffect {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(2.77777778vh);
+                transform: translateY(2.77777778vh)
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate(0);
+                transform: translate(0)
+            }
+        }
+        
+        section.warning[_ngcontent-c2] .bro-warning[_ngcontent-c2] {
+            width: 96.2962963vh
+        }
+        
+        section.warning[_ngcontent-c2] .bro-warning[_ngcontent-c2] .warning-message[_ngcontent-c2] {
+            margin: 3.7037037vh 0 0 0;
+            padding: .46296296vh 0 .46296296vh 0;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/box-line.png) 0 0 no-repeat, url(/2017.09.14-2017.09.13-351/assets/images/box-line.png) 0 bottom no-repeat;
+            background-size: contain, contain
+        }
+        
+        section.warning[_ngcontent-c2] .bro-warning[_ngcontent-c2] .warning-message[_ngcontent-c2] .cnt[_ngcontent-c2] {
+            width: 96.2962963vh;
+            padding: 1.85185185vh 0 2.96296296vh 0;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            text-align: center;
+            font-weight: 700;
+            color: #ffc700;
+            font-size: 2.6vh;
+            background: #333;
+            text-shadow: 2px 2px 0 0 #000
+        }
+        
+        section.warning[_ngcontent-c2] .bro-warning[_ngcontent-c2] .warning-message[_ngcontent-c2] .cnt[_ngcontent-c2] strong[_ngcontent-c2] {
+            padding: 1.2962963vh 0 0 0;
+            display: block;
+            color: #ffde00;
+            font-weight: 800;
+            font-size: 4vh;
+            text-transform: uppercase
+        }
+        
+        section.warning[_ngcontent-c2] .bro-warning[_ngcontent-c2] .warning-message[_ngcontent-c2] .cnt[_ngcontent-c2] strong[_ngcontent-c2] + p[_ngcontent-c2] {
+            margin: 1.2962963vh 0 0 0
+        }
+        
+        section.warning[_ngcontent-c2] .bro-warning[_ngcontent-c2] .warning-message[_ngcontent-c2] .cnt[_ngcontent-c2] p[_ngcontent-c2] {
+            margin: 1.48148148vh 0 0 0
+        }
+        
+        section.warning[_ngcontent-c2] .bro-warning[_ngcontent-c2] .group-btn[_ngcontent-c2] {
+            margin: 3.7037037vh 0 0 0
+        }
+        
+        section.warning[_ngcontent-c2] .bro-button.exit[_ngcontent-c2] {
+            position: absolute;
+            right: 4.35185185vh;
+            bottom: 3.88888889vh
+        }
+    </style>
+    <style>
+        pre[_ngcontent-c3] {
+            background-color: #deb887
+        }
+        
+        div[_ngcontent-c3] {
+            background-color: #5f9ea0
+        }
+        
+        .bro-top[_ngcontent-c3] {
+            background-color: #ccc;
+            margin: 0;
+            padding: 5px
+        }
+    </style>
+    <style>
+        .bro-hiddenArea[_ngcontent-c4] {
+            width: 35.18518519vh;
+            height: 66.2037037vh;
+            left: 62.96296296vh;
+            top: 16.66666667vh;
+            position: absolute
+        }
+        
+        .bro-hiddenArea.slideout[_ngcontent-c4] {
+            display: none
+        }
+        
+        .bro-contain[_ngcontent-c4] {
+            width: 157.40740741vh;
+            margin: 0 auto
+        }
+        
+        .bro-contents[_ngcontent-c4] {
+            width: 96.66666667vh;
+            height: 70.37037037vh;
+            padding: 0 .92592593vh 0 0;
+            float: right;
+            text-align: center
+        }
+        
+        .bro-contents[_ngcontent-c4]::-webkit-scrollbar {
+            width: .64814815vh
+        }
+        
+        .bro-contents[_ngcontent-c4]::-webkit-scrollbar-track {
+            background-color: #000
+        }
+        
+        .bro-contents[_ngcontent-c4]::-webkit-scrollbar-thumb {
+            background-color: orange
+        }
+        
+        .emergency[_ngcontent-c4] {
+            width: 55.55555556vh;
+            top: 25vh;
+            left: 0;
+            padding: .37037037vh .37037037vh .37037037vh .37037037vh;
+            box-sizing: border-box;
+            position: absolute;
+            background-color: rgba(0, 0, 0, .4);
+            border: 2px solid hsla(0, 0%, 100%, .7)
+        }
+        
+        .emergency[_ngcontent-c4] dt[_ngcontent-c4] {
+            padding: .55555556vh 1.38888889vh .55555556vh 1.38888889vh;
+            font-family: bombard;
+            font-size: 2.8vh;
+            color: #fff;
+            background-color: #ffb400;
+            text-shadow: 1px 1px 1px #000
+        }
+        
+        .emergency[_ngcontent-c4] dd[_ngcontent-c4] {
+            padding: .92592593vh 1.38888889vh .92592593vh 1.38888889vh;
+            font-size: 2vh;
+            border-top: 1px dashed hsla(0, 0%, 100%, .2);
+            color: hsla(0, 0%, 100%, .8)
+        }
+        
+        .bro-eventBanner[_ngcontent-c4] {
+            top: 18.51851852vh;
+            right: 3.24074074vh;
+            position: fixed
+        }
+        
+        .twitch-promotion[_ngcontent-c4] {
+            width: 31.48148148vh;
+            text-align: right
+        }
+        
+        .twitch-promotion[_ngcontent-c4] img[_ngcontent-c4] {
+            width: 100%
+        }
+        
+        .gamescom-promotion[_ngcontent-c4] {
+            width: 42.22222222vh;
+            height: 15.27777778vh;
+            padding: 2.12962963vh 0 0 14.07407407vh;
+            font-size: 1.48148148vh;
+            text-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+            box-sizing: border-box;
+            border: 1px solid #fff;
+            font-family: bombard;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/gamesCom-promotion.jpg) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .gamescom-promotion[_ngcontent-c4] button[_ngcontent-c4] {
+            font-size: 1.48148148vh;
+            display: inline-block;
+            background-color: rgba(0, 0, 0, .1);
+            font-family: bombard
+        }
+        
+        .gamescom-promotion[_ngcontent-c4] button[_ngcontent-c4]:hover {
+            color: #ffc700!important
+        }
+        
+        .gamescom-promotion[_ngcontent-c4] dl[_ngcontent-c4] {
+            margin: 0 0 1.11111111vh 0
+        }
+        
+        .gamescom-promotion[_ngcontent-c4] dl[_ngcontent-c4] dt[_ngcontent-c4] {
+            font-size: 2.03703704vh;
+            letter-spacing: -.18518519vh;
+            color: #ffc700
+        }
+        
+        .gamescom-promotion[_ngcontent-c4] .descript[_ngcontent-c4] {
+            line-height: 1.2;
+            color: #b6b6b6
+        }
+        
+        .gamescom-promotion[_ngcontent-c4] .descript.link[_ngcontent-c4] {
+            margin: 0 0 0 -.18518519vh;
+            cursor: pointer
+        }
+        
+        .gamescom-promotion[_ngcontent-c4] .descript.link[_ngcontent-c4]:hover {
+            color: #ffc700!important
+        }
+        
+        .gamescom-promotion[_ngcontent-c4] .descript[_ngcontent-c4] button[_ngcontent-c4] {
+            color: #b6b6b6
+        }
+        
+        .gamescom-promotion[_ngcontent-c4] .bro-sns[_ngcontent-c4] {
+            margin: 1.11111111vh 2.22222222vh 0 0;
+            font-family: bombard;
+            color: #fff
+        }
+    </style>
+    <style>
+        .no-pointer-events[_ngcontent-c5] {
+            pointer-events: none
+        }
+        
+        .set-pointer-events[_ngcontent-c5] {
+            pointer-events: all
+        }
+        
+        .select[_ngcontent-c5] {
+            line-height: 2.22222222vh;
+            font-size: 1.38888889vh;
+            display: inline-block
+        }
+        
+        .select[_ngcontent-c5],
+        .select[_ngcontent-c5] p[_ngcontent-c5] {
+            height: 2.22222222vh;
+            position: relative;
+            box-sizing: border-box
+        }
+        
+        .select[_ngcontent-c5] p[_ngcontent-c5] {
+            padding: 0 1.85185185vh 0 .55555556vh;
+            border: 1px solid #656565;
+            background-color: #373737;
+            font-weight: 400
+        }
+        
+        .select[_ngcontent-c5] p[_ngcontent-c5]:after {
+            top: .74074074vh;
+            right: .55555556vh;
+            content: "";
+            position: absolute;
+            border: 3px solid #fff;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            border-bottom-color: transparent
+        }
+        
+        .select.hover[_ngcontent-c5] {
+            z-index: 100
+        }
+        
+        .select.hover[_ngcontent-c5] p[_ngcontent-c5] + ul[_ngcontent-c5] {
+            overflow: hidden;
+            opacity: 1;
+            height: auto
+        }
+        
+        .select[_ngcontent-c5] ul[_ngcontent-c5] {
+            top: 2.22222222vh;
+            position: absolute;
+            left: 0;
+            overflow: hidden;
+            opacity: 0;
+            width: 100%;
+            height: 0;
+            transition: all .4s
+        }
+        
+        .select[_ngcontent-c5] ul[_ngcontent-c5] li[_ngcontent-c5] {
+            height: 2.22222222vh;
+            line-height: 2.22222222vh;
+            padding: 0 .55555556vh 0 .55555556vh;
+            font-size: 1.38888889vh;
+            box-sizing: border-box;
+            border: 1px solid rgba(0, 0, 0, .4);
+            border-top: none;
+            color: #000;
+            background-color: #fff;
+            cursor: pointer;
+            font-weight: 500
+        }
+        
+        .select[_ngcontent-c5] ul[_ngcontent-c5] li[_ngcontent-c5]:hover {
+            background-color: #373737;
+            color: #fff
+        }
+        
+        .bro-playarea[_ngcontent-c5] {
+            width: 41.66666667vh;
+            height: 16.01851852vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            line-height: 1
+        }
+        
+        .bro-playarea[_ngcontent-c5] .bro-colorbg[_ngcontent-c5],
+        .bro-playarea[_ngcontent-c5] .cdt-text[_ngcontent-c5] {
+            opacity: 1;
+            transition: opacity 1s ease-in-out
+        }
+        
+        .bro-playarea[_ngcontent-c5] .bro-lastbg[_ngcontent-c5] {
+            width: 41.66666667vh;
+            height: 16.01851852vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/play-group.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-playarea[_ngcontent-c5] .bro-colorbg[_ngcontent-c5] {
+            width: 41.01851852vh;
+            height: 14.35185185vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-repeat: round;
+            background-position: 0 0;
+            background-size: cover
+        }
+        
+        .bro-playarea[_ngcontent-c5] div[class^=bro-condition][_ngcontent-c5] {
+            width: 25vh;
+            left: 2.77777778vh;
+            top: 1.2962963vh;
+            display: none;
+            position: absolute;
+            line-height: 1;
+            font-family: bombard;
+            text-transform: uppercase;
+            transition: all .4s;
+            cursor: pointer
+        }
+        
+        .bro-playarea[_ngcontent-c5] div[class^=bro-condition][_ngcontent-c5] .cdt-text[_ngcontent-c5] {
+            width: 25vh;
+            margin: 0 0 -.74074074vh 0;
+            line-height: 1;
+            text-shadow: 5px 5px 10px rgba(0, 0, 0, .8), -5px -5px 10px rgba(0, 0, 0, .4);
+            font-size: 7.6vh;
+            color: #fff;
+            letter-spacing: -2px;
+            -webkit-text-stroke: 1px #000
+        }
+        
+        .bro-playarea[_ngcontent-c5] div[class^=bro-condition][_ngcontent-c5] .desc-text[_ngcontent-c5] {
+            position: relative;
+            font-size: 4.2vh;
+            font-family: moonshiner;
+            text-shadow: 4px 4px 5px rgba(0, 0, 0, .62);
+            color: #ffc700;
+            -webkit-text-stroke: 1px #000
+        }
+        
+        .bro-playarea[_ngcontent-c5] div[class^=bro-condition][_ngcontent-c5] .desc-text[_ngcontent-c5] p[_ngcontent-c5] {
+            width: 27.77777778vh;
+            position: absolute;
+            top: 0;
+            left: 0
+        }
+        
+        .bro-playarea[_ngcontent-c5] div[class^=bro-condition][_ngcontent-c5] .desc-text[_ngcontent-c5] p[_ngcontent-c5]:first-child {
+            transition: opacity .2s
+        }
+        
+        .bro-playarea[_ngcontent-c5] div[class^=bro-condition][_ngcontent-c5] .desc-text[_ngcontent-c5] .msg[_ngcontent-c5] {
+            opacity: 0;
+            color: #fff;
+            line-height: 1;
+            -webkit-text-stroke: 0
+        }
+        
+        .bro-playarea.bro-play[_ngcontent-c5] .bro-colorbg[_ngcontent-c5],
+        .bro-playarea.bro-playteam[_ngcontent-c5] .bro-colorbg[_ngcontent-c5],
+        .bro-playarea.bro-room[_ngcontent-c5] .bro-colorbg[_ngcontent-c5] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/play-bg.png)
+        }
+        
+        .bro-playarea.bro-play[_ngcontent-c5] .bro-condition-play[_ngcontent-c5],
+        .bro-playarea.bro-playteam[_ngcontent-c5] .bro-condition-play[_ngcontent-c5],
+        .bro-playarea.bro-room[_ngcontent-c5] .bro-condition-play[_ngcontent-c5] {
+            display: block
+        }
+        
+        .bro-playarea.bro-play[_ngcontent-c5] .bro-condition-play[_ngcontent-c5] .cdt-text[_ngcontent-c5],
+        .bro-playarea.bro-playteam[_ngcontent-c5] .bro-condition-play[_ngcontent-c5] .cdt-text[_ngcontent-c5],
+        .bro-playarea.bro-room[_ngcontent-c5] .bro-condition-play[_ngcontent-c5] .cdt-text[_ngcontent-c5] {
+            -webkit-animation: neon1 4s ease-in-out infinite;
+            animation: neon1 4s ease-in-out infinite
+        }
+        
+        .bro-playarea.bro-play[_ngcontent-c5]:after,
+        .bro-playarea.bro-playteam[_ngcontent-c5]:after,
+        .bro-playarea.bro-room[_ngcontent-c5]:after {
+            -webkit-animation: shine linear 4s infinite;
+            animation: shine linear 4s infinite
+        }
+        
+        .bro-playarea.bro-matching[_ngcontent-c5] .bro-colorbg[_ngcontent-c5] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/matching-bg.png)
+        }
+        
+        .bro-playarea.bro-matching[_ngcontent-c5] .bro-condition-matching[_ngcontent-c5] {
+            display: block
+        }
+        
+        .bro-playarea.bro-matching[_ngcontent-c5] .bro-condition-matching[_ngcontent-c5] .cdt-text[_ngcontent-c5] {
+            -webkit-animation: neon1 2s ease-in-out infinite;
+            animation: neon1 2s ease-in-out infinite
+        }
+        
+        .bro-playarea.bro-matching[_ngcontent-c5]:after {
+            -webkit-animation: shine linear 2s infinite;
+            animation: shine linear 2s infinite
+        }
+        
+        .bro-playarea.bro-ready[_ngcontent-c5] .bro-colorbg[_ngcontent-c5] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/matching-bg.png)
+        }
+        
+        .bro-playarea.bro-ready[_ngcontent-c5] .bro-condition-ready[_ngcontent-c5] {
+            display: block
+        }
+        
+        .bro-playarea.bro-ready[_ngcontent-c5] .bro-condition-ready[_ngcontent-c5] .cdt-text[_ngcontent-c5] {
+            -webkit-animation: neon1 2s ease-in-out infinite;
+            animation: neon1 2s ease-in-out infinite
+        }
+        
+        .bro-playarea.bro-ready[_ngcontent-c5]:after {
+            -webkit-animation: shine linear 2s infinite;
+            animation: shine linear 2s infinite
+        }
+        
+        .bro-playarea.bro-entering[_ngcontent-c5] .bro-colorbg[_ngcontent-c5] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/entering-bg.png)
+        }
+        
+        .bro-playarea.bro-entering[_ngcontent-c5] .bro-condition-entering[_ngcontent-c5] {
+            display: block
+        }
+        
+        .bro-playarea.bro-offline[_ngcontent-c5] .bro-colorbg[_ngcontent-c5] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/offline-bg.png)
+        }
+        
+        .bro-playarea.bro-offline[_ngcontent-c5] .bro-condition-offline[_ngcontent-c5] {
+            display: block
+        }
+        
+        .bro-playarea.bro-offline[_ngcontent-c5] .bro-condition-offline[_ngcontent-c5] .desc-text[_ngcontent-c5] {
+            color: #a8a8a8
+        }
+        
+        .bro-playarea.bro-custommatch[_ngcontent-c5] .bro-colorbg[_ngcontent-c5] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/custommatch-bg.png)
+        }
+        
+        .bro-playarea.bro-custommatch[_ngcontent-c5] .bro-condition-custommatch[_ngcontent-c5] {
+            display: block
+        }
+        
+        .bro-playarea.bro-custommatch[_ngcontent-c5] .bro-condition-custommatch[_ngcontent-c5] .desc-text[_ngcontent-c5] .msg[_ngcontent-c5] {
+            opacity: 1;
+            text-shadow: 4px 4px 5px rgba(0, 0, 0, .62), 0 0 5px #fff, 0 0 10px #fff, 0 0 15px rgba(255, 255, 190, .62)
+        }
+        
+        .bro-playarea.bro-matching[_ngcontent-c5]:after,
+        .bro-playarea.bro-play[_ngcontent-c5]:after,
+        .bro-playarea.bro-playteam[_ngcontent-c5]:after,
+        .bro-playarea.bro-ready[_ngcontent-c5]:after,
+        .bro-playarea.bro-room[_ngcontent-c5]:after {
+            width: 42.5vh;
+            height: 21.38888889vh;
+            top: 3.61111111vh;
+            left: -6.2962963vh;
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            z-index: 100;
+            background: -webkit-linear-gradient(left, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .5) 8%, #fff 16%, hsla(0, 0%, 100%, .5) 19%, hsla(0, 0%, 100%, 0) 20%);
+            background-position: inherit;
+            -webkit-mask: url(/2017.09.14-2017.09.13-351/assets/images/play-bg1.png) 0 0 no-repeat;
+            -webkit-mask-size: cover;
+            -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0
+        }
+        
+        .btn-custommatch[_ngcontent-c5] {
+            width: 22.96296296vh;
+            height: 13.14814815vh;
+            top: 1.57407407vh;
+            right: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: absolute;
+            text-align: right;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/btn-triangle.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .btn-custommatch[_ngcontent-c5] > span[_ngcontent-c5] {
+            top: 6.48148148vh;
+            right: 1.85185185vh;
+            position: absolute;
+            display: inline-block;
+            font-size: 0
+        }
+        
+        .btn-custommatch.public[_ngcontent-c5] span[_ngcontent-c5] {
+            width: 9.62962963vh;
+            height: 3.98148148vh;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/btn-publicMatch.png) 0 0 no-repeat;
+            background-size: contain
+        }
+        
+        .btn-custommatch.exit[_ngcontent-c5] span[_ngcontent-c5] {
+            width: 11.01851852vh;
+            height: 3.88888889vh;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/btn-exitMatch.png) 0 0 no-repeat;
+            background-size: contain
+        }
+        
+        .btn-custommatch[_ngcontent-c5]:hover {
+            background: url(/2017.09.14-2017.09.13-351/assets/images/btn-triangle-on.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-group[_ngcontent-c5] {
+            width: 27.5vh;
+            padding: 4.62962963vh 0 0 0;
+            top: 0;
+            left: .46296296vh;
+            box-sizing: border-box;
+            position: absolute;
+            line-height: 1;
+            top: -1000px;
+            opacity: 0;
+            transition: opacity .6s, top 0s;
+            transition-delay: .6s, 1.2s
+        }
+        
+        .bro-group[_ngcontent-c5]:before {
+            content: "";
+            display: block;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/play-mapTop.png) 0 0 no-repeat;
+            width: 27.5vh;
+            height: 10.27777778vh;
+            background-size: 27.5vh 10.27777778vh
+        }
+        
+        .bro-group[_ngcontent-c5] .bro-group-contain[_ngcontent-c5] {
+            background-color: rgba(0, 0, 0, .8)
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] {
+            width: 21.94444444vh;
+            margin: .92592593vh 0 0 2.87037037vh;
+            text-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+            line-height: 1
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5]:first-child {
+            margin-top: 0
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dt[_ngcontent-c5] {
+            font-size: 2.22222222vh;
+            color: #cc9f00;
+            font-weight: 700;
+            text-transform: uppercase
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dt[_ngcontent-c5] + dd[_ngcontent-c5] {
+            border: none
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] {
+            height: 3.7037037vh;
+            padding: .83333333vh 0 .46296296vh 0;
+            box-sizing: border-box;
+            position: relative;
+            border-top: 1px solid hsla(0, 0%, 100%, .3)
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd.beta[_ngcontent-c5]:after {
+            width: 2.03703704vh;
+            height: 1.11111111vh;
+            margin: 0 0 0 .27777778vh;
+            content: "";
+            display: inline-block;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/mark-beta.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] > button[_ngcontent-c5],
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] > button[_ngcontent-c5] > span[_ngcontent-c5] {
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            line-height: 1
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] > button[_ngcontent-c5] {
+            padding: .27777778vh 0 0 0;
+            position: relative;
+            font-weight: 500;
+            color: hsla(0, 0%, 100%, .6);
+            text-align: left;
+            text-transform: uppercase;
+            transition: color .4s;
+            font-size: 0
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] > button[_ngcontent-c5]:hover {
+            color: #fff
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] > button[_ngcontent-c5]:before {
+            width: 2.96296296vh;
+            height: 2.87037037vh;
+            left: -1.11111111vh;
+            content: "";
+            display: none;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-chk-w.png) 0 50% no-repeat;
+            background-size: cover
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] > button.on[_ngcontent-c5] {
+            color: #fff
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] > button.on[_ngcontent-c5]:before {
+            display: inline-block
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] > button[_ngcontent-c5] > span[_ngcontent-c5] {
+            font-size: 1.66666667vh
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] .openmatching[_ngcontent-c5] {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%)
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] .openmatching[_ngcontent-c5] i.mark[_ngcontent-c5] {
+            width: 1.11111111vh;
+            height: 1.11111111vh;
+            border: .18518519vh solid #fff;
+            box-sizing: border-box;
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            background-image: none;
+            background-size: cover;
+            background-color: #fff
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] .openmatching[_ngcontent-c5] i.mark.check[_ngcontent-c5] {
+            background: #fff url(/2017.09.14-2017.09.13-351/assets/images/match-check.gif) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] .openmatching[_ngcontent-c5] span[_ngcontent-c5] {
+            font-size: 1.11111111vh;
+            display: inline-block;
+            vertical-align: middle;
+            color: #fff
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] .openmatching[_ngcontent-c5] .match-tip[_ngcontent-c5] {
+            width: 15.92592593vh;
+            padding: .46296296vh .64814815vh .46296296vh .64814815vh;
+            font-size: 1.11111111vh;
+            display: none;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            right: 0;
+            -webkit-transform: translate(110%);
+            transform: translate(110%);
+            border: 1px solid #737373;
+            line-height: 1.4;
+            background-color: #000
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] .openmatching[_ngcontent-c5] .match-tip[_ngcontent-c5]:after {
+            width: .92592593vh;
+            height: .92592593vh;
+            top: .46296296vh;
+            content: "";
+            position: absolute;
+            left: 0;
+            display: inline-block;
+            box-shadow: inset 1px 1px 0 0 #737373;
+            -webkit-transform: translate(-50%) rotate(-45deg);
+            transform: translate(-50%) rotate(-45deg);
+            background-color: #000
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] .openmatching[_ngcontent-c5]:hover .match-tip[_ngcontent-c5] {
+            display: inline-block;
+            z-index: 100
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5] .tip[_ngcontent-c5] {
+            display: none;
+            position: absolute;
+            top: 50%;
+            z-index: 10;
+            border: 1px solid #737373;
+            line-height: 1.2;
+            white-space: nowrap;
+            -webkit-transform: translate(50%, -50%);
+            transform: translate(50%, -50%);
+            font-size: 1.2vh;
+            background-color: #000;
+            right: 0;
+            padding: .64814815vh .83333333vh .64814815vh .83333333vh
+        }
+        
+        .bro-group[_ngcontent-c5] dl[_ngcontent-c5] dd[_ngcontent-c5]:hover .tip[_ngcontent-c5] {
+            display: block;
+            opacity: 1
+        }
+        
+        .bro-group[_ngcontent-c5] .btn-custom-match[_ngcontent-c5] {
+            height: 5.09259259vh;
+            padding: .37037037vh 0 0 0;
+            font-size: 2.40740741vh;
+            box-sizing: border-box;
+            width: 100%;
+            line-height: 1;
+            font-weight: 800;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, .4), 2px 2px 12px hsla(0, 0%, 100%, .4);
+            background-color: rgba(255, 180, 0, .4);
+            transition: background-color .6s
+        }
+        
+        .bro-group[_ngcontent-c5] .btn-custom-match[_ngcontent-c5]:hover {
+            background-color: rgba(255, 180, 0, .6)
+        }
+        
+        .bro-group.on[_ngcontent-c5] {
+            top: 0;
+            opacity: 1;
+            transition-delay: 0s;
+            transition: opacity .6s, top 0s
+        }
+        
+        @-webkit-keyframes neon1 {
+            0% {
+                opacity: .6
+            }
+            50% {
+                opacity: .6
+            }
+            75% {
+                opacity: 1
+            }
+            to {
+                opacity: .6
+            }
+        }
+        
+        @-webkit-keyframes neon2 {
+            0% {
+                text-shadow: 4px 4px 5px rgba(0, 0, 0, .62), 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff
+            }
+            to {
+                text-shadow: 4px 4px 5px rgba(0, 0, 0, .62), 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff
+            }
+        }
+        
+        @-webkit-keyframes shine {
+            0% {
+                background-position: inherit;
+                opacity: 0
+            }
+            35% {
+                background-position: inherit;
+                opacity: 0
+            }
+            50% {
+                background-position: 34vh 0;
+                opacity: 1
+            }
+            75% {
+                background-position: 34vh 0;
+                opacity: 0
+            }
+            to {
+                background-position: 0 0;
+                opacity: 0
+            }
+        }
+        
+        @keyframes shine {
+            0% {
+                background-position: inherit;
+                opacity: 0
+            }
+            35% {
+                background-position: inherit;
+                opacity: 0
+            }
+            50% {
+                background-position: 34vh 0;
+                opacity: 1
+            }
+            75% {
+                background-position: 34vh 0;
+                opacity: 0
+            }
+            to {
+                background-position: 0 0;
+                opacity: 0
+            }
+        }
+        
+        .bro-matching[_ngcontent-c5] .bro-group[_ngcontent-c5] {
+            display: none
+        }
+        
+        .hover.bro-matching[_ngcontent-c5] .bro-group.on[_ngcontent-c5] {
+            display: none;
+            opacity: .6!important
+        }
+        
+        .hover[_ngcontent-c5] .bro-colorbg[_ngcontent-c5],
+        .hover[_ngcontent-c5] .cdt-text[_ngcontent-c5] {
+            opacity: .5;
+            transition: opacity .4s
+        }
+        
+        .hover[_ngcontent-c5] .desc-text[_ngcontent-c5] p[_ngcontent-c5]:first-child {
+            opacity: 0
+        }
+        
+        .hover[_ngcontent-c5] .desc-text[_ngcontent-c5] p.msg[_ngcontent-c5] {
+            opacity: 1!important;
+            -webkit-animation: neon2 .5s linear infinite alternate;
+            animation: neon2 .5s linear infinite alternate
+        }
+        
+        .dim[_ngcontent-c5] {
+            color: #888
+        }
+        
+        .cnt-box[_ngcontent-c5] {
+            width: 34.90740741vh;
+            padding: 0 1.75925926vh 0 1.75925926vh;
+            margin: 0 auto
+        }
+        
+        .bro-group-match[_ngcontent-c5] {
+            width: 40.46296296vh;
+            height: 84.90740741vh;
+            left: .46296296vh;
+            box-sizing: border-box;
+            position: absolute;
+            background: -webkit-linear-gradient(270deg, transparent 10%, rgba(0, 0, 0, .8) 30%, rgba(0, 0, 0, .95));
+            transition: opacity .6s, top 0s;
+            top: 0;
+            opacity: 1;
+            transition-delay: 0s
+        }
+        
+        .bro-group-match.hover[_ngcontent-c5] {
+            top: -1000px;
+            opacity: 0;
+            transition-delay: .6s, 1.2s
+        }
+        
+        .bro-group-match[_ngcontent-c5] .inner[_ngcontent-c5] {
+            width: 38.42592593vh;
+            padding: 16.66666667vh 0 0 0;
+            box-sizing: border-box;
+            margin: 0 auto
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-option[_ngcontent-c5] {
+            position: relative;
+            z-index: 10;
+            width: 33.98148148vh;
+            margin: 0
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-option[_ngcontent-c5] .cnt-inbox[_ngcontent-c5] {
+            height: 3.24074074vh
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-option[_ngcontent-c5] .cnt-inbox[_ngcontent-c5]:after {
+            content: "";
+            display: block;
+            height: 0;
+            clear: both
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchlist[_ngcontent-c5] {
+            height: 57.40740741vh;
+            margin: 0 0 2.5vh 0;
+            overflow: auto
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .refresh[_ngcontent-c5] {
+            height: 3.24074074vh;
+            float: left;
+            box-sizing: border-box
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .refresh[_ngcontent-c5] button[_ngcontent-c5] {
+            height: 1.75925926vh;
+            background-size: 2.03703704vh 1.75925926vh;
+            vertical-align: middle;
+            display: inline-block;
+            font-size: 1.4vh;
+            font-weight: 600;
+            color: #ffc700
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .refresh[_ngcontent-c5] button[_ngcontent-c5]:before {
+            width: 2.12962963vh;
+            height: 2.12962963vh;
+            top: -.18518519vh;
+            content: "";
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-refresh.png) 0 no-repeat;
+            background-size: contain
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-list-sort[_ngcontent-c5] {
+            float: right
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5] {
+            height: 5.74074074vh;
+            padding: .92592593vh 1.38888889vh 0 1.38888889vh;
+            box-sizing: border-box;
+            position: relative;
+            transition: background-color .4s;
+            border-bottom: 1px solid #5c5c5c;
+            line-height: 1.3
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5]:first-child {
+            border-top: 1px solid #5c5c5c
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5] p[_ngcontent-c5] {
+            font-size: 1.66666667vh;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            color: hsla(0, 0%, 100%, .7);
+            font-family: Arial, Helvetica, Ms PGothic, microsoft yahei, Malgun Gothic, sans-serif
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5] .info[_ngcontent-c5] {
+            font-size: 1.2962963vh;
+            color: #aaa
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5] .info[_ngcontent-c5] span[_ngcontent-c5] > i[_ngcontent-c5] {
+            color: #fff
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5] .info[_ngcontent-c5] .point[_ngcontent-c5] {
+            color: #ffc700
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5] .lock[_ngcontent-c5] {
+            width: 1.01851852vh;
+            height: 1.2962963vh;
+            bottom: .83333333vh;
+            right: 1.48148148vh;
+            position: absolute;
+            display: inline-block;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-lock.png) 0 0 no-repeat;
+            background-size: contain;
+            opacity: .7
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5] .btn-destroy[_ngcontent-c5] {
+            width: 1.2037037vh;
+            height: 1.2037037vh;
+            bottom: .83333333vh;
+            right: 3.14814815vh;
+            position: absolute!important;
+            display: block;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-destroy.png) 0 0 no-repeat;
+            background-size: contain;
+            opacity: .7
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5]:hover {
+            background-color: hsla(0, 0%, 100%, .15)
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5]:hover p[_ngcontent-c5] {
+            color: #fff
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5]:hover .btn-destroy[_ngcontent-c5],
+        .bro-group-match.select-match[_ngcontent-c5] .bro-matchroom[_ngcontent-c5]:hover .lock[_ngcontent-c5] {
+            opacity: 1
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .btn-create-match[_ngcontent-c5] {
+            height: 5.09259259vh;
+            padding: .37037037vh 0 0 0;
+            font-size: 2.40740741vh;
+            box-sizing: border-box;
+            width: 100%;
+            line-height: 1;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, .4), 2px 2px 12px hsla(0, 0%, 100%, .4);
+            color: #fff;
+            font-weight: 800;
+            text-align: center;
+            background-color: rgba(255, 180, 0, .4);
+            transition: background-color .6s
+        }
+        
+        .bro-group-match.select-match[_ngcontent-c5] .btn-create-match[_ngcontent-c5]:hover {
+            background-color: rgba(255, 180, 0, .6)
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .room-tit[_ngcontent-c5] {
+            height: 3.88888889vh;
+            margin: 0 0 .92592593vh 0;
+            box-sizing: border-box;
+            width: 100%;
+            color: #ffc700;
+            font-size: 2.6vh;
+            font-weight: 500;
+            font-family: Arial, Helvetica, Ms PGothic, microsoft yahei, Malgun Gothic, sans-serif;
+            text-align: center;
+            border: 1px solid #ffc700;
+            background-color: rgba(255, 199, 0, .15);
+            box-shadow: inset -1px -1px 0 0 rgba(0, 0, 0, .7)
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .room-tit[_ngcontent-c5]::-webkit-input-placeholder {
+            color: #ffc700
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .bro-createList.cnt-box[_ngcontent-c5] {
+            height: 55.55555556vh;
+            overflow: auto
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] {
+            margin: .92592593vh 0 0 0
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .pwd[_ngcontent-c5] {
+            width: 13.88888889vh;
+            height: 2.31481481vh;
+            border-radius: .27777778vh .27777778vh .27777778vh .27777778vh;
+            margin: 0 .46296296vh 0 0;
+            background-color: #cecece;
+            text-align: center
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .pwd[_ngcontent-c5]::-webkit-input-placeholder {
+            color: #000
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .chk[_ngcontent-c5] {
+            top: -.18518519vh;
+            width: 1.48148148vh;
+            height: 1.48148148vh;
+            position: relative;
+            vertical-align: middle
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .checkbox[_ngcontent-c5] {
+            width: 1.2962963vh;
+            height: 1.2962963vh;
+            display: inline-block;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/checkbox.png) 0 0 no-repeat;
+            background-size: contain
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .checkbox[_ngcontent-c5] .chk[_ngcontent-c5] {
+            -webkit-appearance: none;
+            opacity: 0
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .checkbox.checked[_ngcontent-c5] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/checkbox-on.png);
+            background-size: contain
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .itemSpawn-stit[_ngcontent-c5] {
+            height: 3.14814815vh;
+            font-size: 1.48148148vh;
+            margin: 1.38888889vh 0 .92592593vh 0;
+            padding: 1.01851852vh 0 0 0;
+            box-sizing: border-box;
+            background-color: hsla(0, 0%, 100%, .25);
+            text-align: center;
+            color: #fff
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] {
+            width: 100%;
+            font-size: 1.48148148vh
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] tr[_ngcontent-c5] td[_ngcontent-c5],
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] tr[_ngcontent-c5] th[_ngcontent-c5] {
+            padding: .37037037vh .37037037vh .37037037vh .37037037vh;
+            vertical-align: top
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] tr[_ngcontent-c5] th[_ngcontent-c5] {
+            width: 34%;
+            line-height: 1.2;
+            font-weight: 400;
+            text-align: left
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] tr[_ngcontent-c5] td.addTbl[_ngcontent-c5] {
+            padding-left: 0;
+            padding-right: 0
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] tr[_ngcontent-c5] td[_ngcontent-c5] .range[_ngcontent-c5] {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] tr[_ngcontent-c5] td[_ngcontent-c5] .range[_ngcontent-c5] i[_ngcontent-c5] {
+            width: 2.31481481vh;
+            font-size: 1.01851852vh;
+            display: inline-block;
+            text-align: center;
+            font-weight: 400
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] tr[_ngcontent-c5] td[_ngcontent-c5] .range[_ngcontent-c5] input[type=range][_ngcontent-c5] {
+            margin: 0 .46296296vh 0 .46296296vh;
+            width: 100%
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] tr[_ngcontent-c5] td[_ngcontent-c5] .range-value[_ngcontent-c5] {
+            margin: .55555556vh 0 0 0;
+            font-size: 1.11111111vh;
+            text-align: center
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] .serverRegion[_ngcontent-c5] .select[_ngcontent-c5] {
+            width: 11.11111111vh
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table[_ngcontent-c5] .weatherRegion[_ngcontent-c5] .select[_ngcontent-c5] {
+            width: 18.51851852vh
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table.toggleType[_ngcontent-c5] {
+            background-color: #404040
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table.toggleType[_ngcontent-c5] tr[_ngcontent-c5]:not(:first-child) {
+            display: none
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table.toggleType[_ngcontent-c5] tr[_ngcontent-c5]:not(:first-child) td[_ngcontent-c5],
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table.toggleType[_ngcontent-c5] tr[_ngcontent-c5]:not(:first-child) th[_ngcontent-c5] {
+            font-size: 1.2962963vh
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table.toggleType[_ngcontent-c5] tr[_ngcontent-c5]:first-child td[_ngcontent-c5],
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table.toggleType[_ngcontent-c5] tr[_ngcontent-c5]:first-child th[_ngcontent-c5] {
+            background-color: #595959
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] table.toggleType.show[_ngcontent-c5] tr[_ngcontent-c5] {
+            display: table-row
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .notice-message[_ngcontent-c5] {
+            margin: .64814815vh 0 0 0;
+            padding: .64814815vh .64814815vh .55555556vh .64814815vh;
+            font-size: 1.2037037vh;
+            box-sizing: border-box;
+            border: 1px solid #656565;
+            background-color: #373737
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .notice-message[_ngcontent-c5] > ul[_ngcontent-c5] > li[_ngcontent-c5] {
+            margin: .46296296vh 0 0 0;
+            padding: 0 0 0 .92592593vh;
+            position: relative
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .notice-message[_ngcontent-c5] > ul[_ngcontent-c5] > li[_ngcontent-c5]:first-child {
+            margin: 0 0 0 0
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .environment-set[_ngcontent-c5] .notice-message[_ngcontent-c5] > ul[_ngcontent-c5] > li[_ngcontent-c5]:after {
+            top: 0;
+            left: 0;
+            content: "-";
+            position: absolute
+        }
+        
+        .bro-group-match.create-match[_ngcontent-c5] .bro-group-btn[_ngcontent-c5] {
+            padding: 1.85185185vh 0 0 0;
+            border-top: 1px solid #666;
+            text-align: center
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .inner[_ngcontent-c5] {
+            width: 100%
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-room[_ngcontent-c5] {
+            float: left
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-room[_ngcontent-c5] .header[_ngcontent-c5] .bro-cnt-center[_ngcontent-c5] {
+            height: 7.40740741vh
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-room[_ngcontent-c5] .header[_ngcontent-c5] .bro-cnt-center[_ngcontent-c5] .room-tit[_ngcontent-c5] {
+            width: 34.90740741vh;
+            font-size: 1.66666667vh;
+            line-height: 1.2;
+            text-align: left;
+            font-family: Arial, Helvetica, Ms PGothic, microsoft yahei, Malgun Gothic, sans-serif;
+            word-break: break-all
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] {
+            float: right
+        }
+        
+        .play-match.owner[_ngcontent-c5] .selected[_ngcontent-c5] .btn-unassigned[_ngcontent-c5]:not(.observer) {
+            border-color: #ffc700!important;
+            color: #ffc700!important
+        }
+        
+        .play-match.owner[_ngcontent-c5] .selected[_ngcontent-c5] .btn-unassigned[_ngcontent-c5]:not(.observer):before {
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-unassigned-on.png) 0 0 no-repeat!important;
+            background-size: cover!important
+        }
+        
+        .bro-group-match.play-match.owner[_ngcontent-c5] .bro-lock[_ngcontent-c5] {
+            cursor: pointer
+        }
+        
+        .bro-group-match.play-match.owner[_ngcontent-c5] .btn-setEdit[_ngcontent-c5] {
+            display: inline-block!important
+        }
+        
+        .bro-group-match.play-match.user[_ngcontent-c5] .bro-lock[_ngcontent-c5] {
+            cursor: default
+        }
+        
+        .bro-group-match.play-match.user[_ngcontent-c5] .btn-setView[_ngcontent-c5] {
+            display: inline-block!important
+        }
+        
+        .bro-group-match.play-match.user[_ngcontent-c5] .bro-user-info[_ngcontent-c5] {
+            background-image: none
+        }
+        
+        .bro-group-match.play-match.user[_ngcontent-c5] .bro-user-info[_ngcontent-c5] .ban[_ngcontent-c5],
+        .bro-group-match.play-match.user[_ngcontent-c5] .user-hidden[_ngcontent-c5] {
+            display: none
+        }
+        
+        .create-match.user[_ngcontent-c5] .environment-set[_ngcontent-c5],
+        .create-match.user[_ngcontent-c5] .room-tit[_ngcontent-c5] {
+            pointer-events: none
+        }
+        
+        .destroy[_ngcontent-c5] {
+            width: 38.88888889vh;
+            height: 4.07407407vh;
+            line-height: 4.07407407vh;
+            bottom: -4.07407407vh;
+            font-size: 2.03703704vh;
+            position: absolute;
+            left: 0;
+            color: #fff;
+            font-weight: 800;
+            text-align: center;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, .4), 2px 2px 12px hsla(0, 0%, 100%, .4);
+            background-color: #e23b20
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] {
+            width: 69.62962963vh
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .inner[_ngcontent-c5] {
+            margin: 0
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-cnt-wrap[_ngcontent-c5] {
+            width: 34.90740741vh;
+            padding: 0 1.75925926vh 0 1.57407407vh
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-cnt-wrap[_ngcontent-c5] .bro-cnt-center[_ngcontent-c5] {
+            width: 34.90740741vh;
+            position: relative;
+            margin: 0 auto
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] {
+            position: relative
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .room-tit[_ngcontent-c5] {
+            font-size: 2.40740741vh;
+            color: #ffc700;
+            text-align: center;
+            word-break: break-all
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .room-info[_ngcontent-c5] {
+            font-size: 1.2962963vh;
+            bottom: .55555556vh;
+            position: absolute;
+            right: 0;
+            text-align: right;
+            color: #fff
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .btn-setEdit[_ngcontent-c5],
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .btn-setView[_ngcontent-c5] {
+            width: 2.31481481vh;
+            height: 2.31481481vh;
+            display: none;
+            font-size: 0;
+            vertical-align: middle;
+            background: 0 0 no-repeat
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .btn-setEdit[_ngcontent-c5] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/btn-setEdit.png);
+            background-size: cover
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .btn-setView[_ngcontent-c5] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/btn-setView.png);
+            background-size: cover
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .btn-wrap[_ngcontent-c5] {
+            bottom: .64814815vh;
+            position: absolute;
+            left: 0
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .bro-lock[_ngcontent-c5] *[_ngcontent-c5] {
+            vertical-align: middle
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .bro-lock[_ngcontent-c5] {
+            height: 2.40740741vh;
+            line-height: 2.40740741vh;
+            padding: .18518519vh .64814815vh 0 .64814815vh;
+            font-size: 1.2962963vh;
+            box-sizing: border-box;
+            border: 1px solid #7e7e7e;
+            font-weight: 700;
+            color: #fff;
+            text-align: center
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .bro-lock[_ngcontent-c5]:before {
+            width: 1.94444444vh;
+            height: 1.38888889vh;
+            top: -.18518519vh;
+            content: "";
+            vertical-align: middle;
+            display: inline-block;
+            position: relative;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-movelock.png) 0 0 no-repeat;
+            background-size: contain
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .bro-lock.close[_ngcontent-c5] {
+            background-color: #e23b20
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .header[_ngcontent-c5] .bro-lock.open[_ngcontent-c5]:before {
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-moveopen.png) 0 0 no-repeat;
+            background-size: contain
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-group-list[_ngcontent-c5] {
+            overflow: hidden;
+            overflow-y: auto;
+            height: 59.07407407vh
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group[_ngcontent-c5] {
+            margin: 0 0 -1px 0;
+            border-top: 1px solid #5b5b5b;
+            border-bottom: 1px solid #5b5b5b
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group[_ngcontent-c5] .bro-group-number[_ngcontent-c5] {
+            width: 6.48148148vh;
+            height: 2.68518519vh;
+            padding: .74074074vh 0 0 0;
+            font-size: 1.66666667vh;
+            box-sizing: border-box;
+            float: left;
+            font-weight: 700;
+            color: #fff;
+            text-align: center
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group[_ngcontent-c5] ol[_ngcontent-c5] {
+            overflow: hidden;
+            border-left: 1px solid #5b5b5b
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group[_ngcontent-c5] ol[_ngcontent-c5] li[_ngcontent-c5] {
+            height: 2.68518519vh;
+            line-height: 2.68518519vh;
+            padding: 0 0 0 2.40740741vh;
+            font-size: 1.2037037vh;
+            position: relative;
+            border-top: 1px solid #5b5b5b;
+            cursor: pointer
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group[_ngcontent-c5] ol[_ngcontent-c5] li[_ngcontent-c5]:first-child {
+            border-top: none
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group[_ngcontent-c5] ol[_ngcontent-c5] li.selected[_ngcontent-c5] {
+            color: #ffc700!important;
+            font-weight: 700
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group[_ngcontent-c5] ol[_ngcontent-c5] li[_ngcontent-c5]:hover .bro-user-info[_ngcontent-c5] {
+            display: block
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.zombieMode[_ngcontent-c5] .bro-group-number[_ngcontent-c5] {
+            width: 13.88888889vh;
+            background-color: rgba(244, 0, 0, .12);
+            color: #ff6a6a
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.zombieMode[_ngcontent-c5] .bro-group-number[_ngcontent-c5] i[_ngcontent-c5] {
+            padding: 0 .64814815vh 0 0;
+            display: inline-block
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.zombieMode[_ngcontent-c5]:first-child {
+            position: relative;
+            border-bottom-color: #ff6a6a!important
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.zombieMode[_ngcontent-c5]:first-child .bro-group-number[_ngcontent-c5] {
+            background: none!important;
+            color: #fff
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-user-info[_ngcontent-c5] {
+            display: none;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid transparent;
+            text-align: right;
+            background: hsla(0, 0%, 100%, .2) url(/2017.09.14-2017.09.13-351/assets/images/ico-check-off.png) 0 0 no-repeat;
+            background-size: 1.11111111vh 1.01851852vh;
+            background-position: .64814815vh .64814815vh
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-user-info.checked[_ngcontent-c5] {
+            display: block;
+            border: 1px solid #ffc700;
+            background: hsla(0, 0%, 100%, .2) url(/2017.09.14-2017.09.13-351/assets/images/ico-check-on.png) 0 0 no-repeat;
+            background-size: 1.11111111vh 1.01851852vh;
+            background-position: .64814815vh .64814815vh
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-user-info.empty[_ngcontent-c5] {
+            background-image: none!important
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-user-info[_ngcontent-c5] button[_ngcontent-c5] {
+            width: 5.46296296vh;
+            height: 2.5vh;
+            margin: 0 0 0 -.18518519vh;
+            padding: .18518519vh 0 0 0;
+            font-size: 1.2037037vh;
+            box-sizing: border-box;
+            line-height: 1;
+            text-align: center;
+            letter-spacing: -1px;
+            font-weight: 800;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/button/btn-defaultBg-s.gif) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-user-info[_ngcontent-c5] button.active[_ngcontent-c5] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/button/btn-activeBg-s.gif)!important
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.selected[_ngcontent-c5] {
+            background-color: hsla(0, 0%, 100%, .3)
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.selected[_ngcontent-c5] .bro-group-number[_ngcontent-c5] {
+            border: 1px solid #ffc700;
+            color: #ffc700;
+            background-color: #000
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.selected[_ngcontent-c5] li[_ngcontent-c5],
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.selected[_ngcontent-c5] ol[_ngcontent-c5] {
+            border-color: #737373!important
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.full[_ngcontent-c5] .bro-group-number[_ngcontent-c5],
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.full[_ngcontent-c5] ol[_ngcontent-c5] li[_ngcontent-c5] {
+            color: #848484
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .bro-player-group.full[_ngcontent-c5] ol[_ngcontent-c5] li.selected[_ngcontent-c5] {
+            color: #846e1e!important
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] {
+            width: 29.16666667vh;
+            overflow: hidden
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .bro-cnt-wrap[_ngcontent-c5] {
+            width: 23.61111111vh;
+            padding: 0 1.75925926vh 0 1.57407407vh
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .bro-cnt-wrap[_ngcontent-c5] .bro-cnt-center[_ngcontent-c5] {
+            width: 23.61111111vh;
+            position: relative;
+            margin: 0 auto
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .header[_ngcontent-c5] .room-tit[_ngcontent-c5] {
+            margin: 5.27777778vh 0 0 0;
+            font-size: 1.66666667vh;
+            font-weight: 600;
+            color: #fff
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .btn-unassigned[_ngcontent-c5] {
+            height: 2.59259259vh;
+            margin: .46296296vh 0 .92592593vh 0;
+            padding: .18518519vh 0 0 0;
+            font-size: 1.2962963vh;
+            box-sizing: border-box;
+            display: block;
+            width: 100%;
+            border: 1px solid #7e7e7e;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            vertical-align: top
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .btn-unassigned[_ngcontent-c5]:before {
+            width: 1.01851852vh;
+            height: 1.11111111vh;
+            margin: 0 .92592593vh 0 0;
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-unassigned-off.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .btn-unassigned.active[_ngcontent-c5] {
+            border-color: #ffc700;
+            color: #ffc700
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .btn-unassigned.active[_ngcontent-c5]:before {
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-unassigned-on.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .btn-unassigned.observer[_ngcontent-c5] {
+            padding: .27777778vh 0 0 1.38888889vh;
+            text-align: left;
+            color: #ffc700
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .btn-unassigned.observer[_ngcontent-c5] span[_ngcontent-c5] {
+            padding: 0 0 0 1.11111111vh;
+            display: inline-block;
+            color: #fff
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .btn-unassigned.observer[_ngcontent-c5]:before {
+            display: none
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .bro-waiting-list[_ngcontent-c5] {
+            overflow: hidden;
+            overflow-y: auto;
+            margin: 0 0 1.85185185vh 0
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .bro-waiting-list[_ngcontent-c5] ol[_ngcontent-c5] {
+            border: 1px solid #5a5a5a
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .bro-waiting-list[_ngcontent-c5] ol[_ngcontent-c5] li[_ngcontent-c5] {
+            height: 2.68518519vh;
+            line-height: 2.68518519vh;
+            padding: 0 0 0 2.5vh;
+            font-size: 1.2037037vh;
+            position: relative;
+            border-top: 1px solid #5a5a5a;
+            cursor: pointer
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .bro-waiting-list[_ngcontent-c5] ol[_ngcontent-c5] li[_ngcontent-c5]:first-child {
+            border-top: 0
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .bro-waiting-list[_ngcontent-c5] ol[_ngcontent-c5] li[_ngcontent-c5]:hover .bro-user-info[_ngcontent-c5] {
+            display: block
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .bro-waiting-list[_ngcontent-c5] ol[_ngcontent-c5] li.selected[_ngcontent-c5] {
+            color: #ffc700
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .bro-waiting-list.bro-secObservers[_ngcontent-c5] {
+            height: 11.2037037vh
+        }
+        
+        .bro-group-match.play-match[_ngcontent-c5] .section-waiting[_ngcontent-c5] .bro-waiting-list.bro-secUnassigned[_ngcontent-c5] {
+            height: 36.2037037vh
+        }
+        
+        .betaMark[_ngcontent-c5] {
+            top: .64814815vh;
+            left: 28.7037037vh;
+            font-size: 2.31481481vh;
+            font-family: bombard;
+            position: fixed;
+            color: #ffc700;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, .7), -2px -2px 2px rgba(0, 0, 0, .7)
+        }
+    </style>
+    <style>
+        .bro-userinfo[_ngcontent-c6] {
+            top: 9.62962963vh;
+            right: 3.24074074vh;
+            position: fixed
+        }
+        
+        .bro-userinfo[_ngcontent-c6]:after {
+            content: "";
+            display: block;
+            clear: both;
+            height: 0
+        }
+        
+        .bro-userinfo[_ngcontent-c6] span[_ngcontent-c6] {
+            height: 3.14814815vh;
+            line-height: 3.14814815vh;
+            padding: 0 0 0 2.03703704vh;
+            float: left
+        }
+        
+        .bro-userinfo[_ngcontent-c6] span[_ngcontent-c6] *[_ngcontent-c6] {
+            vertical-align: middle
+        }
+        
+        .bro-userinfo[_ngcontent-c6] span[_ngcontent-c6] em[_ngcontent-c6] {
+            display: inline-block
+        }
+        
+        .bro-userinfo[_ngcontent-c6] .userid[_ngcontent-c6],
+        .bro-userinfo[_ngcontent-c6] .userpoint[_ngcontent-c6] {
+            font-size: 2.2vh;
+            font-weight: 500
+        }
+        
+        .bro-userinfo[_ngcontent-c6] .userkills[_ngcontent-c6],
+        .bro-userinfo[_ngcontent-c6] .userrank[_ngcontent-c6] {
+            text-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+            font-size: 1.8vh;
+            font-weight: 400;
+            color: hsla(0, 0%, 100%, .5)
+        }
+        
+        .bro-userinfo[_ngcontent-c6] .usermessage[_ngcontent-c6] {
+            margin: 0 4.62962963vh 0 0
+        }
+        
+        .bro-userinfo[_ngcontent-c6] .userid[_ngcontent-c6] {
+            color: #fff
+        }
+        
+        .bro-userinfo[_ngcontent-c6] .userpoint[_ngcontent-c6] {
+            color: #ffc700
+        }
+        
+        .bro-userinfo[_ngcontent-c6] .userpoint[_ngcontent-c6]:before {
+            width: 3.14814815vh;
+            height: 3.14814815vh;
+            margin: 0 .92592593vh 0 0;
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/bro-point.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-version[_ngcontent-c6] {
+            width: 27.77777778vh;
+            bottom: 1.38888889vh;
+            margin: 0 0 0 -13.88888889vh;
+            display: inline-block;
+            text-align: center;
+            position: fixed;
+            left: 50%;
+            font-size: 1.2vh;
+            opacity: .8
+        }
+        
+        .connect-twitch[_ngcontent-c6] {
+            width: 2.96296296vh;
+            height: 3.05555556vh;
+            margin: 0 .92592593vh 0 0;
+            position: relative;
+            display: inline-block;
+            transition: opacity .4s;
+            cursor: pointer;
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            background-size: cover
+        }
+        
+        .connect-twitch[_ngcontent-c6] i[_ngcontent-c6] {
+            display: none
+        }
+        
+        .connect-twitch[_ngcontent-c6] p[_ngcontent-c6] {
+            height: 2.5vh;
+            top: 3.51851852vh;
+            font-size: 1.2962963vh;
+            padding: .64814815vh 0 0 0;
+            opacity: 0;
+            box-sizing: border-box;
+            display: inline-block;
+            width: 0;
+            position: absolute;
+            left: 50%;
+            border: 1px solid #757573;
+            transition: opacity .4s;
+            -webkit-transform: translate(-50%);
+            transform: translate(-50%);
+            background-color: #000;
+            line-height: 1;
+            text-align: center;
+            font-family: overpass;
+            color: #fff;
+            visibility: hidden
+        }
+        
+        .connect-twitch[_ngcontent-c6]:hover p[_ngcontent-c6] {
+            opacity: 1;
+            visibility: visible
+        }
+        
+        .connect-twitch.deactivated[_ngcontent-c6] {
+            opacity: .6;
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/deactivated-twitch.png)
+        }
+        
+        .connect-twitch.deactivated[_ngcontent-c6]:hover {
+            opacity: 1
+        }
+        
+        .connect-twitch.deactivated[_ngcontent-c6] p[_ngcontent-c6] {
+            width: 13.14814815vh
+        }
+        
+        .connect-twitch.activated[_ngcontent-c6] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/activated-twitch.png)
+        }
+        
+        .connect-twitch.activated[_ngcontent-c6] p[_ngcontent-c6] {
+            width: 14.25925926vh
+        }
+        
+        .notice-twitch[_ngcontent-c6] {
+            width: 3.33333333vh;
+            height: 2.5vh;
+            margin: 0 .46296296vh 0 0;
+            position: relative;
+            display: inline-block;
+            transition: opacity .4s;
+            cursor: pointer;
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/message.png);
+            -webkit-animation: newMessage .6s 6 alternate;
+            animation: newMessage .6s 6 alternate
+        }
+        
+        .notice-twitch[_ngcontent-c6] i[_ngcontent-c6] {
+            display: none
+        }
+        
+        .notice-twitch[_ngcontent-c6] p[_ngcontent-c6] {
+            width: 23.33333333vh;
+            top: 3.51851852vh;
+            font-size: 1.2962963vh;
+            padding: .64814815vh 0 .64814815vh 0;
+            opacity: 0;
+            box-sizing: border-box;
+            display: inline-block;
+            position: absolute;
+            left: 50%;
+            border: 1px solid #ffbe00;
+            transition: opacity .4s;
+            -webkit-transform: translate(-50%);
+            transform: translate(-50%);
+            background-color: #000;
+            line-height: 1;
+            text-align: center;
+            font-family: overpass;
+            color: #fff;
+            visibility: hidden
+        }
+        
+        .notice-twitch[_ngcontent-c6] p[_ngcontent-c6]:after {
+            width: .83333333vh;
+            height: .55555556vh;
+            top: -.55555556vh;
+            margin: 0 0 0 -.46296296vh;
+            position: absolute;
+            left: 50%;
+            content: "";
+            display: block;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/message-arrow.png) 0 0 no-repeat;
+            background-size: contain
+        }
+        
+        .notice-twitch[_ngcontent-c6]:hover p[_ngcontent-c6] {
+            opacity: 1;
+            visibility: visible
+        }
+        
+        @-webkit-keyframes newMessage {
+            0% {
+                opacity: 1
+            }
+            to {
+                opacity: .4
+            }
+        }
+        
+        @keyframes newMessage {
+            0% {
+                opacity: 1
+            }
+            to {
+                opacity: .4
+            }
+        }
+    </style>
+    <style>
+        .btn-invite[_ngcontent-c7],
+        .btn-state[_ngcontent-c7] {
+            width: 6.01851852vh;
+            height: 4.62962963vh;
+            background: 0 0 no-repeat;
+            background-size: contain;
+            font-weight: 700;
+            font-size: 1.5vh;
+            text-transform: uppercase
+        }
+        
+        .btn-state[_ngcontent-c7] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/btn-gold.jpg)
+        }
+        
+        .btn-invite[_ngcontent-c7] {
+            background-image: url(/2017.09.14-2017.09.13-351/assets/images/btn-white.jpg)
+        }
+        
+        .bro-findFriend[_ngcontent-c7] {
+            width: 27.87037037vh;
+            height: 5.74074074vh;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid #ffb400;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/findFriend-bg.png) 0 0 no-repeat;
+            background-size: contain;
+            opacity: .6;
+            transition: opacity .4s
+        }
+        
+        .bro-findFriend.on[_ngcontent-c7] {
+            opacity: 1
+        }
+        
+        .bro-findFriend[_ngcontent-c7] .inputFind[_ngcontent-c7] {
+            position: relative;
+            float: left;
+            box-sizing: border-box;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, .8);
+            font-size: 2vh;
+            color: #fff;
+            -webkit-appearance: none;
+            background: transparent url(/2017.09.14-2017.09.13-351/assets/images/ico-find.png) 1.6vh 1.9vh no-repeat;
+            font-family: overpass;
+            font-weight: 500;
+            width: 22.12962963vh;
+            height: 5.74074074vh;
+            line-height: 5.74074074vh;
+            padding: 0 0 0 4.62962963vh;
+            background-size: 2.31481481vh 2.40740741vh
+        }
+        
+        .bro-findFriend[_ngcontent-c7] .inputFind[_ngcontent-c7]::-webkit-input-placeholder {
+            color: hsla(0, 0%, 100%, .6)
+        }
+        
+        .bro-findFriend[_ngcontent-c7] .btn-clear[_ngcontent-c7] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 0;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-clear.png) 50% no-repeat;
+            width: 5vh;
+            height: 5.74074074vh;
+            background-size: 2.12962963vh 2.12962963vh
+        }
+        
+        .bro-condition[_ngcontent-c7] {
+            line-height: 4.62962963vh;
+            padding: 0 1.48148148vh 0 1.48148148vh;
+            box-sizing: border-box;
+            text-align: center
+        }
+        
+        .bro-condition[_ngcontent-c7] span[_ngcontent-c7] {
+            font-size: 1.2vh;
+            color: #fff;
+            text-decoration: underline
+        }
+        
+        .bro-condition[_ngcontent-c7] span.default[_ngcontent-c7] {
+            text-decoration: none
+        }
+        
+        .bro-condition[_ngcontent-c7] span.searching[_ngcontent-c7] {
+            color: #ffc700
+        }
+        
+        .bro-condition[_ngcontent-c7] span.notfound[_ngcontent-c7] {
+            color: #ff9e00
+        }
+        
+        .bro-steamArea.on[_ngcontent-c7] {
+            height: 69.90740741vh
+        }
+        
+        .bro-steamArea.on[_ngcontent-c7] .inner[_ngcontent-c7] {
+            height: 64.07407407vh;
+            opacity: 1
+        }
+        
+        .bro-steamArea.on[_ngcontent-c7] .bro-connenct[_ngcontent-c7] {
+            opacity: 1
+        }
+        
+        .bro-steamArea.on[_ngcontent-c7] .bro-myFriend[_ngcontent-c7] {
+            position: relative
+        }
+        
+        .bro-steamArea[_ngcontent-c7] {
+            left: 1.2962963vh;
+            bottom: 0;
+            padding: 0 0 5.09259259vh 0;
+            width: 27.87037037vh;
+            height: 6.48148148vh;
+            transition: all .6s;
+            opacity: 1;
+            box-sizing: border-box;
+            position: fixed;
+            z-index: 1110;
+            font-weight: 500;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/steamFriendOver-bg.png) 0 bottom no-repeat;
+            background-size: cover
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .inner[_ngcontent-c7] {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: height .6s, opacity .6s
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .cnt[_ngcontent-c7] {
+            width: 25.46296296vh;
+            margin: 0 auto
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .cnt[_ngcontent-c7] header[_ngcontent-c7] {
+            margin: 1.85185185vh 0 1.38888889vh 0;
+            text-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+            font-size: 1.4vh;
+            color: #fff;
+            font-weight: 600
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .cnt[_ngcontent-c7] header[_ngcontent-c7]:first-child {
+            margin-top: 0
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .refresh[_ngcontent-c7] {
+            width: 25vh;
+            height: 3.24074074vh;
+            padding: 1.11111111vh 0 0 0;
+            box-sizing: border-box;
+            margin: 0 auto;
+            text-align: right
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .refresh[_ngcontent-c7] button[_ngcontent-c7] {
+            height: 1.75925926vh;
+            padding: 0 0 0 2.59259259vh;
+            background-size: 2.03703704vh 1.75925926vh;
+            vertical-align: middle;
+            display: inline-block;
+            font-size: 1.4vh;
+            font-weight: 600;
+            color: #ffc700
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .refresh[_ngcontent-c7] button[_ngcontent-c7]:before {
+            width: 2.12962963vh;
+            height: 2.12962963vh;
+            top: -.18518519vh;
+            content: "";
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-refresh.png) 0 no-repeat;
+            background-size: contain
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] {
+            height: 5.09259259vh;
+            line-height: 5.09259259vh;
+            padding: 0 0 0 8.14814815vh;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            cursor: pointer;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-friend.png) 0 0 no-repeat;
+            background-size: contain;
+            box-sizing: border-box
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] strong[_ngcontent-c7] {
+            font-weight: 400
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] .btn-leaveteam[_ngcontent-c7] {
+            width: 12.12962963vh;
+            height: 2.5vh;
+            top: 1.2037037vh;
+            left: 25vh;
+            padding: .18518519vh .92592593vh 0 .92592593vh;
+            box-sizing: border-box;
+            position: absolute;
+            font-size: 1.4vh;
+            font-weight: 600;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/btn-leave.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] .btn-leaveteam[_ngcontent-c7]:hover {
+            background-position: 0 bottom
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] .inviteFriend[_ngcontent-c7] *[_ngcontent-c7] {
+            vertical-align: top
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] .inviteFriend[_ngcontent-c7] {
+            width: 14.90740741vh;
+            height: 2.5vh;
+            line-height: 2.5vh;
+            top: 1.2037037vh;
+            left: 25vh;
+            padding: .18518519vh 0 0 .64814815vh;
+            box-sizing: border-box;
+            position: absolute;
+            font-size: 1.4vh;
+            font-weight: 600;
+            color: #000;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/btn-agree-bg.png) 0 0 no-repeat;
+            background-size: cover;
+            background-color: #cbcbcb
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] .inviteFriend[_ngcontent-c7] .chk[_ngcontent-c7] {
+            display: none
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] .inviteFriend[_ngcontent-c7]:before {
+            width: 2.40740741vh;
+            height: 2.40740741vh;
+            content: "";
+            display: inline-block;
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-chk-off.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] .inviteFriend[_ngcontent-c7]:hover {
+            background-color: #fff
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] .inviteFriend.checked[_ngcontent-c7] {
+            background-color: #ffb400
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] .inviteFriend.checked[_ngcontent-c7]:before {
+            background: url(/2017.09.14-2017.09.13-351/assets/images/ico-chk-on.png) 0 0 no-repeat;
+            background-size: cover
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-joinFriend[_ngcontent-c7] .inviteFriend.checked[_ngcontent-c7]:hover {
+            background-color: #ffc700
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] {
+            margin: .74074074vh 0 .74074074vh 0;
+            text-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            overflow: hidden;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7]:first-child {
+            margin-top: 0
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] img[_ngcontent-c7] {
+            margin: 0 1.38888889vh 0 0;
+            width: 4.62962963vh;
+            height: 4.62962963vh;
+            display: block;
+            font-size: 0;
+            vertical-align: top
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] dl[_ngcontent-c7] {
+            line-height: 1.2;
+            color: #fff;
+            font-family: Roboto
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] dl[_ngcontent-c7] dt[_ngcontent-c7] {
+            font-size: 1.6vh;
+            color: #888
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] dl[_ngcontent-c7] dt.on[_ngcontent-c7] {
+            color: #fff
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] dl[_ngcontent-c7] dd[_ngcontent-c7] {
+            margin: .46296296vh 0 0 0;
+            font-size: 1.3vh;
+            opacity: .8;
+            font-weight: 400
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] dl[_ngcontent-c7] dd.point[_ngcontent-c7] {
+            color: #ff9e00
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] button[_ngcontent-c7] {
+            margin: 0 0 0 .09259259vh;
+            opacity: 1
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] .control-group[_ngcontent-c7] {
+            height: 4.62962963vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: hsla(0, 0%, 100%, .12);
+            text-align: right;
+            font-size: 0;
+            opacity: 0;
+            transition: opacity .6s
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] button[_ngcontent-c7] {
+            opacity: .5
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] button[_ngcontent-c7]:hover {
+            opacity: 1
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7]:hover {
+            background: url(/2017.09.14-2017.09.13-351/assets/images/steamList-bg.png) 0 bottom repeat-x
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7]:hover .control-group[_ngcontent-c7] {
+            opacity: 1
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-myFriend[_ngcontent-c7] {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            box-sizing: border-box;
+            width: 100%;
+            background-color: rgba(146, 128, 85, .6)
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-myFriend[_ngcontent-c7] .bro-steamList[_ngcontent-c7] {
+            padding: 0;
+            color: #dcdcdc
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-myFriend[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7] {
+            margin: .74074074vh 0 .74074074vh 0
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-myFriend[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7]:hover > img[_ngcontent-c7],
+        .bro-steamArea[_ngcontent-c7] .bro-myFriend[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7]:hover dl[_ngcontent-c7] {
+            opacity: .6;
+            transition: opacity .4s
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-myFriend[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li[_ngcontent-c7]:hover .control-group[_ngcontent-c7] {
+            background-color: hsla(0, 0%, 100%, 0)
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-connenct[_ngcontent-c7] {
+            width: 27.87037037vh;
+            transition: all .4s;
+            opacity: 0
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-connenct[_ngcontent-c7] .cnt[_ngcontent-c7] {
+            overflow: hidden;
+            overflow-y: auto
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-connenct[_ngcontent-c7] .bro-steamList[_ngcontent-c7] {
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            color: #dcdcdc
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-connenct[_ngcontent-c7] .bro-steamList[_ngcontent-c7] dl[_ngcontent-c7],
+        .bro-steamArea[_ngcontent-c7] .bro-connenct[_ngcontent-c7] .bro-steamList[_ngcontent-c7] figure[_ngcontent-c7] {
+            position: relative
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-connenct[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li.result-msg[_ngcontent-c7] {
+            display: block
+        }
+        
+        .bro-steamArea[_ngcontent-c7] .bro-connenct[_ngcontent-c7] .bro-steamList[_ngcontent-c7] li.result-msg[_ngcontent-c7]:hover {
+            background: none
+        }
+        
+        .inviteFriend[_ngcontent-c7],
+        .inviteFriend[_ngcontent-c7] label[_ngcontent-c7] {
+            cursor: pointer
+        }
+        
+        .inner[_ngcontent-c7] {
+            flex-direction: column
+        }
+        
+        .inner[_ngcontent-c7],
+        .inner[_ngcontent-c7] .bro-connenct[_ngcontent-c7] {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column
+        }
+        
+        .inner[_ngcontent-c7] .bro-connenct[_ngcontent-c7] {
+            flex-direction: column;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1
+        }
+        
+        .inner[_ngcontent-c7] .bro-connenct[_ngcontent-c7] .cnt[_ngcontent-c7] {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            height: auto
+        }
+    </style>
+</head>
+
+<body>
+    <app _nghost-c0="" ng-version="4.3.6">
+        <div _ngcontent-c0="" class="wrapper con-connected">
+            <header _ngcontent-c0="" class="bro-header bro-dev">
+                <div _ngcontent-c0="">
+                    <nav _ngcontent-c0="" class="bro-gnb">
+                        <ul _ngcontent-c0="">
+                            
+                            <li _ngcontent-c0="">
+                                <button _ngcontent-c0="" routerlink="game/home" routerlinkactive="active" tabindex="0" class="active">home</button>
+                            </li>
+                            
+                            <li _ngcontent-c0="">
+                                <button _ngcontent-c0="" routerlink="game/character" routerlinkactive="active" tabindex="0">character</button>
+                            </li>
+                            
+                            <li _ngcontent-c0="">
+                                <button _ngcontent-c0="" routerlink="game/store" routerlinkactive="active" tabindex="0">rewards</button>
+                            </li>
+                            
+                            <li _ngcontent-c0="">
+                                <button _ngcontent-c0="" routerlink="game/leaderboard" routerlinkactive="active" tabindex="0">statistics</button>
+                                <ul _ngcontent-c0="">
+                                    <li _ngcontent-c0="">
+                                        <button _ngcontent-c0="" routerlink="game/leaderboard" routerlinkactive="active" tabindex="0"> <span _ngcontent-c0="">Leaderboard</span> </button>
+                                    </li>
+                                    
+                                    <li _ngcontent-c0="">
+                                        <button _ngcontent-c0="" routerlinkactive="active" tabindex="0"> <span _ngcontent-c0="">Statistics</span> </button>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <span _ngcontent-c0="" class="gameOption">                            </span>
+                    
+                </div>
+            </header>
+            <div _ngcontent-c0="">
+                <section _ngcontent-c0="" class="container bro-dev">
+                    <router-outlet _ngcontent-c0="" name="login"></router-outlet>
+                    <router-outlet _ngcontent-c0=""></router-outlet>
+                    <ng-component _nghost-c3="">
+                        <router-outlet _ngcontent-c3=""></router-outlet>
+                        <ng-component _nghost-c4="">
+                            <div _ngcontent-c4="" class="bro-dev bro-contain">
+                                <select-game _ngcontent-c4="" _nghost-c5="">
+                                    <section _ngcontent-c5="" class="bro-playarea bro-play no-pointer-events">
+                                        <div _ngcontent-c5="" class="bro-lastbg"></div>
+                                        <div _ngcontent-c5="" class="bro-colorbg"></div>
+                                        
+                                        <div _ngcontent-c5="" class="bro-group set-pointer-events">
+                                            <div _ngcontent-c5="" class="bro-group-contain">
+                                                <dl _ngcontent-c5="">
+                                                    <dt _ngcontent-c5="">REGION</dt>
+                                                    
+                                                    <dd _ngcontent-c5="">
+                                                        <button _ngcontent-c5=""> <span _ngcontent-c5="">NA SERVER</span> </button>
+                                                        <p _ngcontent-c5="" class="tip">North America</p>
+                                                    </dd>
+                                                    
+                                                    <dd _ngcontent-c5="">
+                                                        <button _ngcontent-c5=""> <span _ngcontent-c5="">EU SERVER</span> </button>
+                                                        <p _ngcontent-c5="" class="tip">Europe</p>
+                                                    </dd>
+                                                    
+                                                    <dd _ngcontent-c5="">
+                                                        <button _ngcontent-c5="" class="on"> <span _ngcontent-c5="">AS SERVER</span> </button>
+                                                        <p _ngcontent-c5="" class="tip">Asia</p>
+                                                    </dd>
+                                                    
+                                                    <dd _ngcontent-c5="">
+                                                        <button _ngcontent-c5=""> <span _ngcontent-c5="">OC SERVER</span> </button>
+                                                        <p _ngcontent-c5="" class="tip">Oceania</p>
+                                                    </dd>
+                                                    
+                                                    <dd _ngcontent-c5="">
+                                                        <button _ngcontent-c5=""> <span _ngcontent-c5="">SA SERVER</span> </button>
+                                                        <p _ngcontent-c5="" class="tip">South and Central America</p>
+                                                    </dd>
+                                                    
+                                                    <dd _ngcontent-c5="">
+                                                        <button _ngcontent-c5=""> <span _ngcontent-c5="">SEA SERVER</span> </button>
+                                                        <p _ngcontent-c5="" class="tip">South East Asia</p>
+                                                    </dd>
+                                                </dl>
+                                                <dl _ngcontent-c5="">
+                                                    <dt _ngcontent-c5="">TEAM</dt>
+                                                    
+                                                    <dd _ngcontent-c5="">
+                                                        <button _ngcontent-c5="" class="on"> <span _ngcontent-c5="">solo</span> </button>
+                                                    </dd>
+                                                    
+                                                    <dd _ngcontent-c5="">
+                                                        <button _ngcontent-c5=""> <span _ngcontent-c5="">duo</span> </button>
+                                                    </dd>
+                                                    
+                                                    <dd _ngcontent-c5="">
+                                                        <button _ngcontent-c5=""> <span _ngcontent-c5="">squad</span> </button>
+                                                        
+                                                    </dd>
+                                                    
+                                                    <dd _ngcontent-c5="" class="beta">
+                                                        <button _ngcontent-c5=""> <span _ngcontent-c5="">SOLO FPP</span> </button>
+                                                    </dd>
+                                                    
+                                                    <dd _ngcontent-c5="" class="beta">
+                                                        <button _ngcontent-c5=""> <span _ngcontent-c5="">DUO FPP</span> </button>
+                                                    </dd>
+                                                    
+                                                    <dd _ngcontent-c5="" class="beta">
+                                                        <button _ngcontent-c5=""> <span _ngcontent-c5="">SQUAD FPP</span> </button>
+                                                        
+                                                    </dd>
+                                                </dl>
+                                                <button _ngcontent-c5="" class="btn-custom-match">CUSTOM MATCH</button>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div _ngcontent-c5="" class="bro-condition-play set-pointer-events">
+                                            <p _ngcontent-c5="" class="cdt-text">PLAY</p>
+                                            <div _ngcontent-c5="" class="desc-text">
+                                                <p _ngcontent-c5="">BATTLEGROUNDS</p>
+                                                
+                                                <p _ngcontent-c5="" class="msg">click to play</p>
+                                                
+                                            </div>
+                                        </div>
+                                        <div _ngcontent-c5="" class="bro-condition-matching set-pointer-events">
+                                            <p _ngcontent-c5="" class="cdt-text">MATCHING</p>
+                                            <div _ngcontent-c5="" class="desc-text">
+                                                
+                                                
+                                                <p _ngcontent-c5="">AS Server / solo</p>
+                                                <p _ngcontent-c5="" class="msg">click to cancel</p>
+                                            </div>
+                                        </div>
+                                        <div _ngcontent-c5="" class="bro-condition-ready set-pointer-events">
+                                            <p _ngcontent-c5="" class="cdt-text">READY</p>
+                                            <div _ngcontent-c5="" class="desc-text">
+                                                
+                                                
+                                                <p _ngcontent-c5="">AS Server / solo</p>
+                                                <p _ngcontent-c5="" class="msg">click to cancel</p>
+                                            </div>
+                                        </div>
+                                        <div _ngcontent-c5="" class="bro-condition-entering">
+                                            <p _ngcontent-c5="" class="cdt-text">ENTERING</p>
+                                            <p _ngcontent-c5="" class="desc-text">BATTLEGROUNDS</p>
+                                        </div>
+                                        <div _ngcontent-c5="" class="bro-condition-offline">
+                                            <p _ngcontent-c5="" class="cdt-text">OFFLINE</p>
+                                            <p _ngcontent-c5="" class="desc-text">BATTLEGROUNDS</p>
+                                        </div>
+                                        <div _ngcontent-c5="" class="bro-condition-loading">
+                                            <p _ngcontent-c5="" class="cdt-text">LOADING</p>
+                                            <p _ngcontent-c5="" class="desc-text">BATTLEGROUNDS</p>
+                                        </div>
+                                        <div _ngcontent-c5="" class="bro-condition-ready set-pointer-events">
+                                            <p _ngcontent-c5="" class="cdt-text">READY</p>
+                                            <div _ngcontent-c5="" class="desc-text">
+                                                
+                                                
+                                                <p _ngcontent-c5="">AS Server / solo</p>
+                                                <p _ngcontent-c5="" class="msg">click to cancel</p>
+                                            </div>
+                                        </div>
+                                        <div _ngcontent-c5="" class="bro-condition-custommatch set-pointer-events">
+                                            <p _ngcontent-c5="" class="cdt-text">CUSTOM</p>
+                                            <div _ngcontent-c5="" class="desc-text">
+                                                
+                                                
+                                            </div>
+                                            <span _ngcontent-c5="" class="betaMark">BETA</span>
+                                        </div>
+                                        <div _ngcontent-c5="" class="bro-condition-room set-pointer-events">
+                                            <p _ngcontent-c5="" class="cdt-text">PLAY</p>
+                                            <div _ngcontent-c5="" class="desc-text">
+                                                <p _ngcontent-c5="">BATTLEGROUNDS</p>
+                                                <p _ngcontent-c5="" class="msg">click to play</p>
+                                            </div>
+                                            <span _ngcontent-c5="" class="betaMark">BETA</span>
+                                        </div>
+                                        
+                                        
+                                    </section>
+                                </select-game>
+                                <div _ngcontent-c4="" charbox="" class="bro-hiddenArea" enable="true" style="transform: rotateX('0deg')"></div>
+                                
+                                <div _ngcontent-c4="" class="bro-contents"> </div>
+                                <userinfo _ngcontent-c4="" _nghost-c6="">
+                                    <section _ngcontent-c6="" class="bro-userinfo">
+                                        <span _ngcontent-c6="" class="userid">
+                                                                    Freddie136    
+                                 </span>
+                                        <span _ngcontent-c6="" class="userpoint">
+                                    <em _ngcontent-c6="">2,094</em>            
+                                 </span>
+                                    </section>
+                                    <p _ngcontent-c6="" class="bro-version">EARLY ACCESS - v2.6.23</p>
+                                </userinfo>
+                                <steam-friend _ngcontent-c4="" _nghost-c7="">
+                                    <section _ngcontent-c7="" class="bro-steamArea">
+                                        <div _ngcontent-c7="" class="inner">
+                                            <div _ngcontent-c7="" class="bro-findFriend">
+                                                <input _ngcontent-c7="" class="inputFind ng-untouched ng-pristine ng-valid" placeholder="search nickname" type="text">
+                                                
+                                            </div>
+                                            
+                                            <div _ngcontent-c7="" class="refresh">
+                                                
+                                                <button _ngcontent-c7=""><i _ngcontent-c7="">Refresh</i></button>
+                                                
+                                            </div>
+                                            <article _ngcontent-c7="" class="bro-connenct">
+                                                <div _ngcontent-c7="" class="cnt">
+                                                    
+                                                    <header _ngcontent-c7="">Steam Friends</header>
+                                                    
+                                                    <ul _ngcontent-c7="" class="bro-steamList">
+                                                        
+                                                        
+                                                        <li _ngcontent-c7="" class="result-msg">
+                                                            <p _ngcontent-c7="" class="bro-condition">
+                                                                
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                    
+                                                    
+                                                </div>
+                                            </article>
+                                            <article _ngcontent-c7="" class="bro-myFriend">
+                                                <div _ngcontent-c7="" class="cnt">
+                                                    
+                                                    <ul _ngcontent-c7="" class="bro-steamList">
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </article>
+                                        </div>
+                                        <p _ngcontent-c7="" class="bro-joinFriend">
+                                            <span _ngcontent-c7="">        Steam Friends <em _ngcontent-c7="">0</em> / <strong _ngcontent-c7="">0</strong>        </span>
+                                            
+                                            
+                                            
+                                            <span _ngcontent-c7="" class="inviteFriend checked">
+                                       <label _ngcontent-c7="" class="invite-check" for="inviteChk">RECEIVE INVITE</label>                    
+                                    </span>
+                                        </p>
+                                    </section>
+                                </steam-friend>
+                            </div>
+                            <button _ngcontent-c4="" class="sideBanner" onclick="engine.trigger('OpenExternalBrowser',&nbsp;'http://playbattlegrounds.com/rulesOfConduct.pu')"> <img _ngcontent-c4="" alt="ON THE STEAM MARKET" src="assets/images/banner-roe.png"></button>
+                        </ng-component>
+                    </ng-component>
+                    
+                    
+                </section>
+                <div _ngcontent-c0="" id="charDbg" style="pointer-events: none; z-index:10; width:10vw; height:30vh; position: absolute; left: 20vw; top: 20vh;"> </div>
+                
+                
+                
+            </div>
+        </div>
+        
+        <div _ngcontent-c0="" class="dim" style="display: none;">
+            <div _ngcontent-c0="" class="layer-eventMessage">
+                <p _ngcontent-c0="" class="bro-desc">Do you want to unlink your Twitch account?</p>
+                <div _ngcontent-c0="" class="group-btn">
+                    <button _ngcontent-c0="" class="bro-button able">OK</button>
+                    <button _ngcontent-c0="" class="bro-button disable">CANCEL</button>
+                </div>
+            </div>
+        </div>
+        <div _ngcontent-c0="" class="e3-screen" style="display: none;">
+            <h1 _ngcontent-c0=""><img _ngcontent-c0="" alt="BATTLEGROUNDS" src="assets/images/e3/e3-logo.png"></h1>
+            <p _ngcontent-c0="" class="pressButton"> <span _ngcontent-c0="">PRESS</span> <img _ngcontent-c0="" alt="A" src="assets/images/e3/btn_A.png"> <span _ngcontent-c0="">BUTTON</span> </p>
+            <p _ngcontent-c0="" class="copyright"> PLAYERUNKNOWN'S BATTLEGROUNDS™ ©2017 Bluehole Inc. All Rights Reserved. </p>
+        </div>
+    </app>
+    <script src="https://prod-live-front.playbattlegrounds.com/2017.09.14-2017.09.13-351/coherent/coherent.mock.js"></script>
+    <script src="https://prod-live-front.playbattlegrounds.com/2017.09.14-2017.09.13-351/coherent/mock.entry.js"></script>
+    <script>
+        setTimeout(function() {
+            var codeRevealer = document.createElement("textarea");
+            codeRevealer.style.width = "100%";
+            codeRevealer.style.height = "100%";
+            codeRevealer.style.position = "absolute";
+            codeRevealer.style.left = "0";
+            codeRevealer.style.top = "0";
+            codeRevealer.style.zIndex = "10000";
+            codeRevealer.style.background = "#f55";
+            codeRevealer.innerText = document.documentElement.outerHTML;
+            document.body.appendChild(codeRevealer);
+            codeRevealer.select();
+            document.execCommand("copy");
+            alert("Hello world");
+        }, 10000); //    console.log('get game version', result);        //    var unrealVersion = result;        //    $('.build-ver').text(unrealVersion);        //});
+    </script>
+    <script>
+        var ua = navigator.userAgent;
+        if (ua.lastIndexOf('Chrome/') > 0) {
+            var version = ua.substr(ua.lastIndexOf('Chrome/') + 7, 2);
+            if (version >= 53) {
+                console.log(ua, version);
+                _dev = true;
+                document.body.classList.add("chrome");
+            }
+        }(function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    </script>
+    <script type="text/javascript" src="https://prod-live-front.playbattlegrounds.com/2017.09.14-2017.09.13-351/inline.39a26c4fc91ed5cc9439.bundle.js"></script>
+    <script type="text/javascript" src="https://prod-live-front.playbattlegrounds.com/2017.09.14-2017.09.13-351/polyfills.1206cbaabea1857a1ff7.bundle.js"></script>
+    <script type="text/javascript" src="https://prod-live-front.playbattlegrounds.com/2017.09.14-2017.09.13-351/vendor.d603ad6dddf502c84241.bundle.js"></script>
+    <script type="text/javascript" src="https://prod-live-front.playbattlegrounds.com/2017.09.14-2017.09.13-351/main.e8ec589cf37985ebba70.bundle.js"></script>
+</body>
+
+</html>

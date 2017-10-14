@@ -1,0 +1,95 @@
+
+
+// Important button element names
+
+
+the main menu wrapper has the class:
+class="wrapper con-connected"
+
+
+<span _ngcontent-c6="" class="userid">Freddie136</span>
+
+
+
+
+<p _ngcontent-c6="" class="bro-version">EARLY ACCESS - v2.6.23</p>
+
+
+
+
+
+<span _ngcontent-c6="" class="userpoint">
+	<em _ngcontent-c6="">2,094</em>            
+</span>
+
+
+
+
+
+<div _ngcontent-c5="" class="bro-group set-pointer-events">
+    <div _ngcontent-c5="" class="bro-group-contain">
+        <dl _ngcontent-c5="">
+            <dt _ngcontent-c5="">REGION</dt>
+            
+            <dd _ngcontent-c5="">
+                <button _ngcontent-c5=""> <span _ngcontent-c5="">NA SERVER</span> </button>
+                <p _ngcontent-c5="" class="tip">North America</p>
+            </dd>
+            
+            <dd _ngcontent-c5="">
+                <button _ngcontent-c5=""> <span _ngcontent-c5="">EU SERVER</span> </button>
+                <p _ngcontent-c5="" class="tip">Europe</p>
+            </dd>
+            
+            <dd _ngcontent-c5="">
+                <button _ngcontent-c5="" class="on"> <span _ngcontent-c5="">AS SERVER</span> </button>
+                <p _ngcontent-c5="" class="tip">Asia</p>
+            </dd>
+            
+            <dd _ngcontent-c5="">
+                <button _ngcontent-c5=""> <span _ngcontent-c5="">OC SERVER</span> </button>
+                <p _ngcontent-c5="" class="tip">Oceania</p>
+            </dd>
+            
+            <dd _ngcontent-c5="">
+                <button _ngcontent-c5=""> <span _ngcontent-c5="">SA SERVER</span> </button>
+                <p _ngcontent-c5="" class="tip">South and Central America</p>
+            </dd>
+            
+            <dd _ngcontent-c5="">
+                <button _ngcontent-c5=""> <span _ngcontent-c5="">SEA SERVER</span> </button>
+                <p _ngcontent-c5="" class="tip">South East Asia</p>
+            </dd>
+        </dl>
+        <dl _ngcontent-c5="">
+            <dt _ngcontent-c5="">TEAM</dt>
+            
+            <dd _ngcontent-c5="">
+                <button _ngcontent-c5="" class="on"> <span _ngcontent-c5="">solo</span> </button>
+            </dd>
+            
+            <dd _ngcontent-c5="">
+                <button _ngcontent-c5=""> <span _ngcontent-c5="">duo</span> </button>
+            </dd>
+            
+            <dd _ngcontent-c5="">
+                <button _ngcontent-c5=""> <span _ngcontent-c5="">squad</span> </button>
+                
+            </dd>
+            
+            <dd _ngcontent-c5="" class="beta">
+                <button _ngcontent-c5=""> <span _ngcontent-c5="">SOLO FPP</span> </button>
+            </dd>
+            
+            <dd _ngcontent-c5="" class="beta">
+                <button _ngcontent-c5=""> <span _ngcontent-c5="">DUO FPP</span> </button>
+            </dd>
+            
+            <dd _ngcontent-c5="" class="beta">
+                <button _ngcontent-c5=""> <span _ngcontent-c5="">SQUAD FPP</span> </button>
+                
+            </dd>
+        </dl>
+        <button _ngcontent-c5="" class="btn-custom-match">CUSTOM MATCH</button>
+    </div>
+</div>

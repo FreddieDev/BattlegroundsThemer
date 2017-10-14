@@ -1,0 +1,12 @@
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\bin\Debug\BattlegroundsThemer.exe.config
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\bin\Debug\BattlegroundsThemer.exe
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\bin\Debug\BattlegroundsThemer.pdb
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\bin\Debug\BattlegroundsThemer.xml
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.vbprojResolveAssemblyReference.cache
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.F_Main.resources
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.Resources.resources
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.vbproj.GenerateResource.Cache
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.vbproj.CoreCompileInputs.cache
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.exe
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.xml
+c:\Projects\BattlegroundsThemer\BattlegroundsThemer\obj\Debug\BattlegroundsThemer.pdb

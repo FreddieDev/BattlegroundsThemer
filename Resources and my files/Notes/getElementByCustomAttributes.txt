@@ -1,0 +1,15 @@
+
+
+// How to select by custom attributes
+
+
+
+
+// Find an element with a custom attribute
+document.querySelector("div[data-automation]")
+
+// Find an element with a custom attribute and value
+document.querySelector("div[data-automation='something']")
+
+// To get all elements with these properties, use:
+querySelectorAll
