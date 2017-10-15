@@ -50,7 +50,8 @@
     <ApplicationIcon>BattlegroundsThemer.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FiddlerCore4">
+    <Reference Include="FiddlerCore4, Version=4.6.20172.35715, Culture=neutral, PublicKeyToken=67cb91587178ac5a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files\FiddlerCoreAPI\FiddlerCore4.dll</HintPath>
     </Reference>
     <Reference Include="System" />

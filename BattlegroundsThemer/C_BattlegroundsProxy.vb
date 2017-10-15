@@ -11,6 +11,7 @@ Public Class C_BattlegroundsProxy
     End Sub
 
     Overrides Sub FiddlerBeforeResponseHandler(ByVal tSession As Session)
+        Console.WriteLine("URL requested: " + tSession.url)
         If Not tSession.bBufferResponse Then Exit Sub
 
         Console.WriteLine("Blacklisted URL requested: " + tSession.url)

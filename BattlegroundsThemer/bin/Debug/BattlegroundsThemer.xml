@@ -22,6 +22,11 @@ BattlegroundsThemer
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="M:BattlegroundsThemer.C_Proxy.setSystemProxy(System.Net.IPAddress,System.Int32)">
+ <summary>
+ Set the system proxy for websites
+ </summary>
+</member>
 <member name="M:BattlegroundsThemer.C_Proxy.FiddlerBeforeRequestHandler(Fiddler.Session)">
  <summary>
  Process the request before it is passed along to the next server in the request chain.
