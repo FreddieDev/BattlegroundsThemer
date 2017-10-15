@@ -5,18 +5,18 @@ Public Class C_BattlegroundsProxy
     Inherits C_Proxy
 
     Overrides Sub FiddlerBeforeRequestHandler(ByVal tSession As Session)
-        If tSession.url.Contains("bigassmessage.com/BAM-get") Then
+        If tSession.url.Contains("front.battlegroundsgame.com") Then
             tSession.bBufferResponse = True
         End If
     End Sub
 
     Overrides Sub FiddlerBeforeResponseHandler(ByVal tSession As Session)
-        Console.WriteLine("URL requested: " + tSession.url)
+        Console.WriteLine("URL requested: " + tSession.fullUrl)
         If Not tSession.bBufferResponse Then Exit Sub
 
-        Console.WriteLine("Blacklisted URL requested: " + tSession.url)
+        Console.WriteLine("Blacklisted URL requested: " + tSession.fullUrl)
         tSession.utilDecodeResponse()
-        tSession.utilReplaceInResponse("HELLO WORLD", "nopeee")
+        tSession.utilReplaceInResponse("Freddie136", "nopeee")
         Console.WriteLine("body code: " + Encoding.ASCII.GetString(tSession.ResponseBody))
 
 
