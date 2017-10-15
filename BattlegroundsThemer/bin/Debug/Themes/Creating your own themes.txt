@@ -1,0 +1,87 @@
+Creating your own themes:
+
+
+Standard theme file structure:
+	index.html
+	scripts.js
+	stylesheet.css
+
+	index.html
+		This file contains your HTML code for your main menu theme
+		
+	scripts.js
+		This file should contain any Javascript you want to be executed immediatly.
+		Inline scripts inside index.html will work perfectly, however they may only
+		execute when the DOM is fully loaded.
+		
+	stylesheet.css
+		Similarly to scripts.js, a stylesheet with this name will be injected
+		immediatly.
+
+	
+
+Standard theme element ID's and classes:
+	IDs:
+	  battlegroundsThemer_play
+	  battlegroundsThemer_username
+	  battlegroundsThemer_battlepoints
+	  battlegroundsThemer_version
+	  battlegroundsThemer_logo
+	  battlegroundsThemer_home
+	  battlegroundsThemer_character
+	  battlegroundsThemer_rewards
+	  battlegroundsThemer_stats
+	  battlegroundsThemer_leaderboard
+	  battlegroundsThemer_notification
+	  battlegroundsThemer_friendsRefresh
+	  battlegroundsThemer_friendsPlayingCount
+	  battlegroundsThemer_friendsOnlineCount
+	
+	Classes:
+	  battlegroundsThemer_invite
+	  battlegroundsThemer_stats
+	
+	Use these IDs on your elements to make your theme interactive. For examples,
+	read the html file for the default themes.
+	
+	If you add one of these attributes to your theme, the original corrisponding UI
+	will be hidden automatically from the main menu for yours to take its place.
+	
+
+
+Referencing extra files within your theme:
+	To reference extra files (pictures, fonts, scripts etc) you've added to your
+	theme folder you must use the 'battlegroundsThemer_ROOT' keyword for them to
+	work in-game.
+	
+	For example, if I add a picture file named "battlepoints.png" to my theme's folder,
+	when putting this in an image element I would use the following code:
+	<img src="battlegroundsThemer_ROOT/battlepoints.png" />
+
+
+	
+Tips:
+  - Try to avoid using any external sources for content like scripts, styles,
+	images and fonts. Storing these files within your theme folder and then linking
+	directly to them will reduce load times and avoid your theme being dependant on
+	external websites.
+	
+  - Don't include spaces in your references to files in the URLs. For example, this
+	is incorrect:
+	url('battlegroundsThemer_ROOT/Roboto Condensed/Condensed.ttf')
+	
+	But this example will work:
+	url('battlegroundsThemer_ROOT/RobotoCondensed/Condensed.ttf')
+	
+	
+  - Your CSS should be made so that the UI scales with the screen size. It should
+	scale to the size of the smallest window axis. To do this, instead of using px
+	with CSS use the unit vmin.
+	
+	Explanation of viewport units:
+	  1vw = 1/100th viewport width
+	  1vh = 1/100th viewport height
+	  1vmin = 1vw or 1vh, whichever is smaller
+
+
+BattlegroundsThemer was created by Freddie Chessell

@@ -49,6 +49,9 @@
   <PropertyGroup>
     <ApplicationIcon>BattlegroundsThemer.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FiddlerCore4, Version=4.6.20172.35715, Culture=neutral, PublicKeyToken=67cb91587178ac5a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -80,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="C_BattlegroundsProxy.vb" />
+    <Compile Include="C_HostsFile.vb" />
     <Compile Include="C_Proxy.vb" />
     <Compile Include="C_WebMethods.vb" />
     <Compile Include="F_Main.Designer.vb">
@@ -116,6 +120,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

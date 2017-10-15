@@ -1,7 +1,23 @@
-﻿''' <summary>
+﻿Imports System.Net
+''' <summary>
 ''' Functions to modify and inject code into web documents
 ''' </summary>
 Public Class C_WebMethods
+    ''' <summary>
+    ''' Fetches the entire document associated with the given web address
+    ''' </summary>
+    Public Shared Function fetchSiteHTML(ByVal siteAddress As String) As String
+        Try
+            Return New WebClient().DownloadString(siteAddress)
+        Catch ex As Exception
+            MsgBox("An error occured when trying to access a webserver." + vbNewLine +
+                "Check your firewall, or report this issue to the developer please!", MsgBoxStyle.Critical, "ERROR")
+            MsgBox("Error message: " + ex.Message, MsgBoxStyle.Critical, "ERROR")
+            Application.Exit()
+            Return Nothing
+        End Try
+    End Function
+
     ''' <summary>
     ''' Appends a given script to the end of a standard HTML document
     ''' </summary>

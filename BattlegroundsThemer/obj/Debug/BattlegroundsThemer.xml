@@ -22,6 +22,53 @@ BattlegroundsThemer
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="M:BattlegroundsThemer.C_BattlegroundsProxy.FiddlerBeforeRequestHandler(Fiddler.Session)">
+ <summary>
+ Check HTTP requests to look for requests to the battlegrounds page
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_BattlegroundsProxy.FiddlerBeforeResponseHandler(Fiddler.Session)">
+ <summary>
+ Returns a new edited battlegrounds page to the client
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_BattlegroundsProxy.GetBattlegroundsRedirectURL(System.String)">
+ <summary>
+ Locates the redirect URL and token inside the script at front.battlegroundsgame.com
+ </summary>
+</member>
+<member name="T:BattlegroundsThemer.C_HostsFile">
+ <summary>
+ Tools to read and write to the Windows hosts file
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_HostsFile.willSiteRedirect(System.String)">
+ <summary>
+ Checks if a site's address is currently being redirected by the Windows host file
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_HostsFile.redirectSite(System.String,System.String)">
+ <summary>
+ Adds the provided site address to the Windows hosts file to redirect to the localhost address instead
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_HostsFile.unblockSiteRedirect(System.String)">
+ <summary>
+ Removes the provided site address from the Windows hosts file
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_HostsFile.getHostsLines">
+ <summary>
+ Get all lines of text from the Windows hosts file
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BattlegroundsThemer.C_HostsFile.setHostsText(System.String)">
+ <summary>
+ Set the hosts file text to the given parameter value
+ </summary>
+ <param name="newText">The new text for the hosts file to be set to.</param>
+</member>
 <member name="M:BattlegroundsThemer.C_Proxy.FiddlerBeforeRequestHandler(Fiddler.Session)">
  <summary>
  Process the request before it is passed along to the next server in the request chain.
@@ -37,6 +84,11 @@ BattlegroundsThemer
  Functions to modify and inject code into web documents
  </summary>
 </member>
+<member name="M:BattlegroundsThemer.C_WebMethods.fetchSiteHTML(System.String)">
+ <summary>
+ Fetches the entire document associated with the given web address
+ </summary>
+</member>
 <member name="M:BattlegroundsThemer.C_WebMethods.addScriptToHTML(System.String,System.String)">
  <summary>
  Appends a given script to the end of a standard HTML document
@@ -50,6 +102,12 @@ BattlegroundsThemer
 <member name="M:BattlegroundsThemer.C_WebMethods.addHTMLToHTML(System.String,System.String)">
  <summary>
  Appends given HTML code to the end of a standard HTML document
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.F_Main.F_Main_FormClosing">
+ <summary>
+ In case any Fiddler assets are in use, or a proxy is running, force quit Fiddler
+ on app startup and close.
  </summary>
 </member>
 </members>

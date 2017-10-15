@@ -1,0 +1,628 @@
+/* Fonts */
+@font-face {
+  font-family: 'SairaSemiCondensed';
+  font-weight: 400;
+  src: url('battlegroundsThemer_ROOT/SairaSemiCondensed/SairaSemiCondensed-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'SairaSemiCondensed';
+  font-weight: 500;
+  src: url('battlegroundsThemer_ROOT/SairaSemiCondensed/SairaSemiCondensed-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'SairaSemiCondensed';
+  font-weight: 700;
+  src: url('battlegroundsThemer_ROOT/SairaSemiCondensed/SairaSemiCondensed-Bold.ttf') format('truetype');
+}
+
+
+/* Style custom body where possible instead, to avoid overrideing game UI styles */
+body { margin: 0 }
+
+#customBody {
+	/* Fill entire page and keep new body over the previous divs */
+	height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#customBody > * {
+	
+	/* CSS reset */
+	font-family: 'SairaSemiCondensed', sans-serif;
+	font-size: 0.5vw;
+	font-weight: 500; /* medium */
+	color: #fff;
+	margin: 0;
+	cursor: default;
+	padding: 0;
+	user-select: none;
+}
+
+
+
+
+
+
+/* Notifications */
+/* don't add the background img to the customBody or default UI elements won't show through */
+body, #notificationContainer::before {
+	background: url("battlegroundsThemer_ROOT/background.png") 0 / cover fixed;
+}
+
+#notificationContainer {
+	display: inline-block;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 15vw;
+	
+	background: hsla(0,0%,100%,.0);
+	overflow: hidden;
+	
+	padding: 0.5vw 1vw;
+	
+	font-size: 1.2vw;
+	border-radius: 0.5vw;
+	box-shadow: 0 0 4vw black;
+	
+	/* Horizontally center inner text */
+	text-align: center;
+	
+	/* Vertically center inner text */
+	display: table;
+}
+
+#notificationContainer::before {
+	content: '';
+	margin: -1vw;
+	
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	
+	filter: blur(0.5vw);
+	z-index: -1;
+}
+
+#battlegroundsThemer_notification {
+	/* Vertically center text */
+	display: table-cell;
+	vertical-align: middle;
+	
+	font-weight: 400;
+}
+
+
+
+
+
+
+/* Top left menu */
+
+.rhombusDiv {
+	transform: skewX(-25deg);
+	display: inline-block;
+}
+
+.unRhombusDiv {	transform: skew(25deg) } /* Inverse skew for rhombus children */
+
+#playBGImageContainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	
+	transform: skew(0deg);
+	overflow: hidden; /* hide any background-image that extends out the play button */
+}
+
+#playBGImage {
+	/* Position under parent at same scale */
+	position: absolute;
+	height: 100%;
+	width: 100%;
+    top: 0;
+	
+	/* Inverse parent skew */
+	transform: skew(25deg);
+	
+	/* Image */
+	background: url("battlegroundsThemer_ROOT/playBG.png");
+	background-repeat: no-repeat;
+	filter: opacity(0.4) saturate(10%);
+	background-size: contain;
+	background-position: right bottom;
+}
+
+#battlegroundsThemer_play {
+	background: url("battlegroundsThemer_ROOT/Dirt.png"), linear-gradient(5deg,
+		rgba(150,64,20,1) 0%,
+		rgb(255, 168, 0) 71%,
+		rgb(245, 229, 40) 100%);
+	background-size: contain;
+	/* 
+		Hide rhombus left side offscreen without shifting
+		children, and apply 1vw padding to play inner text
+	*/
+	padding-left: calc(8vw + 1vw);
+	margin-left: -8vw;
+	
+	padding-right: 3vw;
+	
+	/* Fix the play button height at 6vw and don't add padding or borders to the height */
+	height: 6vw;
+	width: 24.4vw;
+    box-sizing: border-box;
+	
+	/* center 2 lines of text in button */
+	padding-top: 0.5vw;
+	
+	/* Make play button appear over greyMenuSection */
+	z-index: 1;
+	position: relative;
+}
+
+.playText {
+	display:block;
+	margin-left: -0.1vw;
+	margin-top: -0.5vw;
+	margin-bottom: -0.8vw;
+	
+	text-shadow: -.05vw .1vw rgba(0,0,0,.3);
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 2.9vw;
+	
+	cursor: pointer;
+	-webkit-backface-visibility: hidden; /* transistion flicker fix */
+}
+
+.playSubDot {
+	margin-left: .4vw;
+	margin-right: .4vw;
+}
+
+.playSubText, .playSubDot {
+	font-size: 1vw;
+	opacity: 0.8;
+	text-shadow: 0 .1vw rgba(0,0,0,0.5);
+}
+.playSubText {
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+
+
+
+
+/* Grey menu section styling */
+
+#greyMenuSection {
+	display: inline-block;
+	vertical-align: top;
+}
+
+#greyMenuSection .rhombusDiv, #invitesContainer {
+	border-style: solid;
+	border-width: 0.06vw;
+    box-sizing: border-box;
+	padding-right: 3vw;
+}
+
+
+
+
+
+
+/* Tab menu section styling */
+
+#tabsBarRhombus {
+	height: 3.7vw; /* tabsBarRhombus height + userStatsRhombus MUST equal battlegroundsThemer_play height */
+	
+	background-color: rgba(35, 35, 50, 0.8);
+	border-color: rgba(35, 35, 50, 0.8);
+	
+	/* vertically center UL */
+	display: flex;
+    align-items: center;
+	
+	
+	/* tuck rhombus under play button and add 3vw paddingh */
+	padding-left: calc(6vw + 3vw);
+	margin-left: -6vw;
+}
+
+/* space out tab buttons without padding the empty end space */
+#tabsBarRhombus li:not(:last-child) {
+	margin-right: 3vw;
+}
+
+#tabsBarRhombus li:not(.selectedTab) { opacity: 0.6 }
+#tabsBarRhombus li:hover:not(.selectedTab) { opacity: 0.9 }
+#tabsBarRhombus li {
+	font-size: 1vw;
+	display: inline-block; /* wrap tab buttons horizontally */
+	text-transform: uppercase;
+	cursor: pointer;
+	
+	transition: opacity .2s ease-in-out;
+	-webkit-backface-visibility: hidden; /* flicker fix */
+}
+
+.selectedTab {
+	opacity: 1;
+	border-bottom: 0.1vw solid rgba(255,130,0,0.8);
+}
+
+
+
+
+
+
+/* Stats (username + bp) section styling */
+
+#userStatsRhombus {
+	height: 2.3vw; /* tabsBarRhombus height + userStatsRhombus MUST equal battlegroundsThemer_play height */
+	
+	background-color: rgba(35, 35, 50, 0.5);
+	border-color: rgba(35, 35, 50, 0.5);
+	box-sizing: border-box;
+	
+	/* tuck rhombus under play button and add 3vw paddingh */
+	padding-left: calc(6vw + 1vw);
+	margin-left: -6vw;
+	
+	font-size: 0.8vw;
+	font-weight: 500;
+}
+
+#userStatsContainer {
+	/* vertically center inner content */
+	display: flex;
+    align-items: center;
+	height: 100%;
+    width: 100%;
+}
+
+#bpIcon {
+	width: 1.1vw;
+	height: 1.1vw;
+	margin-left: 1.8vw;
+	margin-right: .4vw;
+}
+
+
+
+
+
+
+/* Other elements */
+
+#battlegroundsThemer_logo {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 1vw;
+	width: 10vw;
+}
+
+#battlegroundsThemer_version {
+	position: absolute;
+    bottom: 0.5vw;
+    font-size: 0.5vw;
+    font-weight: 400;
+    display: inline-block;
+}
+
+
+
+/* Drop down menus */
+
+.dropDown {
+    position: absolute;
+	top: 6vw;
+	left: 0;
+	min-width: 10vw;
+	background-color: rgba(35, 35, 50, 0.8);
+	border: .1vw solid rgba(35, 35, 50, 0.8);
+	list-style-type: none;
+	
+	visibility: hidden;
+	opacity: 0;
+	transition: all .2s ease-in-out;
+	z-index: -1;
+}
+
+/*
+	Create invisible click-through child of drop down over top to stop
+	hovering on the gap between the trigger and drop down menu causing
+	the menu to hide.
+*/
+.dropDown:before {
+	content: "";
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    top: -50%;
+    left: 0;
+    height: 100%;
+    /*background: #f00;*/
+}
+
+.playSubText:hover + .dropDown, .dropDown:hover {
+    visibility: visible;
+	opacity: 1;
+	top: 7vw;
+}
+
+.dropDownHeader {
+	display: block;
+	background: rgba(35, 35, 50, 1);
+	text-transform: uppercase;
+	
+	font-size: 1.1vw;
+	padding: .1vw;
+	padding-left: .4vw;
+}
+
+.dropDown li {
+	font-size: .8vw;
+	color: #fff;
+    margin: .8vw 1vw;
+	cursor: pointer;
+	
+	transition: opacity .2s ease-in-out;
+}
+.dropDown li:not(.selectedDropDownItem) { opacity: 0.5 }
+.dropDown li:hover:not(.selectedDropDownItem) {	opacity: 0.9 }
+.selectedDropDownItem {
+	opacity: 1;
+	text-decoration: underline solid rgba(255,130,0,0.8);
+}
+
+
+
+
+
+
+/* Invites section */
+#inviteSectionContainer {
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 1vw;
+	width: 10vw;
+}
+
+#inviteSectionContainer .rhombusDiv {
+	/* tuck rhombus under play button and add 3vw paddingh */
+	padding-left: calc(6vw + .5vw);
+	margin-left: -6vw;
+	padding-right: 1vw;
+	
+	display: inline-block;
+	
+	font-size: 0.7vw;
+	font-weight: 600;
+	text-transform: uppercase;
+	border-width: 0.06vw;
+	border-style: solid;
+}
+
+
+#invitesRhombus {
+	height: 2.3vw; /* invitesRhombus height + friendsRhombus MUST equal inviteSectionContainer height */
+	
+	background-color: rgba(35, 35, 50, 0.5);
+	border-color: rgba(35, 35, 50, 0.5);
+}
+#invitesRhombus .unRhombusDiv {
+	/* vertically center checkbox in div */
+	display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+
+#friendsRhombus {
+	/* vertically center checkbox in div */
+	display: flex !important;
+    align-items: center;
+
+	height: 3vw; /* invitesRhombus height + friendsRhombus MUST equal inviteSectionContainer height */
+	
+	background-color: rgba(35, 35, 50, 0.8);
+	border-color: rgba(35, 35, 50, 0.8);
+}
+
+.friendCountFont { color: #fb7600 }
+.friendOnlineCountFont { color: rgba(255, 255, 255, .5) }
+
+
+
+
+
+
+/* Friends menu */
+
+#friendsMenu {
+	min-width: 17vw;
+    background-color: rgba(35, 35, 50, 0.8);
+    border: .1vw solid rgba(35, 35, 50, 0.8);
+    list-style-type: none;
+    transition: opacity .2s ease-in-out;
+    font-size: 1vw;
+    position: absolute;
+    bottom: -.5vw;
+    left: 11vw;
+	
+    font-weight: 500;
+	
+	opacity: 0;
+	visibility: hidden;
+}
+#friendsMenu:before, #friendsMenu:after {
+	content: "";
+    position: absolute;
+    /*background: #f00;*/
+}
+
+#friendsMenu:before {
+    width: 11vw;
+    bottom: 0;
+    left: -12vw;
+    height: 3vw;
+    visibility: visible;
+}
+
+#friendsMenu:after {
+	width: 141%;
+    bottom: -1vw;
+    left: -23%;
+    height: calc(100% + 2vw); /* 100% height plus bottom offset */
+	padding: 1vw 0;
+    z-index: -1;
+    visibility: hidden;
+}
+/* Hide after block unless the menu is visible, and use it to make the menu harder to close by mistake */
+#friendsMenu:hover::after {
+    visibility: visible !important;
+}
+
+
+
+#friendsMenu:hover, #friendsMenu *:hover {
+	opacity: 1;
+	visibility: visible;
+}
+
+.searchField {
+	cursor: text;
+	width: 100%;
+	border: none;
+	background: none;
+	padding: .3vw;
+	color: #ccc;
+	
+	font-size: .8vw;
+}
+.searchField:focus{	outline: none; }
+
+.refreshButton {
+	/* Pin right */
+	position: absolute;
+    right: .4vw;
+    color: #ff0;
+    text-align: right;
+    cursor: pointer;
+    opacity: 0.9;
+}
+.refreshButton:hover, .battlegroundsThemer_invite:hover { text-shadow: 0 0 1vw rgba(255, 255, 0, .2) }
+.battlegroundsThemer_stats:hover { text-shadow: 0 0 1vw rgba(255, 200, 0, .2) }
+.refreshButton:active, .battlegroundsThemer_stats:active, .battlegroundsThemer_invite:active { opacity: 0.5 }
+.refreshButton:before {
+	content: ' ';
+	display: inline-block;
+	background-image: url('battlegroundsThemer_ROOT/refresh.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: .8vw;
+	height: .8vw;
+	vertical-align: middle;
+	padding-right: .5vw;
+	filter:
+        /* for demonstration purposes; originals not entirely black */
+        contrast(1000%)
+        /* black to white */
+        invert(100%)
+        /* white to off-white */
+        sepia(100%)
+        /* off-white to yellow */
+        saturate(10000%)
+        /* do whatever you want with yellow */
+        hue-rotate(0deg);
+}
+
+#friendsMenu li {
+	height: 2vw;
+	padding-left: 0.2vw;
+	
+	text-transform: none;
+    font-size: .9vw;
+	line-height: 2vw;
+	
+	background: rgba(0, 0, 50, 0.1);
+	border-bottom: .1vw solid rgba(0, 0, 0, .1);
+}
+.battlegroundsThemer_stats, .battlegroundsThemer_invite {
+	text-transform: uppercase;
+	position: absolute;
+	right: .6vw;
+	color: #fb7600;
+	cursor: pointer;
+}
+
+.battlegroundsThemer_invite {
+	right: 3.5vw;
+	color: rgba(200, 200, 0, 1);
+}
+
+.profilePicture {
+	width: 1.2vw;
+	height: 1.2vw;
+	border: .1vw solid rgba(0, 155, 255, .2);
+	margin-right: .35vw;
+	margin-left: .2vw;
+	vertical-align:middle;
+}
+
+
+/* Checkbox styling */
+
+label input { display: none } /* hide the default checkbox */
+
+/* Checkbox */
+label span {
+	height: .8vw;
+	width: .8vw;
+	cursor: pointer;
+	
+	border: .1vw solid #222; /* Fake checkmark padding by using the background color */
+	
+	background: #222;
+	border-radius: .1vw;
+	display: inline-block;
+	position: relative;
+	
+	margin-right: 0.4vw;
+}
+/* Checkmark */
+[type=checkbox]:checked + span:before {
+	content: '';
+	background: url("battlegroundsThemer_ROOT/checkmark.png");
+	background-size: .7vw;
+	background-position: center;
+	background-repeat: no-repeat;
+	
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+/* Checkmark parent */
+#invitesRhombus label {
+	letter-spacing: 0.03vw;
+	display: flex;
+    align-items: center;
+	cursor: pointer;
+}

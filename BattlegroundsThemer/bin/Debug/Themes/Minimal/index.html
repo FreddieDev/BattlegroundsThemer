@@ -1,0 +1,114 @@
+<!-- This header is used for editing in a webbrowser session
+<head>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<script src="scripts.js"></script>
+</head>
+-->
+
+<!-- Theme based off @CreativeGrenade's design: https://twitter.com/CreativeGrenade/status/898602910807928832 -->
+
+<div id="customBody">
+	<div class="rhombusDiv" id="battlegroundsThemer_play">
+		<div class="unRhombusDiv" id="playBGImageContainer">
+			<div id="playBGImage"></div>
+		</div>
+		
+		<div class="unRhombusDiv">
+			<span class="playText" onclick="window.location.href='#'">Play</span>
+			
+			
+			<span id="modeSelectorButton" class="playSubText">Squads 3PP</span>
+			<ul class="dropDown" id="modeSelectorMenu">
+				<span class="dropDownHeader">Game mode</span>
+				<li>Solo</li>
+				<li>Duo</li>
+				<li class="selectedDropDownItem">Squads</li>
+				<li>Solos FPP</li>
+				<li>Duos FPP</li>
+				<li>Squads FPP</li>
+				<li>Custom</li>
+			</ul>
+			
+			
+			<span class="playSubDot">&#8226;</span>
+			
+			
+			<span id="regionSelectorButton" class="playSubText">EU</span>
+			<ul class="dropDown" id="regionSelectorMenu">
+				<span class="dropDownHeader">Region</span>
+				<li>North America</li>
+				<li class="selectedDropDownItem">Europe</li>
+				<li>Asia</li>
+				<li>Oceania</li>
+				<li>South and Central America</li>
+				<li>South East Asia</li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="greyMenuSection">
+		<div class="rhombusDiv" id="tabsBarRhombus">
+			<div class="unRhombusDiv">
+				<ul>
+					<li class="selectedTab" id="battlegroundsThemer_home">Home</li>
+					<li id="battlegroundsThemer_character">Character</li>
+					<li id="battlegroundsThemer_rewards">Rewards</li>
+					<li id="battlegroundsThemer_stats">Stats</li>
+					<li id="battlegroundsThemer_leaderboard">Leadboard</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="rhombusDiv" id="userStatsRhombus">
+			<div class="unRhombusDiv">
+				<div id="userStatsContainer">
+					<span id="battlegroundsThemer_username">Freddie136</span>
+					<img id="bpIcon" src="battlegroundsThemer_ROOT/bp.png" />
+					<span id="battlegroundsThemer_battlepoints">2,930</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="inviteSectionContainer">
+		<div class="rhombusDiv" id="invitesRhombus">
+			<div class="unRhombusDiv">
+				<label>
+					<input type='checkbox'>
+					<span></span>
+					Recieve invites
+				</label>
+			</div>
+		</div>
+		<div class="rhombusDiv" id="friendsRhombus">
+			<div class="unRhombusDiv">
+				<ul id="friendsMenu">
+					<span class="dropDownHeader">Friends</span>
+					<span id="battlegroundsThemer_friendsRefresh" class="refreshButton">Refresh</span>
+					<input type="text" maxlength="30" class="searchField" placeholder="Search..." />
+					<li><img class="profilePicture" src="battlegroundsThemer_ROOT/picture.png" />Ben<span class="battlegroundsThemer_invite">Invite</span><span class="battlegroundsThemer_stats">Stats</span></li>
+					<li><img class="profilePicture" src="battlegroundsThemer_ROOT/picture.png" />Jack<span class="battlegroundsThemer_stats">Stats</span></li>
+					<li><img class="profilePicture" src="battlegroundsThemer_ROOT/picture.png" />George<span class="battlegroundsThemer_stats">Stats</span></li>
+					<li><img class="profilePicture" src="battlegroundsThemer_ROOT/picture.png" />Liz<span class="battlegroundsThemer_stats">Stats</span></li>
+				</ul>
+
+				<span id="battlegroundsThemer_friendsPlayingCount" class="friendCountFont">4</span><span class="friendCountFont"> friends</span> playing now
+				<br />
+				<span id="battlegroundsThemer_friendsOnlineCount" class="friendOnlineCountFont">9</span><span class="friendOnlineCountFont"> friends online<span>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="notificationContainer">
+		<span id="battlegroundsThemer_notification">NOTIFICATION MESSAGES</span>
+	</div>
+
+
+	<span id="battlegroundsThemer_version">VERSIONHERE</span>
+
+
+	<img id="battlegroundsThemer_logo" src="battlegroundsThemer_ROOT/logo.png"/>
+</div>
