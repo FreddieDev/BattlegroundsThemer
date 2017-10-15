@@ -25,6 +25,8 @@ function initThemeInjection() {
 	// --------------------------------------------
 	// Prepare theme variables
 	// --------------------------------------------
+	// Initialise UI element container variables
+	var container_play = 		document.getElementsByClassName("bro-play")[0];
 	
 	// Initialise UI element variables
 	var menu_playButton = 		document.getElementsByClassName("bro-condition-play")[0];
@@ -54,11 +56,11 @@ function initThemeInjection() {
 	// --------------------------------------------
 	// Check if each custom element exists, and if so, hide the original and link them together
 	// --------------------------------------------
-	menu_playButton.style.opacity = 0;
+	hideUIElement(container_play);
 	customMenu_playButton.addEventListener('click', function (event) {
 		menu_playButton.click();
 	});
-	
+	/*
 	// Click version number to reload page for debugging
 	customMenu_version.addEventListener('click', function (event) {
 		engine.trigger('OpenExternalBrowser', 'http://steamcommunity.com/app/578080/announcements/');
@@ -67,7 +69,7 @@ function initThemeInjection() {
 	customMenu_logo.addEventListener('click', function (event) {
 		location.reload();
 	});
-	
+	*/
 	
 	// --------------------------------------------
 	// Update custom UI element content
@@ -96,10 +98,15 @@ function initThemeInjection() {
 	}, 200); // Update the battlepoints counter every 200ms
 }
 
+// Hides an element while still keeping it clickable via JS click()
+function hideUIElement(elementToHide) {
+	elementToHide.setProperty("opacity", "0", "important");
+	elementToHide.setProperty("visibility", "hidden", "important");
+}
 
 var waitForFullyLoaded = setInterval(function() {
 	if (document.getElementsByClassName("userid")[0]) {
-		initThemeInjection();
 		clearInterval(waitForFullyLoaded); // Stop this loop
+		initThemeInjection();
 	}
 }, 200); // Check loading has completed every 200ms

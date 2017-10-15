@@ -83,7 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="C_BattlegroundsProxy.vb" />
+    <Compile Include="C_BattlegroundsWebServer.vb" />
     <Compile Include="C_HostsFile.vb" />
+    <Compile Include="C_WebServer.vb" />
     <Compile Include="C_Proxy.vb" />
     <Compile Include="C_WebMethods.vb" />
     <Compile Include="F_Main.Designer.vb">

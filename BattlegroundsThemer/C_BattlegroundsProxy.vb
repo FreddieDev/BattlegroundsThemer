@@ -4,15 +4,24 @@ Imports Fiddler
 
 Public Class C_BattlegroundsProxy
     Inherits C_Proxy
-    Dim battlegroundsURL As String = "front.battlegroundsgame.com"
-    Dim proxyIP As String = "127.0.0.1"
+    Private battlegroundsURL As String = "front.battlegroundsgame.com"
+    Private fileHoster As C_BattlegroundsWebServer
+
+    Public Sub ChangeTheme(ByVal themeName As String)
+        fileHoster.ChangeRootDirectory(Environment.CurrentDirectory + "\Themes\" + themeName + "\")
+    End Sub
 
     Public Overrides Sub ServerStarting()
-        C_HostsFile.redirectSite(battlegroundsURL, proxyIP)
+        C_HostsFile.redirectSite(battlegroundsURL, F_Main.localhostAddress.ToString)
+
+        ' Start webserver to host theme files
+        fileHoster = New C_BattlegroundsWebServer
+        fileHoster.Startup()
     End Sub
 
     Public Overrides Sub ServerClosing()
         C_HostsFile.unblockSiteRedirect("front.battlegroundsgame.com")
+        fileHoster.Shutdown()
     End Sub
 
     ''' <summary>
@@ -42,11 +51,16 @@ Public Class C_BattlegroundsProxy
         C_HostsFile.unblockSiteRedirect(battlegroundsURL)
         Dim menuHTML As String = C_WebMethods.fetchSiteHTML(GetBattlegroundsRedirectURL(Encoding.ASCII.GetString(tSession.ResponseBody)))
 
+        If IsNothing(menuHTML) Then
+            MsgBox("The official menu could not be streamed. Please check your internet connection, run as admin, or retry.")
+            Application.Exit()
+        End If
+
         ' Inject theme into webpage and convert back to transmittable bytes
         tSession.utilSetResponseBody(InstallThemeIntoPage(menuHTML))
 
         ' Re-block the battlegrounds page to catch future requests & responses
-        C_HostsFile.redirectSite(battlegroundsURL, proxyIP)
+        C_HostsFile.redirectSite(battlegroundsURL, F_Main.localhostAddress.ToString)
     End Sub
 
     ''' <summary>
@@ -81,62 +95,66 @@ Public Class C_BattlegroundsProxy
 
 
     Private Function InstallThemeIntoPage(ByVal pageHTML As String) As String
+        Static resourcesDirectory As String = Environment.CurrentDirectory + "\Resources\"
+        Dim themeDirectory As String = Environment.CurrentDirectory + "\Themes\" + F_Main.CurrentTheme + "\"
+
         ' Tweak page for debugging
         pageHTML = pageHTML.Replace("oncontextmenu=""return false;""", "") 'Enable context menu in webbrowsers (blocked in-game)
         pageHTML = pageHTML.Replace("engine.hideOverlay();", "") 'Enable developer overlay in webbrowsers (blocked in-game)
 
 
         ' Apply user settings
-        If True Then pageHTML = C_WebMethods.addStylesheetToHTML(".intro{visibility:hidden !important}", pageHTML)
+        If F_Main.NoSplash Then pageHTML = C_WebMethods.addStylesheetToHTML(".intro{visibility:hidden !important}", pageHTML)
 
         '' Hide original page UI
         ''menuHTML = C_WebMethods.addStylesheetToHTML(".con-connected{visibility:hidden !important}", menuHTML)
 
 
 
-        '' Inject theme scripts.js into document head
-        'Dim themeScriptsDir As String = rootPath + "scripts.js"
-        'If File.Exists(themeScriptsDir) Then
-        '    pageHTML = C_WebMethods.addScriptToHTML(File.ReadAllText(themeScriptsDir), pageHTML)
-        'End If
+        ' Inject theme scripts.js into document head
+        Dim themeScriptsDir As String = themeDirectory + "scripts.js"
+        If File.Exists(themeScriptsDir) Then
+            pageHTML = C_WebMethods.addScriptToHTML(File.ReadAllText(themeScriptsDir), pageHTML)
+        End If
 
-        '' Check if any required files are missing
-        'Dim themeHTMLDir As String = rootPath + "index.html"
-        'Dim themeStylesheetDir As String = rootPath + "stylesheet.css"
-        'Select Case True
-        '    Case Not File.Exists(themeHTMLDir)
-        '        MsgBox("The theme you have selected does not contain the index.html file!", MsgBoxStyle.Critical, "ERROR!")
-        '        Application.Exit()
-        '    Case Not File.Exists(themeStylesheetDir)
-        '        MsgBox("The theme you have selected does not contain a stylesheet.css file!", MsgBoxStyle.Critical, "ERROR!")
-        '        Application.Exit()
-        'End Select
+        ' Check if any required files are missing
+        Dim themeHTMLDir As String = themeDirectory + "index.html"
+        Dim themeStylesheetDir As String = themeDirectory + "stylesheet.css"
+        Select Case True
+            Case Not File.Exists(themeHTMLDir)
+                MsgBox("The theme you have selected does not contain the index.html file!", MsgBoxStyle.Critical, "ERROR!")
+                Application.Exit()
+            Case Not File.Exists(themeStylesheetDir)
+                MsgBox("The theme you have selected does not contain a stylesheet.css file!", MsgBoxStyle.Critical, "ERROR!")
+                Application.Exit()
+        End Select
 
-        '' Load theme code into vars
-        'Dim themeHTMLCode As String = File.ReadAllText(themeHTMLDir)
-        'Dim stylesheet As String = File.ReadAllText(themeStylesheetDir)
+        ' Load theme code into vars
+        Dim themeHTMLCode As String = File.ReadAllText(themeHTMLDir)
+        Dim stylesheet As String = File.ReadAllText(themeStylesheetDir)
 
-        '' Prepare theme code for injection via javascript string
-        'themeHTMLCode = themeHTMLCode.Replace("""", "\""") ' Escape all double quotes in the HTML for JS compatibility
-        'themeHTMLCode = themeHTMLCode.Replace(vbCr, "").Replace(vbLf, "") ' Remove all newLine characters
-        'stylesheet = stylesheet.Replace("""", "\""") ' Escape all double quotes in the HTML for JS compatibility
-        'stylesheet = stylesheet.Replace(vbCr, "").Replace(vbLf, "") ' Remove all newLine characters
+        ' Prepare theme code for injection via javascript string
+        themeHTMLCode = themeHTMLCode.Replace("""", "\""") ' Escape all double quotes in the HTML for JS compatibility
+        themeHTMLCode = themeHTMLCode.Replace(vbCr, "").Replace(vbLf, "") ' Remove all newLine characters
+        stylesheet = stylesheet.Replace("""", "\""") ' Escape all double quotes in the HTML for JS compatibility
+        stylesheet = stylesheet.Replace(vbCr, "").Replace(vbLf, "") ' Remove all newLine characters
 
-        '' Append processed theme HTML&CSS into themeInjector variable
-        'Dim themeInjectorScript As String = File.ReadAllText(resourcesDirectory + "themeInjector.js")
-        'themeInjectorScript = themeInjectorScript.Replace("BT_HTMLHERE", themeHTMLCode)
-        'themeInjectorScript = themeInjectorScript.Replace("BT_CSSHERE", stylesheet)
+        ' Append processed theme HTML&CSS into themeInjector variable
+        Dim themeInjectorScript As String = File.ReadAllText(resourcesDirectory + "themeInjector.js")
+        themeInjectorScript = themeInjectorScript.Replace("BT_HTMLHERE", themeHTMLCode)
+        themeInjectorScript = themeInjectorScript.Replace("BT_CSSHERE", stylesheet)
 
 
-        '' Append themeInjector & dev tools into page end
-        'If ImADevAndIWantAllTheMenuHTML Then pageHTML = C_WebMethods.addScriptToHTML(File.ReadAllText(resourcesDirectory + "fetchCode.js"), pageHTML)
-        'pageHTML = C_WebMethods.addScriptToHTML(themeInjectorScript, pageHTML)
+        ' Append themeInjector & dev tools into page end
+        If F_Main.ImADevAndIWantAllTheMenuHTML Then pageHTML = C_WebMethods.addScriptToHTML(File.ReadAllText(resourcesDirectory + "fetchCode.js"), pageHTML)
+        If F_Main.ShowScriptErrors Then pageHTML = C_WebMethods.addScriptToHTML(File.ReadAllText(resourcesDirectory + "highlightScriptErrors.js"), pageHTML)
+        pageHTML = C_WebMethods.addScriptToHTML(themeInjectorScript, pageHTML)
 
-        '' Fix all references to local files in code
-        'pageHTML = pageHTML.Replace("battlegroundsThemer_ROOT", "http://" + redirectIP.ToString)
+        ' Fix all references to local files in code
+        pageHTML = pageHTML.Replace("battlegroundsThemer_ROOT", "http://" + F_Main.localhostAddress.ToString + ":" + F_Main.WebserverPortNumber.ToString)
 
-        ''Write completed HTML to desktop for debugging
-        'File.WriteAllText("C:\Users\fredd\Desktop\compiledDocument.html", pageHTML)
+        'Write completed HTML to desktop for debugging
+        File.WriteAllText("C:\Users\fredd\Desktop\compiledDocument.html", pageHTML)
 
         Return pageHTML
     End Function

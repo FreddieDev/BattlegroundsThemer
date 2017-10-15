@@ -37,6 +37,21 @@ BattlegroundsThemer
  Locates the redirect URL and token inside the script at front.battlegroundsgame.com
  </summary>
 </member>
+<member name="T:BattlegroundsThemer.C_BattlegroundsWebServer">
+ <summary>
+ This class allows for custom root directories and modifies file content before it is returned to the client
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_BattlegroundsWebServer.ChangeRootDirectory(System.String)">
+ <summary>
+ Update the root directory of the webserver, useful for when changing themes
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_BattlegroundsWebServer.GetHTTPRequestFileBytes(System.String)">
+ <summary>
+ Finds requested files from the current theme and converts it to a byte array
+ </summary>
+</member>
 <member name="T:BattlegroundsThemer.C_HostsFile">
  <summary>
  Tools to read and write to the Windows hosts file
@@ -68,6 +83,33 @@ BattlegroundsThemer
  Set the hosts file text to the given parameter value
  </summary>
  <param name="newText">The new text for the hosts file to be set to.</param>
+</member>
+<member name="M:BattlegroundsThemer.C_WebServer.Startup">
+ <summary>
+ Start the localhost webserver
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_WebServer.Shutdown">
+ <summary>
+ Stop the localhost webserver
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_WebServer.ShutdownClient">
+ <summary>
+ Close the current connection with a client
+ </summary>
+</member>
+<member name="M:BattlegroundsThemer.C_WebServer.GetHTTPRequestFileBytes(System.String)">
+ <summary>
+ Takes a file directory and returns the bytes in the file
+ </summary>
+ <param name="httpRequest">The HTTP file request</param>
+</member>
+<member name="M:BattlegroundsThemer.C_WebServer.GetContentType(System.String)">
+ <summary>
+ Returns the type of content for a given HTTP request
+ </summary>
+ <param name="httpRequest">The HTTP file request</param>
 </member>
 <member name="M:BattlegroundsThemer.C_Proxy.FiddlerBeforeRequestHandler(Fiddler.Session)">
  <summary>
