@@ -71,10 +71,9 @@ Public Class C_WebServer
                 ' Socket Information
                 Dim clientInfo As IPEndPoint = CType(clientSocket.RemoteEndPoint, IPEndPoint)
 
-                ProcessRequest()
-                '' Create new threads to handle each request
-                'Dim clientThread As New Thread(New ThreadStart(AddressOf ProcessRequest))
-                'clientThread.Start()
+                ' Create new threads to handle each request
+                Dim clientThread As New Thread(New ThreadStart(AddressOf ProcessRequest))
+                clientThread.Start()
             Catch
                 ' Exceptions are caught here when waiting on AcceptSocket and the server/app is closed
                 Console.WriteLine("Error processing request. If the server just closed, this error is not an issue.")
@@ -84,11 +83,9 @@ Public Class C_WebServer
     End Sub
 
     Private Sub ProcessRequest()
-        Try
-            Console.WriteLine("REQUEST RECIEVED")
-
-            ' Buffer HTTP request
-            Dim recvBytes(1024) As Byte
+        'Try
+        ' Buffer HTTP request
+        Dim recvBytes(1024) As Byte
             Dim bytes = clientSocket.Receive(recvBytes, 0, clientSocket.Available, SocketFlags.None)
             Dim requestString = Encoding.ASCII.GetString(recvBytes, 0, bytes)
 
@@ -128,11 +125,11 @@ Public Class C_WebServer
                 '''''''''''sendHTMLResponse(strRequest)
             End If
 
-        Catch ex As Exception
-            Console.WriteLine("PROCESS REQUEST ERROR: " + ex.StackTrace.ToString())
-            ' If errors occur be sure to close the current socket so new ones can be made
-            ShutdownClient()
-        End Try
+        'Catch ex As Exception
+        '    Console.WriteLine("PROCESS REQUEST ERROR: " + ex.StackTrace.ToString())
+        '    ' If errors occur be sure to close the current socket so new ones can be made
+        '    ShutdownClient()
+        'End Try
     End Sub
 
     ' Send HTTP Response
