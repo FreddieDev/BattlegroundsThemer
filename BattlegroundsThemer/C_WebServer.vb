@@ -4,8 +4,15 @@ Imports System.Net.Sockets
 Imports System.Text
 Imports System.Threading
 
+''' <summary>
+''' I've made this class up of a few projects online, and tweaked it to my liking to fix bugs and performance.
+''' 
+''' Credit:
+'''  - java2s.com/Tutorial/VB/0400__Socket-Network/TcpListenerbasedWebserver.htm
+'''  - vb.net-informations.com/communications/vb.net_multithreaded_server_socket_programming.htm
+''' </summary>
 Public Class C_WebServer
-    Private tcpListener As TcpListener
+    Private serverSocket As TcpListener
     Private clientSocket As Socket
     Private serverThread As Thread
     Private serverIP As IPAddress
@@ -20,19 +27,20 @@ Public Class C_WebServer
         Me.rootPath = rootPath
     End Sub
 
+
     ''' <summary>
     ''' Start the localhost webserver
     ''' </summary>
     Public Sub Startup()
-        If Not IsNothing(tcpListener) Then
+        If Not IsNothing(serverSocket) Then
             Console.WriteLine("Error: Can't start a new webserver until shutdown is called on the last instance.")
             Exit Sub
         End If
 
         Try
             ' Start listener
-            tcpListener = New TcpListener(serverIP, serverPort)
-            tcpListener.Start()
+            serverSocket = New TcpListener(serverIP, serverPort)
+            serverSocket.Start()
 
             ' Start request handler
             serverThread = New Thread(New ThreadStart(AddressOf ProcessThread))
@@ -51,12 +59,13 @@ Public Class C_WebServer
     ''' Stop the localhost webserver
     ''' </summary>
     Public Sub Shutdown()
-        If IsNothing(tcpListener) Then
+        If IsNothing(serverSocket) Then
             Console.WriteLine("Shutdown aborted - the webserver was never started.")
         Else
-            tcpListener.Stop()
+            ShutdownClient(clientSocket)
+            serverSocket.Stop()
             serverThread.Abort()
-            tcpListener = Nothing
+            serverSocket = Nothing
             Console.WriteLine("Webserver closed.")
         End If
     End Sub
@@ -66,33 +75,43 @@ Public Class C_WebServer
         While (True)
             Try
                 ' Exceptions may naturally occur here when requests are made after the server is closed
-                clientSocket = tcpListener.AcceptSocket()
+                clientSocket = serverSocket.AcceptSocket()
 
                 ' Socket Information
-                Dim clientInfo As IPEndPoint = CType(clientSocket.RemoteEndPoint, IPEndPoint)
+                'Dim clientInfo As IPEndPoint = CType(clientSocket.RemoteEndPoint, IPEndPoint)
 
-                ' Create new threads to handle each request
-                Dim clientThread As New Thread(New ThreadStart(AddressOf ProcessRequest))
-                clientThread.Start()
+                ' Create new instance of HandleClient to handle the request
+                Dim client As New HandleClient
+                client.StartClient(clientSocket, rootPath)
             Catch
                 ' Exceptions are caught here when waiting on AcceptSocket and the server/app is closed
                 Console.WriteLine("Error processing request. If the server just closed, this error is not an issue.")
-                ShutdownClient()
+                ShutdownClient(clientSocket)
             End Try
         End While
     End Sub
 
-    Private Sub ProcessRequest()
-        'Try
-        ' Buffer HTTP request
-        Dim recvBytes(1024) As Byte
-            Dim bytes = clientSocket.Receive(recvBytes, 0, clientSocket.Available, SocketFlags.None)
+    Public Class HandleClient
+        Dim clientSocketB As Socket
+        Dim rootPath As String
+
+        Public Sub StartClient(ByVal inClientSocket As Socket, ByVal rootPath As String)
+            Me.clientSocketB = inClientSocket
+            Me.rootPath = rootPath
+            Dim ctThread As Thread = New Thread(AddressOf ProcessRequestB)
+            ctThread.Start()
+        End Sub
+
+        Private Sub ProcessRequestB()
+            ' Buffer HTTP request
+            Dim recvBytes(1024) As Byte
+            Dim bytes = clientSocketB.Receive(recvBytes, 0, clientSocketB.Available, SocketFlags.None)
             Dim requestString = Encoding.ASCII.GetString(recvBytes, 0, bytes)
 
             If IsNothing(requestString) Then
-                ShutdownClient()
+                ShutdownClient(clientSocketB)
             ElseIf requestString.Length = 0 Then
-                ShutdownClient()
+                ShutdownClient(clientSocketB)
             End If
 
             ' Set default page
@@ -124,101 +143,97 @@ Public Class C_WebServer
 
                 '''''''''''sendHTMLResponse(strRequest)
             End If
+        End Sub
 
-        'Catch ex As Exception
-        '    Console.WriteLine("PROCESS REQUEST ERROR: " + ex.StackTrace.ToString())
-        '    ' If errors occur be sure to close the current socket so new ones can be made
-        '    ShutdownClient()
-        'End Try
-    End Sub
+        ' Send HTTP Response
+        Private Sub SendHTMLResponse(ByVal httpRequest As String)
+            ' Get the file content of the HTTP Request
+            Dim respByte() As Byte = GetHTTPRequestFileBytes(httpRequest)
 
-    ' Send HTTP Response
-    Private Sub SendHTMLResponse(ByVal httpRequest As String)
-        ' Get the file content of the HTTP Request
-        Dim respByte() As Byte = GetHTTPRequestFileBytes(httpRequest)
+            ' Ignore the request if the file was not found
+            If IsNothing(respByte) Then
+                ShutdownClient(clientSocketB)
+                Exit Sub
+            End If
 
-        ' Ignore the request if the file was not found
-        If IsNothing(respByte) Then
-            ShutdownClient()
-            Exit Sub
-        End If
+            ' Set HTML Header
+            Dim htmlHeader As String =
+                "HTTP/1.0 200 OK" & ControlChars.CrLf &
+                "Server: WebServer 1.0" & ControlChars.CrLf &
+                "Content-Length: " & respByte.Length & ControlChars.CrLf &
+                "Content-Type: " & GetContentType(httpRequest) &
+                ControlChars.CrLf & ControlChars.CrLf
 
-        ' Set HTML Header
-        Dim htmlHeader As String =
-        "HTTP/1.0 200 OK" & ControlChars.CrLf &
-        "Server: WebServer 1.0" & ControlChars.CrLf &
-        "Content-Length: " & respByte.Length & ControlChars.CrLf &
-        "Content-Type: " & GetContentType(httpRequest) &
-        ControlChars.CrLf & ControlChars.CrLf
+            ' The content Length of HTML Header
+            Dim headerByte() As Byte = Encoding.ASCII.GetBytes(htmlHeader)
 
-        ' The content Length of HTML Header
-        Dim headerByte() As Byte = Encoding.ASCII.GetBytes(htmlHeader)
+            ' Send HTML Header back to Web Browser
+            clientSocketB.Send(headerByte, 0, headerByte.Length, SocketFlags.None)
 
-        ' Send HTML Header back to Web Browser
-        clientSocket.Send(headerByte, 0, headerByte.Length, SocketFlags.None)
+            ' Send HTML Content back to Web Browser
+            clientSocketB.Send(respByte, 0, respByte.Length, SocketFlags.None)
 
-        ' Send HTML Content back to Web Browser
-        clientSocket.Send(respByte, 0, respByte.Length, SocketFlags.None)
+            ShutdownClient(clientSocketB)
+        End Sub
 
-        ShutdownClient()
-    End Sub
+        ''' <summary>
+        ''' Takes a file directory and returns the bytes in the file
+        ''' </summary>
+        ''' <param name="httpRequest">The HTTP file request</param>
+        Private Function GetHTTPRequestFileBytes(ByVal httpRequest As String) As Byte()
+            If Not File.Exists(httpRequest) Then
+                Console.WriteLine("FILE NOT FOUND: " + httpRequest)
+                Return Nothing
+            End If
+
+            Return File.ReadAllBytes(httpRequest)
+        End Function
+
+        ' Get Content Type
+        ''' <summary>
+        ''' Returns the type of content for a given HTTP request
+        ''' </summary>
+        ''' <param name="httpRequest">The HTTP file request</param>
+        Private Function GetContentType(ByVal httpRequest As String) As String
+            Select Case True
+                Case httpRequest.EndsWith("html") Or httpRequest.EndsWith("htm")
+                    Return "text/html"
+                Case httpRequest.EndsWith("css")
+                    Return "text/css"
+                Case httpRequest.EndsWith("txt")
+                    Return "text/plain"
+                Case httpRequest.EndsWith("gif")
+                    Return "image/gif"
+                Case httpRequest.EndsWith("jpeg")
+                    Return "image/jpeg"
+                Case httpRequest.EndsWith("png")
+                    Return "image/png"
+                Case httpRequest.EndsWith("pdf")
+                    Return "application/gif"
+                Case httpRequest.EndsWith("doc")
+                    Return "application/msword"
+                Case httpRequest.EndsWith("xls")
+                    Return "application/vnd.ms-excel"
+                Case httpRequest.EndsWith("ppt")
+                    Return "application/vnd.ms-powerpoint"
+                Case Else
+                    Return "text/plain"
+            End Select
+        End Function
+    End Class
 
     ''' <summary>
     ''' Close the current connection with a client
     ''' </summary>
-    Private Sub ShutdownClient()
-        If IsNothing(clientSocket) Then
+    Private Shared Sub ShutdownClient(ByVal socketToShutdown As Socket)
+        If IsNothing(socketToShutdown) Then
             Exit Sub
         End If
 
-        If clientSocket.Connected Then
+        If socketToShutdown.Connected Then
             ' Close HTTP Socket connection
-            clientSocket.Shutdown(SocketShutdown.Both)
-            clientSocket.Close()
+            socketToShutdown.Shutdown(SocketShutdown.Both)
+            socketToShutdown.Close()
         End If
     End Sub
-
-    ''' <summary>
-    ''' Takes a file directory and returns the bytes in the file
-    ''' </summary>
-    ''' <param name="httpRequest">The HTTP file request</param>
-    Overridable Function GetHTTPRequestFileBytes(ByVal httpRequest As String) As Byte()
-        If Not File.Exists(httpRequest) Then
-            Return Nothing
-        End If
-
-        Return File.ReadAllBytes(httpRequest)
-    End Function
-
-    ' Get Content Type
-    ''' <summary>
-    ''' Returns the type of content for a given HTTP request
-    ''' </summary>
-    ''' <param name="httpRequest">The HTTP file request</param>
-    Private Function GetContentType(ByVal httpRequest As String) As String
-        Select Case True
-            Case httpRequest.EndsWith("html") Or httpRequest.EndsWith("htm")
-                Return "text/html"
-            Case httpRequest.EndsWith("css")
-                Return "text/css"
-            Case httpRequest.EndsWith("txt")
-                Return "text/plain"
-            Case httpRequest.EndsWith("gif")
-                Return "image/gif"
-            Case httpRequest.EndsWith("jpeg")
-                Return "image/jpeg"
-            Case httpRequest.EndsWith("png")
-                Return "image/png"
-            Case httpRequest.EndsWith("pdf")
-                Return "application/gif"
-            Case httpRequest.EndsWith("doc")
-                Return "application/msword"
-            Case httpRequest.EndsWith("xls")
-                Return "application/vnd.ms-excel"
-            Case httpRequest.EndsWith("ppt")
-                Return "application/vnd.ms-powerpoint"
-            Case Else
-                Return "text/plain"
-        End Select
-    End Function
 End Class

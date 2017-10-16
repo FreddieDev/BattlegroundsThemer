@@ -19,7 +19,7 @@
 /* Style custom body where possible instead, to avoid overrideing game UI styles */
 body { margin: 0 }
 
-#customBody {
+#battlegroundsThemer_body {
 	/* Fill entire page and keep new body over the previous divs */
 	height: 100%;
     width: 100%;
@@ -28,7 +28,8 @@ body { margin: 0 }
     left: 0;
 }
 
-#customBody > * {
+#battlegroundsThemer_body > * {
+	all: initial;
 	
 	/* CSS reset */
 	font-family: 'SairaSemiCondensed', sans-serif;
@@ -47,7 +48,7 @@ body { margin: 0 }
 
 
 /* Notifications */
-/* don't add the background img to the customBody or default UI elements won't show through */
+/* don't add the background img to the battlegroundsThemer_body or default UI elements won't show through */
 body, #notificationContainer::before {
 	background: url("battlegroundsThemer_ROOT/background.png") 0 / cover fixed;
 }
@@ -387,7 +388,8 @@ body, #notificationContainer::before {
 .dropDown li:hover:not(.selectedDropDownItem) {	opacity: 0.9 }
 .selectedDropDownItem {
 	opacity: 1;
-	text-decoration: underline solid rgba(255,130,0,0.8);
+	/*text-decoration: underline solid rgba(255,130,0,0.8);*/
+	border-bottom: 0.1vw solid rgba(255,130,0,0.8); /* fallback */
 }
 
 
@@ -618,6 +620,7 @@ label span {
 	top: 0;
 	width: 100%;
 	height: 100%;
+	cursor: pointer;
 }
 /* Checkmark parent */
 #invitesRhombus label {

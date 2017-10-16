@@ -6,6 +6,8 @@ Public Class F_Main
     Public localhostAddress As IPAddress = IPAddress.Parse("127.0.0.1")
     Public WebserverPortNumber As Integer = 1025
     Public ImADevAndIWantAllTheMenuHTML As Boolean = True
+    Public HideRulesAndStore As Boolean = True
+    Public IAmSoRich As Boolean = False
 
     'Servers:
     Dim proxyServer As New C_BattlegroundsProxy
@@ -35,5 +37,9 @@ Public Class F_Main
 
     Private Sub CB_Theme_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Theme.SelectedIndexChanged
         proxyServer.ChangeTheme("Minimal")
+    End Sub
+
+    Private Sub RB_UsernameSpoof_CheckedChanged(sender As Object, e As EventArgs) Handles RB_UsernameSpoof.CheckedChanged
+        TB_SpoofedUsername.Enabled = RB_UsernameSpoof.Checked
     End Sub
 End Class

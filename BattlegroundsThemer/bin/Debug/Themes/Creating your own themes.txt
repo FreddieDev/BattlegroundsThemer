@@ -22,6 +22,7 @@ Standard theme file structure:
 
 Standard theme element ID's and classes:
 	IDs:
+	  battlegroundsThemer_body
 	  battlegroundsThemer_play
 	  battlegroundsThemer_username
 	  battlegroundsThemer_battlepoints

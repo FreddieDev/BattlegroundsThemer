@@ -41,10 +41,10 @@ Partial Class F_Main
         Me.CB_DefaultMode = New System.Windows.Forms.ComboBox()
         Me.CB_Enable = New System.Windows.Forms.CheckBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.CB_IAmRich = New System.Windows.Forms.CheckBox()
         Me.CheckBox6 = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CB_Theme = New System.Windows.Forms.ComboBox()
-        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
         Me.CB_SkipIntroLogos = New System.Windows.Forms.CheckBox()
         Me.CheckBox4 = New System.Windows.Forms.CheckBox()
         Me.B_SaveChanges = New System.Windows.Forms.Button()
@@ -263,10 +263,10 @@ Partial Class F_Main
         '
         Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel3.Controls.Add(Me.CB_IAmRich)
         Me.Panel3.Controls.Add(Me.CheckBox6)
         Me.Panel3.Controls.Add(Me.Label2)
         Me.Panel3.Controls.Add(Me.CB_Theme)
-        Me.Panel3.Controls.Add(Me.CheckBox5)
         Me.Panel3.Controls.Add(Me.CB_SkipIntroLogos)
         Me.Panel3.Controls.Add(Me.CheckBox4)
         Me.Panel3.Location = New System.Drawing.Point(3, 88)
@@ -274,15 +274,26 @@ Partial Class F_Main
         Me.Panel3.Size = New System.Drawing.Size(391, 62)
         Me.Panel3.TabIndex = 18
         '
+        'CB_IAmRich
+        '
+        Me.CB_IAmRich.AutoSize = True
+        Me.CB_IAmRich.Font = New System.Drawing.Font("Tahoma", 8.25!)
+        Me.CB_IAmRich.Location = New System.Drawing.Point(143, 42)
+        Me.CB_IAmRich.Name = "CB_IAmRich"
+        Me.CB_IAmRich.Size = New System.Drawing.Size(83, 17)
+        Me.CB_IAmRich.TabIndex = 18
+        Me.CB_IAmRich.Text = "i aM so rICh"
+        Me.CB_IAmRich.UseVisualStyleBackColor = True
+        '
         'CheckBox6
         '
         Me.CheckBox6.AutoSize = True
         Me.CheckBox6.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.CheckBox6.Location = New System.Drawing.Point(118, 44)
+        Me.CheckBox6.Location = New System.Drawing.Point(3, 42)
         Me.CheckBox6.Name = "CheckBox6"
-        Me.CheckBox6.Size = New System.Drawing.Size(73, 17)
+        Me.CheckBox6.Size = New System.Drawing.Size(137, 17)
         Me.CheckBox6.TabIndex = 17
-        Me.CheckBox6.Text = "Hide rules"
+        Me.CheckBox6.Text = "Hide rules/store button"
         Me.CheckBox6.UseVisualStyleBackColor = True
         '
         'Label2
@@ -306,17 +317,6 @@ Partial Class F_Main
         Me.CB_Theme.Size = New System.Drawing.Size(121, 21)
         Me.CB_Theme.TabIndex = 2
         Me.CB_Theme.Tag = "Select theme..."
-        '
-        'CheckBox5
-        '
-        Me.CheckBox5.AutoSize = True
-        Me.CheckBox5.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.CheckBox5.Location = New System.Drawing.Point(3, 44)
-        Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(109, 17)
-        Me.CheckBox5.TabIndex = 16
-        Me.CheckBox5.Text = "Hide Steam name"
-        Me.CheckBox5.UseVisualStyleBackColor = True
         '
         'CB_SkipIntroLogos
         '
@@ -407,9 +407,9 @@ Partial Class F_Main
     Friend WithEvents CheckBox6 As CheckBox
     Friend WithEvents Label2 As Label
     Friend WithEvents CB_Theme As ComboBox
-    Friend WithEvents CheckBox5 As CheckBox
     Friend WithEvents CB_SkipIntroLogos As CheckBox
     Friend WithEvents CheckBox4 As CheckBox
     Friend WithEvents B_SaveChanges As Button
     Friend WithEvents Label1 As Label
+    Friend WithEvents CB_IAmRich As CheckBox
 End Class

@@ -9,30 +9,34 @@ var onlyWaitForHotkey = true;
 var waitForUIToLoad = true;
 var attemptCopyInterval = 1000; // Default 1000 (1 second)
 
+function copyPageHTML() {
+	// Create a fullscreen div containing all the page's code as plain text
+	var codeRevealer = document.createElement("textarea");
+	codeRevealer.style.width = "100%";
+	codeRevealer.style.height = "100%";
+	codeRevealer.style.position = "absolute";
+	codeRevealer.style.left = "0";
+	codeRevealer.style.top = "0";
+	codeRevealer.style.zIndex = "-10"; // Must be -10 or less to get below the version number and steam news
+	codeRevealer.style.background = "#f55";
+	codeRevealer.innerText = document.documentElement.outerHTML;
+	document.body.appendChild(codeRevealer);
+	
+	// Copy all of the code from the div to the clipboard
+	codeRevealer.select();
+	document.execCommand("copy");
+	
+	// Clean up the text
+	codeRevealer.innerText = "Menu code copied to your clipboard!\nMenu code copied to your clipboard!\nMenu code copied to your clipboard!\nMenu code copied to your clipboard!";
+}
+
 if (!onlyWaitForHotkey) {
 	var waitForUILoaded = setInterval(function() {
 		if (document.getElementsByClassName("userid")[0] && waitForUIToLoad) {
-			// Create a fullscreen div containing all the page's code as plain text
-			var codeRevealer = document.createElement("textarea");
-			codeRevealer.style.width = "100%";
-			codeRevealer.style.height = "100%";
-			codeRevealer.style.position = "absolute";
-			codeRevealer.style.left = "0";
-			codeRevealer.style.top = "0";
-			codeRevealer.style.zIndex = "-10"; // Must be -10 or less to get below the version number and steam news
-			codeRevealer.style.background = "#f55";
-			codeRevealer.innerText = document.documentElement.outerHTML;
-			document.body.appendChild(codeRevealer);
-			
-			// Copy all of the code from the div to the clipboard
-			codeRevealer.select();
-			document.execCommand("copy");
-			
-			// Clean up the text
-			codeRevealer.innerText = "Menu code copied to your clipboard!\nMenu code copied to your clipboard!\nMenu code copied to your clipboard!\nMenu code copied to your clipboard!";
-			
 			// Stop the loop
 			clearInterval(waitForUILoaded);
+			
+			copyPageHTML();
 		}
 	}, attemptCopyInterval);
 }
@@ -41,22 +45,6 @@ if (!onlyWaitForHotkey) {
 document.addEventListener('keydown', function(e) {
 	// J key
 	if (e.keyCode == 74) {
-		var codeRevealer = document.createElement("textarea");
-		codeRevealer.style.width = "100%";
-		codeRevealer.style.height = "100%";
-		codeRevealer.style.position = "absolute";
-		codeRevealer.style.left = "0";
-		codeRevealer.style.top = "0";
-		codeRevealer.style.zIndex = "-10"; // Must be -10 or less to get below the version number and steam news
-		codeRevealer.style.background = "#f55";
-		codeRevealer.innerText = document.documentElement.outerHTML;
-		document.body.appendChild(codeRevealer);
-
-		// Copy all of the code from the div to the clipboard
-		codeRevealer.select();
-		document.execCommand("copy");
-		
-		// Clean up the text
-		codeRevealer.innerText = "Menu code copied to your clipboard!\nMenu code copied to your clipboard!\nMenu code copied to your clipboard!\nMenu code copied to your clipboard!";
+		copyPageHTML();
 	}
 }, false);

@@ -16,17 +16,4 @@ Public Class C_BattlegroundsWebServer
     Public Sub ChangeRootDirectory(ByVal newDirectory As String)
         MyBase.rootPath = newDirectory
     End Sub
-
-    ''' <summary>
-    ''' Finds requested files from the current theme and converts it to a byte array
-    ''' </summary>
-    Overrides Function GetHTTPRequestFileBytes(ByVal httpRequest As String) As Byte()
-        ' Check if requested file exists in theme
-        If File.Exists(httpRequest) Then
-            Return File.ReadAllBytes(httpRequest)
-        Else
-            Console.WriteLine("FILE NOT FOUND: " + httpRequest)
-            Return Nothing
-        End If
-    End Function
 End Class

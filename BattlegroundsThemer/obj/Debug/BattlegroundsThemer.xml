@@ -47,11 +47,6 @@ BattlegroundsThemer
  Update the root directory of the webserver, useful for when changing themes
  </summary>
 </member>
-<member name="M:BattlegroundsThemer.C_BattlegroundsWebServer.GetHTTPRequestFileBytes(System.String)">
- <summary>
- Finds requested files from the current theme and converts it to a byte array
- </summary>
-</member>
 <member name="T:BattlegroundsThemer.C_HostsFile">
  <summary>
  Tools to read and write to the Windows hosts file
@@ -84,6 +79,15 @@ BattlegroundsThemer
  </summary>
  <param name="newText">The new text for the hosts file to be set to.</param>
 </member>
+<member name="T:BattlegroundsThemer.C_WebServer">
+ <summary>
+ I've made this class up of a few projects online, and tweaked it to my liking to fix bugs and performance.
+ 
+ Credit:
+  - java2s.com/Tutorial/VB/0400__Socket-Network/TcpListenerbasedWebserver.htm
+  - vb.net-informations.com/communications/vb.net_multithreaded_server_socket_programming.htm
+ </summary>
+</member>
 <member name="M:BattlegroundsThemer.C_WebServer.Startup">
  <summary>
  Start the localhost webserver
@@ -94,22 +98,22 @@ BattlegroundsThemer
  Stop the localhost webserver
  </summary>
 </member>
-<member name="M:BattlegroundsThemer.C_WebServer.ShutdownClient">
- <summary>
- Close the current connection with a client
- </summary>
-</member>
-<member name="M:BattlegroundsThemer.C_WebServer.GetHTTPRequestFileBytes(System.String)">
+<member name="M:BattlegroundsThemer.C_WebServer.HandleClient.GetHTTPRequestFileBytes(System.String)">
  <summary>
  Takes a file directory and returns the bytes in the file
  </summary>
  <param name="httpRequest">The HTTP file request</param>
 </member>
-<member name="M:BattlegroundsThemer.C_WebServer.GetContentType(System.String)">
+<member name="M:BattlegroundsThemer.C_WebServer.HandleClient.GetContentType(System.String)">
  <summary>
  Returns the type of content for a given HTTP request
  </summary>
  <param name="httpRequest">The HTTP file request</param>
+</member>
+<member name="M:BattlegroundsThemer.C_WebServer.ShutdownClient(System.Net.Sockets.Socket)">
+ <summary>
+ Close the current connection with a client
+ </summary>
 </member>
 <member name="M:BattlegroundsThemer.C_Proxy.FiddlerBeforeRequestHandler(Fiddler.Session)">
  <summary>

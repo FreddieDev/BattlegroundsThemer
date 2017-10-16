@@ -102,21 +102,6 @@ Public Class C_BattlegroundsProxy
         pageHTML = pageHTML.Replace("oncontextmenu=""return false;""", "") 'Enable context menu in webbrowsers (blocked in-game)
         pageHTML = pageHTML.Replace("engine.hideOverlay();", "") 'Enable developer overlay in webbrowsers (blocked in-game)
 
-
-        ' Apply user settings
-        If F_Main.NoSplash Then pageHTML = C_WebMethods.addStylesheetToHTML(".intro{visibility:hidden !important}", pageHTML)
-
-        '' Hide original page UI
-        ''menuHTML = C_WebMethods.addStylesheetToHTML(".con-connected{visibility:hidden !important}", menuHTML)
-
-
-
-        ' Inject theme scripts.js into document head
-        Dim themeScriptsDir As String = themeDirectory + "scripts.js"
-        If File.Exists(themeScriptsDir) Then
-            pageHTML = C_WebMethods.addScriptToHTML(File.ReadAllText(themeScriptsDir), pageHTML)
-        End If
-
         ' Check if any required files are missing
         Dim themeHTMLDir As String = themeDirectory + "index.html"
         Dim themeStylesheetDir As String = themeDirectory + "stylesheet.css"
@@ -133,7 +118,7 @@ Public Class C_BattlegroundsProxy
         Dim themeHTMLCode As String = File.ReadAllText(themeHTMLDir)
         Dim stylesheet As String = File.ReadAllText(themeStylesheetDir)
 
-        ' Prepare theme code for injection via javascript string
+        ' Prepare theme HTML&CSS for injection via javascript string
         themeHTMLCode = themeHTMLCode.Replace("""", "\""") ' Escape all double quotes in the HTML for JS compatibility
         themeHTMLCode = themeHTMLCode.Replace(vbCr, "").Replace(vbLf, "") ' Remove all newLine characters
         stylesheet = stylesheet.Replace("""", "\""") ' Escape all double quotes in the HTML for JS compatibility
@@ -144,11 +129,31 @@ Public Class C_BattlegroundsProxy
         themeInjectorScript = themeInjectorScript.Replace("BT_HTMLHERE", themeHTMLCode)
         themeInjectorScript = themeInjectorScript.Replace("BT_CSSHERE", stylesheet)
 
+        ' Append themeInjector into page end
+        pageHTML = C_WebMethods.addScriptToHTML(themeInjectorScript, pageHTML)
 
-        ' Append themeInjector & dev tools into page end
+        ' Inject theme scripts.js into document head
+        Dim themeScriptsDir As String = themeDirectory + "scripts.js"
+        If File.Exists(themeScriptsDir) Then
+            pageHTML = C_WebMethods.addScriptToHTML(File.ReadAllText(themeScriptsDir), pageHTML)
+        End If
+
+
+
+        ' Apply user settings
         If F_Main.ImADevAndIWantAllTheMenuHTML Then pageHTML = C_WebMethods.addScriptToHTML(File.ReadAllText(resourcesDirectory + "fetchCode.js"), pageHTML)
         If F_Main.ShowScriptErrors Then pageHTML = C_WebMethods.addScriptToHTML(File.ReadAllText(resourcesDirectory + "highlightScriptErrors.js"), pageHTML)
-        pageHTML = C_WebMethods.addScriptToHTML(themeInjectorScript, pageHTML)
+        If F_Main.NoSplash Then pageHTML = C_WebMethods.addStylesheetToHTML(".intro{visibility:hidden !important}", pageHTML)
+        If F_Main.HideRulesAndStore Then pageHTML = C_WebMethods.addStylesheetToHTML(".sideBanner {display: none !important}", pageHTML)
+        If F_Main.IAmSoRich Then pageHTML = pageHTML.Replace("BT_IAMSORICH", "lots of money")
+        If Not F_Main.RB_UsernameShow.Checked Then
+            If F_Main.RB_UsernameHide.Checked Then
+                pageHTML = pageHTML.Replace("BT_USERNAMEHERE", "")
+            Else
+                pageHTML = pageHTML.Replace("BT_USERNAMEHERE", F_Main.TB_SpoofedUsername.Text)
+            End If
+        End If
+
 
         ' Fix all references to local files in code
         pageHTML = pageHTML.Replace("battlegroundsThemer_ROOT", "http://" + F_Main.localhostAddress.ToString + ":" + F_Main.WebserverPortNumber.ToString)

@@ -1,4 +1,5 @@
 ﻿Imports System.Net
+Imports System.Text.RegularExpressions
 ''' <summary>
 ''' Functions to modify and inject code into web documents
 ''' </summary>
