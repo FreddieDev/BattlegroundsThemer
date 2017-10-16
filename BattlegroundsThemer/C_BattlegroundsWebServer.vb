@@ -21,11 +21,11 @@ Public Class C_BattlegroundsWebServer
     ''' Finds requested files from the current theme and converts it to a byte array
     ''' </summary>
     Overrides Function GetHTTPRequestFileBytes(ByVal httpRequest As String) As Byte()
-        Console.WriteLine("Request for file: " + httpRequest)
         ' Check if requested file exists in theme
         If File.Exists(httpRequest) Then
             Return File.ReadAllBytes(httpRequest)
         Else
+            Console.WriteLine("FILE NOT FOUND: " + httpRequest)
             Return Nothing
         End If
     End Function

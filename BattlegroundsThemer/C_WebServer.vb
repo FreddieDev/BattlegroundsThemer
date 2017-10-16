@@ -85,6 +85,8 @@ Public Class C_WebServer
 
     Private Sub ProcessRequest()
         Try
+            Console.WriteLine("REQUEST RECIEVED")
+
             ' Buffer HTTP request
             Dim recvBytes(1024) As Byte
             Dim bytes = clientSocket.Receive(recvBytes, 0, clientSocket.Available, SocketFlags.None)

@@ -60,7 +60,7 @@ function initThemeInjection() {
 	customMenu_playButton.addEventListener('click', function (event) {
 		menu_playButton.click();
 	});
-	/*
+	
 	// Click version number to reload page for debugging
 	customMenu_version.addEventListener('click', function (event) {
 		engine.trigger('OpenExternalBrowser', 'http://steamcommunity.com/app/578080/announcements/');
@@ -69,7 +69,7 @@ function initThemeInjection() {
 	customMenu_logo.addEventListener('click', function (event) {
 		location.reload();
 	});
-	*/
+	
 	
 	// --------------------------------------------
 	// Update custom UI element content
