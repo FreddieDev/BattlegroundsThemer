@@ -63,7 +63,7 @@ body, #notificationContainer::before {
 	background: url("battlegroundsThemer_ROOT/background.png") 0 / cover fixed;
 }
 
-#notificationContainer {
+#battlegroundsThemer_notification {
 	display: inline-block;
 	position: fixed;
 	top: 0;
@@ -73,8 +73,8 @@ body, #notificationContainer::before {
 	margin: auto;
 	width: 15vw;
 	
-	background: hsla(0,0%,100%,.0); /* Tint blur */
-	overflow: hidden; /* Stop blur extending out of element */
+	background-color: rgba(35, 35, 50, 0.8);
+	border-color: rgba(35, 35, 50, 0.8);
 	
 	padding: 0.5vw 1vw;
 	
@@ -88,23 +88,7 @@ body, #notificationContainer::before {
 	display: table;
 }
 
-#notificationContainer::before {
-	content: '';
-	margin: -.5vw;
-	
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	
-	visibility: inherit;
-	
-	-webkit-filter: blur(0.5vw);
-	z-index: -1;
-}
-
-#battlegroundsThemer_notification {
+#notificationText {
 	/* Vertically center text */
 	display: table-cell;
 	vertical-align: middle;
