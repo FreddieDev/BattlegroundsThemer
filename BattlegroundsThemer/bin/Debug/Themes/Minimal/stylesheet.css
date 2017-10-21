@@ -1,3 +1,5 @@
+/* NOTE: Battlegrounds does not support filter, use -webkit-filter instead! */
+
 /* Fonts */
 @font-face {
   font-family: 'SairaSemiCondensed';
@@ -17,7 +19,7 @@
 
 
 /* Style custom body where possible instead, to avoid overrideing game UI styles */
-body { margin: 0 }
+body { margin: 0; }
 
 #battlegroundsThemer_body {
 	/* Fill entire page and keep new body over the previous divs */
@@ -26,11 +28,11 @@ body { margin: 0 }
     position: absolute;
     top: 0;
     left: 0;
+	bottom: 0;
+	right: 0;
 }
 
 #battlegroundsThemer_body > * {
-	all: initial;
-	
 	/* CSS reset */
 	font-family: 'SairaSemiCondensed', sans-serif;
 	font-size: 0.5vw;
@@ -40,6 +42,14 @@ body { margin: 0 }
 	cursor: default;
 	padding: 0;
 	user-select: none;
+	
+	/*
+		Pointer events must be manually enabled for child elements of the menu!
+		If they are not, clicks will be forwarded through to the game.
+		NOTE: This shouldn't be used on the theme body (#battlegroundsThemer_body) because that'll
+		block/catch all clicks that should go through to the menu.
+	*/
+	pointer-events: auto;
 }
 
 
@@ -63,13 +73,12 @@ body, #notificationContainer::before {
 	margin: auto;
 	width: 15vw;
 	
-	background: hsla(0,0%,100%,.0);
-	overflow: hidden;
+	background: hsla(0,0%,100%,.0); /* Tint blur */
+	overflow: hidden; /* Stop blur extending out of element */
 	
 	padding: 0.5vw 1vw;
 	
 	font-size: 1.2vw;
-	border-radius: 0.5vw;
 	box-shadow: 0 0 4vw black;
 	
 	/* Horizontally center inner text */
@@ -81,7 +90,7 @@ body, #notificationContainer::before {
 
 #notificationContainer::before {
 	content: '';
-	margin: -1vw;
+	margin: -.5vw;
 	
 	position: absolute;
 	top: 0;
@@ -89,7 +98,9 @@ body, #notificationContainer::before {
 	bottom: 0;
 	left: 0;
 	
-	filter: blur(0.5vw);
+	visibility: inherit;
+	
+	-webkit-filter: blur(0.5vw);
 	z-index: -1;
 }
 
@@ -121,30 +132,42 @@ body, #notificationContainer::before {
 	left: 0;
 	height: 100%;
 	width: 100%;
+}
+
+#playBGImage::before {
+	content: "";
+    background: url('battlegroundsThemer_ROOT/playBG.png');
+	-webkit-filter: opacity(0.4) saturate(10%);
+    background-repeat: no-repeat; 
+    background-position: bottom right;
+	background-size: contain;
 	
-	transform: skew(0deg);
-	overflow: hidden; /* hide any background-image that extends out the play button */
+	/* remove parent skew */
+    transform: skew(25deg);
+	
+    position: absolute;
+    transform-origin: bottom right;
+    width: 100%;
+    height: 100%;
 }
 
 #playBGImage {
+    position: relative;
+    overflow: hidden;
+	
 	/* Position under parent at same scale */
-	position: absolute;
 	height: 100%;
 	width: 100%;
-    top: 0;
 	
-	/* Inverse parent skew */
-	transform: skew(25deg);
+	/* Skew into rhombus */
+	transform: skew(-25deg);
 	
-	/* Image */
-	background: url("battlegroundsThemer_ROOT/playBG.png");
-	background-repeat: no-repeat;
-	filter: opacity(0.4) saturate(10%);
-	background-size: contain;
-	background-position: right bottom;
+    position: relative;
+    overflow: hidden;
 }
 
 #battlegroundsThemer_play {
+	/* Add dirt texture and orange to yellow gradient background */
 	background: url("battlegroundsThemer_ROOT/Dirt.png"), linear-gradient(5deg,
 		rgba(150,64,20,1) 0%,
 		rgb(255, 168, 0) 71%,
@@ -542,7 +565,7 @@ body, #notificationContainer::before {
 	height: .8vw;
 	vertical-align: middle;
 	padding-right: .5vw;
-	filter:
+	-webkit-filter:
         /* for demonstration purposes; originals not entirely black */
         contrast(1000%)
         /* black to white */

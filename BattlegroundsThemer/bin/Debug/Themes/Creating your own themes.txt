@@ -83,6 +83,15 @@ Tips:
 	  1vw = 1/100th viewport width
 	  1vh = 1/100th viewport height
 	  1vmin = 1vw or 1vh, whichever is smaller
+	  
+  - Battlegrounds doesn't support the CSS 'filter' property! Use '-webkit-filter' instead.
+  
+  - You must manually add "pointer-events: auto" to theme elements that you want to be
+    Clickable/hoverable or the events will be passed through to the existing main menu!
+	An easy way to do this is to add this to the top of your CSS stylesheet:
+	#battlegroundsThemer_body > * {pointer-events: auto}
+	
+  - CSS border radius editing doesn't seem to be supported at all.
 
 
 BattlegroundsThemer was created by Freddie Chessell

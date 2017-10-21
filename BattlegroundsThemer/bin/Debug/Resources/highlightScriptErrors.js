@@ -20,7 +20,7 @@ window.onerror = function(message) {
 	
 	var autoHideError = setInterval(function() {
 		clearInterval(autoHideError); // Stops the loop
-		errorRevealer.style.bottom = "-100vh";
+		errorRevealer.remove();
 	}, 3000);
 	
     return true;

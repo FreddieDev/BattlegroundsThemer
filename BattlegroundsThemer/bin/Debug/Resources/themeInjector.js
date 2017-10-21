@@ -35,7 +35,7 @@ function loadElementsIntoVars() {
 	// Assign UI element container variables
 	container_play = 		document.getElementsByTagName("select-game")[0];
 	container_userInfo =	document.getElementsByClassName("bro-userinfo")[0];
-	container_header = 		document.getElementsByClassName("bro-header")[0];
+	container_header = 		document.querySelector(".bro-gnb").getElementsByTagName("ul")[0];
 	
 	
 	// Assign UI element variables
@@ -79,7 +79,7 @@ function manageReplacedUI() {
 	if (customMenu_battlepoints || customMenu_username) container_userInfo.style.opacity = "0";
 	if (customMenu_version) menu_version.style.display = "none";
 	if (customMenu_homeTab) container_header.style.display = "none";
-	
+
 	// Remove default menu logo:
 	if (customMenu_logo && !hasHiddenMenuLogo) {
 		var styleElem = document.head.appendChild(document.createElement("style"));
@@ -115,17 +115,32 @@ function initThemeInjection() {
 	// (U*HASD)IUY*HASD)(*&YUHASD)(&*HAWD)S*UIYHAOIWU*YDHA)*S&HD)*(A&YSHGD)*&ASHGD*&)g
 	// CONTINUE WORK FROM HERE:
 	// Note: If the code is inserted using body.appendChild the menu can't be clicked
-	document.body.appendChild(themeHTML);
+	//document.body.appendChild(themeHTML);
 	//var documentHeader = document.body.getElementsByTagName("header")[0];
 	//document.body.insertBefore(themeHTML, documentHeader); // document.body.firstChild
-
+	var elemToInjectInto = document.querySelector("nav");
+	elemToInjectInto.appendChild(themeHTML);
 	
+	elemToInjectInto.parentElement.parentElement.style.position = "absolute";
+	elemToInjectInto.parentElement.parentElement.style.height = "100%";
+	elemToInjectInto.parentElement.parentElement.style.width = "100%";
+	elemToInjectInto.parentElement.parentElement.style.top = "0";
+	elemToInjectInto.parentElement.parentElement.style.left = "0";
+	elemToInjectInto.parentElement.parentElement.style.bottom = "initial";
+	elemToInjectInto.parentElement.parentElement.style.right = "initial";
+	elemToInjectInto.parentElement.parentElement.style.justifyContent = "initial";
+	elemToInjectInto.parentElement.parentElement.style.display = "initial";
+	elemToInjectInto.parentElement.parentElement.style.textAlign = "initial";
+	elemToInjectInto.parentElement.parentElement.style.boxSizing = "initial";
+	elemToInjectInto.parentElement.parentElement.style.alignItems = "initial";
+	elemToInjectInto.parentElement.parentElement.style.background = "initial";
+	elemToInjectInto.parentElement.parentElement.style.pointerEvents = "none";
+
 	// --------------------------------------------
 	// Hide default page elements
 	// --------------------------------------------
 	document.addEventListener('click', manageReplacedUI);
 	manageReplacedUI();
-
 	
 	// --------------------------------------------
 	// Attach event handlers to rethemed elements
