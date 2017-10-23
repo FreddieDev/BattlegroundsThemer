@@ -37,6 +37,7 @@ Standard theme element ID's and classes:
 	  battlegroundsThemer_friendsRefresh
 	  battlegroundsThemer_friendsPlayingCount
 	  battlegroundsThemer_friendsOnlineCount
+	  battlegroundsThemer_recieveInvites
 	
 	Classes:
 	  battlegroundsThemer_invite
@@ -61,11 +62,20 @@ Referencing extra files within your theme:
 
 
 	
+Making your menu interactive:
+	You must manually add "pointer-events: auto" to theme elements that you want to be
+	Clickable/hoverable or the events will be passed through to the existing main menu!
+	An easy way to do this is to add this to the top of your CSS stylesheet:
+	#battlegroundsThemer_body > * {pointer-events: auto}
+
+	
+	
 Tips:
   - Try to avoid using any external sources for content like scripts, styles,
 	images and fonts. Storing these files within your theme folder and then linking
 	directly to them will reduce load times and avoid your theme being dependant on
 	external websites.
+	
 	
   - Don't include spaces in your references to files in the URLs. For example, this
 	is incorrect:
@@ -83,15 +93,15 @@ Tips:
 	  1vw = 1/100th viewport width
 	  1vh = 1/100th viewport height
 	  1vmin = 1vw or 1vh, whichever is smaller
+
 	  
   - Battlegrounds doesn't support the CSS 'filter' property! Use '-webkit-filter' instead.
   
-  - You must manually add "pointer-events: auto" to theme elements that you want to be
-    Clickable/hoverable or the events will be passed through to the existing main menu!
-	An easy way to do this is to add this to the top of your CSS stylesheet:
-	#battlegroundsThemer_body > * {pointer-events: auto}
 	
   - CSS border radius editing doesn't seem to be supported at all.
+  
+  - battlegroundsThemer_recieveInvites must be an <input> element with the type set to
+	'checkbox' or the theme injector will not be able to update its state.
 
 
 BattlegroundsThemer was created by Freddie Chessell

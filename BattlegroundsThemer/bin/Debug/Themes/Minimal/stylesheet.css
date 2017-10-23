@@ -86,11 +86,6 @@ body, #notificationContainer::before {
 	
 	/* Vertically center inner text */
 	display: table;
-}
-
-#notificationText {
-	/* Vertically center text */
-	display: table-cell;
 	vertical-align: middle;
 	
 	font-weight: 400;
@@ -327,9 +322,14 @@ body, #notificationContainer::before {
 #battlegroundsThemer_version {
 	position: absolute;
     bottom: 0.5vw;
-    font-size: 0.5vw;
+	
+	/* Horizontally center */
+    left: 50%;
+    transform: translateX(-50%);
+	
+    font-size: 0.8vw;
     font-weight: 400;
-    display: inline-block;
+	text-align: center;
 }
 
 
@@ -459,57 +459,76 @@ body, #notificationContainer::before {
 
 
 
-
-
 /* Friends menu */
+
+/* restyle original scrollbar */
+::-webkit-scrollbar,
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-corner,
+::-webkit-resizer
+{background: transparent;width:0.2vw !important;}
+
+::-webkit-scrollbar-thumb {
+	border: none !important;
+	border-right: 0.2vw solid #F90 !important;
+	box-sizing: border-box !important;
+}
 
 #friendsMenu {
 	min-width: 17vw;
-    background-color: rgba(35, 35, 50, 0.8);
-    border: .1vw solid rgba(35, 35, 50, 0.8);
-    list-style-type: none;
-    transition: opacity .2s ease-in-out;
-    font-size: 1vw;
-    position: absolute;
-    bottom: -.5vw;
-    left: 11vw;
+	background-color: rgba(35, 35, 50, 0.8);
+	border: .1vw solid rgba(35, 35, 50, 0.8);
+	list-style-type: none;
+	transition: opacity .2s ease-in-out;
+	font-size: 1vw;
+	position: absolute;
+	bottom: -.5vw;
+	left: 11vw;
 	
-    font-weight: 500;
+	font-weight: 500;
 	
 	opacity: 0;
 	visibility: hidden;
+	
+	
+    height: 50vh;
 }
 #friendsMenu:before, #friendsMenu:after {
 	content: "";
-    position: absolute;
-    /*background: #f00;*/
+	position: absolute;
+	/*background: #f00;*/
 }
 
 #friendsMenu:before {
-    width: 11vw;
-    bottom: 0;
-    left: -12vw;
-    height: 3vw;
-    visibility: visible;
+	width: 11vw;
+	bottom: 0;
+	left: -12vw;
+	height: 3vw;
+	visibility: visible;
 }
 
 #friendsMenu:after {
 	width: 141%;
-    bottom: -1vw;
-    left: -23%;
-    height: calc(100% + 2vw); /* 100% height plus bottom offset */
+	bottom: -1vw;
+	left: -23%;
+	height: calc(100% + 2vw); /* 100% height plus bottom offset */
 	padding: 1vw 0;
-    z-index: -1;
-    visibility: hidden;
+	z-index: -1;
+	visibility: hidden;
 }
+
+
 /* Hide after block unless the menu is visible, and use it to make the menu harder to close by mistake */
 #friendsMenu:hover::after {
-    visibility: visible !important;
+	visibility: visible !important;
 }
 
 
 
-#friendsMenu:hover, #friendsMenu *:hover {
+#friendsMenu:hover, #friendsMenu *:hover, #friendsMenu:hover::before {
 	opacity: 1;
 	visibility: visible;
 }
@@ -529,11 +548,11 @@ body, #notificationContainer::before {
 .refreshButton {
 	/* Pin right */
 	position: absolute;
-    right: .4vw;
-    color: #ff0;
-    text-align: right;
-    cursor: pointer;
-    opacity: 0.9;
+	right: .4vw;
+	color: #ff0;
+	text-align: right;
+	cursor: pointer;
+	opacity: 0.9;
 }
 .refreshButton:hover, .battlegroundsThemer_invite:hover { text-shadow: 0 0 1vw rgba(255, 255, 0, .2) }
 .battlegroundsThemer_stats:hover { text-shadow: 0 0 1vw rgba(255, 200, 0, .2) }
@@ -550,16 +569,16 @@ body, #notificationContainer::before {
 	vertical-align: middle;
 	padding-right: .5vw;
 	-webkit-filter:
-        /* for demonstration purposes; originals not entirely black */
-        contrast(1000%)
-        /* black to white */
-        invert(100%)
-        /* white to off-white */
-        sepia(100%)
-        /* off-white to yellow */
-        saturate(10000%)
-        /* do whatever you want with yellow */
-        hue-rotate(0deg);
+		/* for demonstration purposes; originals not entirely black */
+		contrast(1000%)
+		/* black to white */
+		invert(100%)
+		/* white to off-white */
+		sepia(100%)
+		/* off-white to yellow */
+		saturate(10000%)
+		/* do whatever you want with yellow */
+		hue-rotate(0deg);
 }
 
 #friendsMenu li {
@@ -567,13 +586,13 @@ body, #notificationContainer::before {
 	padding-left: 0.2vw;
 	
 	text-transform: none;
-    font-size: .9vw;
+	font-size: .9vw;
 	line-height: 2vw;
 	
 	background: rgba(0, 0, 50, 0.1);
 	border-bottom: .1vw solid rgba(0, 0, 0, .1);
 }
-.battlegroundsThemer_stats, .battlegroundsThemer_invite {
+.battlegroundsThemer_friendStats, .battlegroundsThemer_friendInvite {
 	text-transform: uppercase;
 	position: absolute;
 	right: .6vw;
@@ -581,7 +600,7 @@ body, #notificationContainer::before {
 	cursor: pointer;
 }
 
-.battlegroundsThemer_invite {
+.battlegroundsThemer_friendInvite {
 	right: 3.5vw;
 	color: rgba(200, 200, 0, 1);
 }
